@@ -5,8 +5,8 @@
 A **Games Hub PWA**: a collection of free browser games behind a shared hub grid, with anonymous Firestore leaderboards. Sister project to Utility Hub (`C:\utilities\utilities`, live at online-utilities.com) — shares its stack, i18n event convention, and design language.
 
 - **Local path:** `C:\SaaS-projects\online_games_hub`
-- **Repo:** not yet created on GitHub
-- **Live:** not yet deployed (Firebase project not yet provisioned — see `HIT_BY_A_BUS.md`)
+- **Repo:** `github.com/Terrygilligan/games-hub` (main)
+- **Live:** `https://games-hub-online.web.app` — Hosting site `games-hub-online` inside the **shared** Firebase project `farmfresh-5e95e` (same project as online-utilities.com and the farmfresh app — the GCP account is at its project quota, so no dedicated project). `.env.local` holds the `VITE_FIREBASE_*` web config (gitignored).
 - **Status (2026-10-28): two games live** — **Snake** playable at `/games/snake` (canvas 20×20, arrow/WASD + swipe + mobile D-pad, wall/self collision, speed scales with score, personal best in `games-hub.best.snake`, nickname submit on new best → `submitScore`); **Memory Match** playable at `/games/memory` (word-pair tiles: synonyms/associations from `games.memory.words` per locale, Classic 4×4 / Expert 6×6, CSS 3D flip, moves+elapsed+combo HUD, efficiency×time score, per-mode best in `games-hub.best.memory.*`); minesweeper remains `coming-soon`. i18n in six locales (en/bg/de/es/fr/nl), anonymous-identity + leaderboard services, governance docs.
 
 ## Active milestones
@@ -30,6 +30,7 @@ A **Games Hub PWA**: a collection of free browser games behind a shared hub grid
 ## Key architectural decisions
 
 - **Anonymous leaderboards, zero-auth.** No Firebase Auth by design (`firestore.rules` allows create-only writes with strict field validation). Identity = `crypto.randomUUID()` + nickname in localStorage (`services/playerIdentity.ts`). Leaderboard doc shape is locked — see `HIT_BY_A_BUS.md` for the `games_leaderboards` schema.
+- **SHARED FIRESTORE — union rules, manual indexes.** `firestore.rules` is a union of the farmfresh app's auth/role collections (users, inventory, orders, euAuditLogs, system — managed elsewhere) plus our `games_leaderboards`/`item_ratings`. **Do not delete the farmfresh blocks** — `firebase deploy --only firestore:rules` replaces the whole ruleset. If the farmfresh app changes its rules, re-sync this file. `firebase.json` deliberately has **no `indexes` entry**: the shared DB carries ~13 farmfresh composite indexes and a CLI index deploy could delete them — `games_leaderboards` index was created once via REST; add future indexes via console/API, keeping `firestore.indexes.json` as the reference file only.
 - **Scoped Firebase packages** (`@firebase/app` + `@firebase/firestore`), lazily imported — the gRPC/firestore bundle never reaches the initial chunk. Config comes from `VITE_FIREBASE_*` env vars; `getDb()` returns `null` when unconfigured and services degrade to `[]`/`false` (app builds and runs with no env at all).
 - **No game engines.** Games are hand-rolled React/canvas — a hard rule in `.agents/rules.md`.
 - **Shared shell:** `src/components/Header.tsx` (brand + `LangSelect` + `ThemeToggle`) and `Footer.tsx` — simpler than Utility Hub's sidebar layout since games are flat, not nested tools.
@@ -61,5 +62,5 @@ Config: `vite.config.ts` (react + tailwind + VitePWA, manifest "Games Hub"), `fi
 
 1. **First games** — snake, memory match, minesweeper: `games/<id>/` container + registry flip to `available` + lazy route `/games/<id>` in `App.tsx` + `games.titles.<id>` keys.
 2. **Score submission flow** — `submitScore` is wired but unused until a game ships; needs the nickname prompt UI (`games.nickname.*` keys already exist) before first submit.
-3. **Firebase project** — provision a project, add `.firebaserc`, fill `.env.local`, deploy rules + indexes + hosting (`firebase deploy`). Until then leaderboards return empty.
-4. **Deploy + domain** — first hosting deploy, then decide on a custom domain.
+3. **Firebase project** — done via shared `farmfresh-5e95e` (see "Shared Firestore" decision above); leaderboards + ratings are live.
+4. **Custom domain** — optional: add e.g. `games.<domain>` to the `games-hub-online` site in console → Hosting.

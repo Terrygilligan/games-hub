@@ -6,7 +6,8 @@ Everything needed to rebuild, operate, and redeploy this project with zero prior
 
 - **App:** "Games Hub" — a static PWA of free browser games with anonymous Firestore leaderboards. Frontend is a build artifact (`dist/`) served from Firebase Hosting; the only backend piece is Cloud Firestore.
 - **Local path:** `C:\SaaS-projects\online_games_hub`
-- **Repo:** GitHub remote not yet created (check `git remote -v`; if absent, create `github.com/Terrygilligan/games-hub` or similar and push).
+- **Repo:** `github.com/Terrygilligan/games-hub` (main)
+- **Live site:** `https://games-hub-online.web.app`
 - **Sister project:** Utility Hub at `C:\utilities\utilities` (`github.com/Terrygilligan/utilities`) — same stack/conventions; its `HIT_BY_A_BUS`-equivalent is `BUS_FACTOR.md`.
 - **Access needed:** the owner's GitHub account (repo) and Google account (Firebase project). Credentials are **not** in this repo by design.
 
@@ -51,7 +52,7 @@ Agent-shell note (WSL): `npm`/`firebase` shims don't run under bash — invoke v
 
 ## Environment variables
 
-Firebase web config comes from `VITE_FIREBASE_*` (Vite `import.meta.env`). Create `.env.local` (gitignored) from `.env.example`:
+Firebase web config comes from `VITE_FIREBASE_*` (Vite `import.meta.env`). `.env.local` (gitignored) already exists on Terry's machine with the `farmfresh-5e95e` web config — on a fresh clone, recreate it from `.env.example` using the project's Web app config:
 
 | var | source |
 |---|---|
@@ -66,17 +67,17 @@ The web `apiKey` is a public identifier (safe to embed), but values stay out of 
 
 ## Firebase setup & deployment
 
-1. Console (`console.firebase.google.com`) → create project → add Web app → copy config into `.env.local`.
-2. Enable **Firestore** (production mode is fine — rules ship with the repo).
-3. `firebase login`, then `firebase use --add` → creates `.firebaserc` (commit it once a project exists).
-4. Deploy everything:
+Games Hub lives on the **shared** project `farmfresh-5e95e` (hosting site `games-hub-online`, `.firebaserc` committed — no dedicated project exists because the GCP account is at its project quota). `.env.local` already contains the `VITE_FIREBASE_*` web config (gitignored).
+
+1. Deploy everything:
    ```powershell
-   firebase deploy                      # hosting + firestore rules + indexes
-   firebase deploy --only firestore     # rules/indexes only
+   firebase deploy                      # hosting site + firestore rules
    firebase deploy --only hosting       # site only
+   firebase deploy --only firestore:rules
    ```
-   Or `npm run deploy` (build + full deploy). `firebase.json` already wires `dist/` hosting, the SPA rewrite, no-cache SW headers, and the rules/indexes files.
-5. **Rollback:** console → Hosting → release history → Rollback. Firestore data is untouched by hosting rollbacks.
+   Or `npm run deploy` (build + full deploy). `firebase.json` wires `dist/` hosting to the `games-hub` target, the SPA rewrite, no-cache SW headers, and `firestore.rules`.
+2. **SHARED DB — read carefully:** `firestore.rules` is a union of the farmfresh app's auth/role collections plus `games_leaderboards`/`item_ratings` — never delete the farmfresh blocks. `firebase.json` has **no `indexes` entry on purpose**: the DB holds ~13 farmfresh composite indexes and `firebase deploy --only firestore:indexes` would delete them. Add indexes via console or REST; `firestore.indexes.json` is a reference file only.
+3. **Rollback:** console → Hosting → `games-hub-online` site → release history → Rollback. Firestore data is untouched by hosting rollbacks.
 
 ## How updates reach users
 

@@ -1,6 +1,76 @@
+// DEPLOYED TO SHARED PROJECT farmfresh-5e95e (also hosts online-utilities.com
+// and the farmfresh app). This file is a UNION: the farmfresh auth/role rules
+// (users, inventory, orders, euAuditLogs, system) are live-managed elsewhere —
+// do not remove them, and re-sync if that app changes its rules. The
+// games_leaderboards + item_ratings blocks are owned by this repo.
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
+
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+
+    function getUserRole(uid) {
+      return get(/databases/$(database)/documents/users/$(uid)).data.role;
+    }
+
+    function isSuperAdmin() {
+      return isAuthenticated() && (
+        getUserRole(request.auth.uid) == 'superadmin' ||
+        getUserRole(request.auth.uid) == 'super_admin'
+      );
+    }
+
+    function isFarmSupplier() {
+      return isAuthenticated() && getUserRole(request.auth.uid) == 'farm_supplier';
+    }
+
+    function isCustomer() {
+      return isAuthenticated() && getUserRole(request.auth.uid) == 'customer';
+    }
+
+    function isOwner(userId) {
+      return isAuthenticated() && request.auth.uid == userId;
+    }
+
+    // USERS
+    match /users/{userId} {
+      allow read: if isSuperAdmin() || isFarmSupplier() || isOwner(userId);
+      allow create: if isAuthenticated() && userId == request.auth.uid;
+      allow update: if isSuperAdmin() || isOwner(userId);
+      allow delete: if isSuperAdmin();
+    }
+
+    // INVENTORY
+    match /inventory/{batchId} {
+      allow read: if true;  // Public read for customers
+      allow create: if isFarmSupplier() || isSuperAdmin();
+      allow update: if isFarmSupplier() || isSuperAdmin();
+      allow delete: if isSuperAdmin();
+    }
+
+    // ORDERS
+    match /orders/{orderId} {
+      allow read: if isSuperAdmin() || isFarmSupplier() || (isAuthenticated() && resource.data.customerId == request.auth.uid);
+      allow create: if isAuthenticated() && isCustomer();
+      allow update: if isSuperAdmin() || isFarmSupplier() || (isAuthenticated() && resource.data.customerId == request.auth.uid && resource.data.status == 'pending');
+    }
+
+    // EU COMPLIANCE AUDIT LOGS
+    match /euAuditLogs/{logId} {
+      allow create: if isAuthenticated();
+      allow read: if isSuperAdmin() || isFarmSupplier();
+    }
+
+    // SYSTEM SETTINGS
+    match /system/settings {
+      allow read: if isAuthenticated();
+      allow write: if isSuperAdmin();
+    }
+
+    // === games-hub additions (anonymous, zero-auth) ===
+
     // Anonymous game leaderboards: public read, create-only write with
     // strict field validation. No auth — playerId is a client-generated UUID.
     match /games_leaderboards/{entryId} {
@@ -19,6 +89,7 @@ service cloud.firestore {
                     && request.resource.data.createdAt is timestamp;
       allow update, delete: if false;
     }
+
     // Anonymous per-item ratings: public read, create-only validated writes.
     // One doc per vote; aggregates are computed client-side.
     match /item_ratings/{entryId} {
@@ -37,6 +108,7 @@ service cloud.firestore {
                     && request.resource.data.createdAt is timestamp;
       allow update, delete: if false;
     }
+
     match /{document=**} {
       allow read, write: if false;
     }

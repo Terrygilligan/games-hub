@@ -1,0 +1,13 @@
+{
+  "projects": {
+    "default": "farmfresh-5e95e"
+  },
+  "targets": {
+    "farmfresh-5e95e": {
+      "hosting": {
+        "games-hub": ["games-hub-online"]
+      }
+    }
+  },
+  "etags": {}
+}
