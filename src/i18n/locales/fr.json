@@ -146,6 +146,28 @@
         ["grand", "énorme"],
         ["roi", "reine"]
       ]
+    },
+    "minesweeper": {
+      "mines": "Mines",
+      "time": "Temps",
+      "difficulty": "Difficulté",
+      "easy": "Facile 8×8",
+      "medium": "Moyen 12×12",
+      "hard": "Difficile 16×16",
+      "instructions": "Révèle les cases sans toucher de mine. Les chiffres indiquent les mines voisines — marque les suspectes d'un drapeau.",
+      "tapToStart": "Lancer la partie",
+      "revealMode": "Révéler",
+      "flagMode": "Drapeau",
+      "win": "Champ déminé !",
+      "lose": "Boum — tu as touché une mine.",
+      "score": "Score",
+      "best": "Record",
+      "finalTime": "Temps",
+      "newBest": "Nouveau meilleur temps !",
+      "playAgain": "Rejouer",
+      "submitScore": "Envoyer le score",
+      "submitting": "Envoi…",
+      "highScores": "Classement"
     }
   }
 }

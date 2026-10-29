@@ -146,6 +146,28 @@
         ["big", "large"],
         ["king", "queen"]
       ]
+    },
+    "minesweeper": {
+      "mines": "Mines",
+      "time": "Time",
+      "difficulty": "Difficulty",
+      "easy": "Easy 8×8",
+      "medium": "Medium 12×12",
+      "hard": "Hard 16×16",
+      "instructions": "Reveal tiles without hitting a mine. Numbers show adjacent mines — flag the ones you suspect.",
+      "tapToStart": "Start game",
+      "revealMode": "Reveal mode",
+      "flagMode": "Flag mode",
+      "win": "Field cleared!",
+      "lose": "Boom — you hit a mine.",
+      "score": "Score",
+      "best": "Best",
+      "finalTime": "Time",
+      "newBest": "New best time!",
+      "playAgain": "Play again",
+      "submitScore": "Submit score",
+      "submitting": "Submitting…",
+      "highScores": "High scores"
     }
   }
 }

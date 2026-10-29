@@ -146,6 +146,28 @@
         ["groß", "riesig"],
         ["König", "Königin"]
       ]
+    },
+    "minesweeper": {
+      "mines": "Minen",
+      "time": "Zeit",
+      "difficulty": "Schwierigkeit",
+      "easy": "Leicht 8×8",
+      "medium": "Mittel 12×12",
+      "hard": "Schwer 16×16",
+      "instructions": "Decke Felder auf, ohne eine Mine zu treffen. Zahlen zeigen benachbarte Minen — markiere Verdächtige mit einer Flagge.",
+      "tapToStart": "Spiel starten",
+      "revealMode": "Aufdecken",
+      "flagMode": "Flagge",
+      "win": "Feld geräumt!",
+      "lose": "Bumm — du hast eine Mine getroffen.",
+      "score": "Punkte",
+      "best": "Bestzeit",
+      "finalTime": "Zeit",
+      "newBest": "Neue Bestzeit!",
+      "playAgain": "Nochmal spielen",
+      "submitScore": "Punktestand einreichen",
+      "submitting": "Wird eingereicht…",
+      "highScores": "Bestenliste"
     }
   }
 }

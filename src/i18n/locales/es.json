@@ -146,6 +146,28 @@
         ["grande", "enorme"],
         ["rey", "reina"]
       ]
+    },
+    "minesweeper": {
+      "mines": "Minas",
+      "time": "Tiempo",
+      "difficulty": "Dificultad",
+      "easy": "Fácil 8×8",
+      "medium": "Medio 12×12",
+      "hard": "Difícil 16×16",
+      "instructions": "Revela casillas sin tocar una mina. Los números indican las minas vecinas — marca las sospechosas con una bandera.",
+      "tapToStart": "Empezar partida",
+      "revealMode": "Revelar",
+      "flagMode": "Bandera",
+      "win": "¡Campo despejado!",
+      "lose": "Bum — has tocado una mina.",
+      "score": "Puntos",
+      "best": "Récord",
+      "finalTime": "Tiempo",
+      "newBest": "¡Nuevo mejor tiempo!",
+      "playAgain": "Jugar de nuevo",
+      "submitScore": "Enviar puntuación",
+      "submitting": "Enviando…",
+      "highScores": "Clasificación"
     }
   }
 }

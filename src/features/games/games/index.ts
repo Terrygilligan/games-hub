@@ -25,6 +25,7 @@ export const GAME_REGISTRY: GameMetadata[] = [
     titleKey: 'games.titles.minesweeper.name',
     descriptionKey: 'games.titles.minesweeper.description',
     icon: 'bomb',
-    status: 'coming-soon',
+    status: 'available',
+    route: '/games/minesweeper',
   },
 ]

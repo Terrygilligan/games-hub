@@ -146,6 +146,28 @@
         ["groot", "enorm"],
         ["koning", "koningin"]
       ]
+    },
+    "minesweeper": {
+      "mines": "Mijnen",
+      "time": "Tijd",
+      "difficulty": "Moeilijkheid",
+      "easy": "Makkelijk 8×8",
+      "medium": "Gemiddeld 12×12",
+      "hard": "Moeilijk 16×16",
+      "instructions": "Draai velden om zonder een mijn te raken. Cijfers tonen aangrenzende mijnen — markeer verdachte vakjes met een vlag.",
+      "tapToStart": "Spel starten",
+      "revealMode": "Onthullen",
+      "flagMode": "Vlag",
+      "win": "Veld ontmijnt!",
+      "lose": "Boem — je raakte een mijn.",
+      "score": "Score",
+      "best": "Beste",
+      "finalTime": "Tijd",
+      "newBest": "Nieuwe beste tijd!",
+      "playAgain": "Opnieuw spelen",
+      "submitScore": "Score indienen",
+      "submitting": "Indienen…",
+      "highScores": "Ranglijst"
     }
   }
 }
