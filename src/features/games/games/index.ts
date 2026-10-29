@@ -28,4 +28,12 @@ export const GAME_REGISTRY: GameMetadata[] = [
     status: 'available',
     route: '/games/minesweeper',
   },
+  {
+    id: 'lexicon',
+    titleKey: 'games.titles.lexicon.name',
+    descriptionKey: 'games.titles.lexicon.description',
+    icon: 'book-open',
+    status: 'available',
+    route: '/games/lexicon',
+  },
 ]

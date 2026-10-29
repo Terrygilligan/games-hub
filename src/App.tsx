@@ -5,6 +5,7 @@ import GamesHubView from './features/games/GamesHubView'
 const SnakeGame = lazy(() => import('./features/games/games/snake/SnakeGame'))
 const MemoryGame = lazy(() => import('./features/games/games/memory/MemoryGame'))
 const MinesweeperGame = lazy(() => import('./features/games/games/minesweeper/MinesweeperGame'))
+const LexiconGame = lazy(() => import('./features/games/games/lexicon/LexiconGame'))
 
 function Loading() {
   return (
@@ -40,6 +41,14 @@ export default function App() {
           element={
             <Suspense fallback={<Loading />}>
               <MinesweeperGame />
+            </Suspense>
+          }
+        />
+        <Route
+          path="games/lexicon"
+          element={
+            <Suspense fallback={<Loading />}>
+              <LexiconGame />
             </Suspense>
           }
         />
