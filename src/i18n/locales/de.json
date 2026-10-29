@@ -410,6 +410,12 @@
       "toggle": "Navigation umschalten",
       "favAdd": "Zu Favoriten",
       "favRemove": "Aus Favoriten entfernen"
+    },
+    "rating": {
+      "rateGame": "Dieses Spiel bewerten",
+      "notRated": "Noch nicht bewertet",
+      "leaveReview": "Bewertung schreiben",
+      "rateFirst": "Bewerte das Spiel zuerst, um eine Bewertung zu schreiben"
     }
   }
 }

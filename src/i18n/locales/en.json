@@ -418,6 +418,12 @@
       "toggle": "Toggle navigation",
       "favAdd": "Add to favorites",
       "favRemove": "Remove from favorites"
+    },
+    "rating": {
+      "rateGame": "Rate this game",
+      "notRated": "Not rated yet",
+      "leaveReview": "Leave a review",
+      "rateFirst": "Rate the game first to leave a review"
     }
   }
 }

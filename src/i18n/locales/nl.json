@@ -419,6 +419,12 @@
       "toggle": "Navigatie wisselen",
       "favAdd": "Aan favorieten toevoegen",
       "favRemove": "Uit favorieten verwijderen"
+    },
+    "rating": {
+      "rateGame": "Beoordeel dit spel",
+      "notRated": "Nog niet beoordeeld",
+      "leaveReview": "Schrijf een review",
+      "rateFirst": "Beoordeel het spel eerst om een review te schrijven"
     }
   }
 }

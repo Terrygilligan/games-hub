@@ -414,6 +414,12 @@
       "toggle": "Alternar navegación",
       "favAdd": "Añadir a favoritos",
       "favRemove": "Quitar de favoritos"
+    },
+    "rating": {
+      "rateGame": "Valora este juego",
+      "notRated": "Sin valorar aún",
+      "leaveReview": "Escribir una reseña",
+      "rateFirst": "Valora el juego primero para dejar una reseña"
     }
   }
 }

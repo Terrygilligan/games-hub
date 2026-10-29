@@ -427,6 +427,12 @@
       "toggle": "Basculer la navigation",
       "favAdd": "Ajouter aux favoris",
       "favRemove": "Retirer des favoris"
+    },
+    "rating": {
+      "rateGame": "Notez ce jeu",
+      "notRated": "Pas encore noté",
+      "leaveReview": "Laisser un avis",
+      "rateFirst": "Note le jeu d'abord pour laisser un avis"
     }
   }
 }

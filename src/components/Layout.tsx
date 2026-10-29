@@ -18,6 +18,7 @@ import { useTranslation } from '../i18n'
 import { fetchRating } from '../lib/ratings'
 import { buildGameSchema } from '../lib/schema'
 import { GAME_REGISTRY } from '../features/games/games'
+import GameRating from '../features/games/components/GameRating'
 import { ICONS } from '../features/games/components/GameCard'
 import { useFavorites } from '../features/games/favorites'
 
@@ -278,6 +279,9 @@ export default function Layout() {
 
         <div className="flex min-w-0 flex-1 flex-col">
           <main className="flex-1">
+            {pathname.startsWith('/games/') && (
+              <GameRating itemKey={itemKeyOf(pathname)} />
+            )}
             <Outlet />
           </main>
           <Footer itemKey={itemKeyOf(pathname)} />
