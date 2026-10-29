@@ -15,6 +15,8 @@ import LangSelect from './LangSelect'
 import ThemeToggle from './ThemeToggle'
 import Footer from './Footer'
 import { useTranslation } from '../i18n'
+import { fetchRating } from '../lib/ratings'
+import { buildGameSchema } from '../lib/schema'
 import { GAME_REGISTRY } from '../features/games/games'
 import { ICONS } from '../features/games/components/GameCard'
 import { useFavorites } from '../features/games/favorites'
@@ -198,6 +200,8 @@ function NavLinks({ onNavigate }: { onNavigate?: () => void }) {
 const itemKeyOf = (pathname: string): string =>
   pathname.startsWith('/games/') ? (pathname.split('/')[2] ?? 'games-hub') : 'games-hub'
 
+const JSONLD_ID = 'games-hub-jsonld'
+
 export default function Layout() {
   const { t } = useTranslation()
   const [menuOpen, setMenuOpen] = useState(false)
@@ -206,6 +210,34 @@ export default function Layout() {
   useEffect(() => {
     setMenuOpen(false)
   }, [pathname])
+
+  // Per-route JSON-LD — WebApplication + aggregateRating for SEO snippets.
+  useEffect(() => {
+    const game = GAME_REGISTRY.find((g) => g.route === pathname)
+    const name = game ? t(game.titleKey) : t('common.appName')
+    let cancelled = false
+    void fetchRating(itemKeyOf(pathname)).then((snap) => {
+      if (cancelled) return
+      let script = document.getElementById(JSONLD_ID) as HTMLScriptElement | null
+      if (!script) {
+        script = document.createElement('script')
+        script.id = JSONLD_ID
+        script.type = 'application/ld+json'
+        document.head.appendChild(script)
+      }
+      script.textContent = JSON.stringify(
+        buildGameSchema(
+          name,
+          window.location.href,
+          snap?.average ?? 0,
+          snap?.count ?? 0,
+        ),
+      )
+    })
+    return () => {
+      cancelled = true
+    }
+  }, [pathname, t])
 
   return (
     <div className="min-h-screen bg-white text-slate-900 antialiased dark:bg-slate-950 dark:text-slate-100">
