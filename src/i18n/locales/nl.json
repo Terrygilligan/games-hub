@@ -85,7 +85,8 @@
       "memory": { "name": "Memory", "description": "Draai de kaarten om en vind alle paren in zo min mogelijk zetten." },
       "minesweeper": { "name": "Mijnenveger", "description": "Ruim het veld zonder een enkele mijn te laten ontploffen." },
       "lexicon": { "name": "Lexicon Blitz", "description": "Koppel elk woord aan de juiste definitie — snelheid en reeksen lonen." },
-      "word-guess": { "name": "Woord raden", "description": "Raad het verborgen woord in zes pogingen." }
+      "word-guess": { "name": "Woord raden", "description": "Raad het verborgen woord in zes pogingen." },
+      "word-ladder": { "name": "Woordladder", "description": "Bereik het doelwoord letter voor letter." }
     },
     "snake": {
       "score": "Score",
@@ -293,7 +294,64 @@
         "BROER", "BROKE", "BROME", "BRONS", "BRONT", "BROOD", "BROOM", "BROOS", "BRUGS", "BRUIN",
         "BRULS", "BRUNE", "BRUUT", "BUDDY", "BUIEN", "BUIKS", "BUILT", "BUINE", "BUISE", "BULKT",
         "BULLE", "BULTE", "BUNDE", "BUNST", "BUNTE", "BURGT", "BURSE", "BUSJE", "BUZEN"
+      ],
+      "fourLetter": [
+        "BOER", "BOEK", "BOOG", "BOOM", "BOON", "BOOT", "DEUR", "DOEK", "DOEL", "DOEN",
+        "DOOD", "DOOM", "DOOR", "DUUR", "GOED", "HAAR", "HAND", "HEER", "HELD", "HOND",
+        "HOUT", "JAAR", "JONG", "KAAS", "KAST", "KEER", "KERK", "KIND", "KOEL", "KOOP",
+        "KOOT", "LAAN", "LAAT", "LAMP", "LAND", "LANG", "LEER", "LINK", "LIJN", "LOON",
+        "LOOP", "LUID", "MAAN", "MAAT", "MARK", "MAST", "MEER", "MEET", "MENU", "MIJN",
+        "MILD", "MIST", "MOED", "MOER", "MOET", "MUUR", "NAAM", "NAAR", "NEEF", "NEUS",
+        "NIET", "NOOK", "NOOT", "OGEN", "OPEN", "PAAR", "PALM", "PAND", "PARK", "PAUW",
+        "PEEN", "PEER", "PIJN", "POEL", "POND", "POOL", "POOT", "POST", "PUIN", "PUNT",
+        "PUUR", "RAAD", "RAAK", "RAAM", "RAMP", "RAND", "RANG", "REDE", "REED", "REEK",
+        "REEP", "RENT", "REST", "RIEM", "RIET", "RIJK", "RIJP", "RITS", "RODE", "ROEM",
+        "ROEP", "ROER", "ROND", "ROOD", "ROOF", "ROOK", "ROOM", "RUIF", "RUIM", "RUIT",
+        "SLOF", "SLIM", "SNAP", "SNOR", "SPAN", "SPEK", "SPEL", "SPOT", "STAD", "STAK",
+        "STAM", "STAP", "STEM", "STEP", "STIP", "STOF", "STOM", "STOP", "STUK", "TAAL",
+        "TAAN", "TAAR", "TANK", "TEAM", "TEEN", "TEER", "TIEN", "TIJD", "TOCH", "TOEN",
+        "TOER", "TOET", "TOLK", "TONG", "TOON", "TRIO", "TROP", "TRUI", "TUIN", "TULP",
+        "TYPE", "VEER", "VENT", "VIER", "VIES", "VINK", "VLAG", "VOER", "VOET", "VOLK",
+        "VOND", "VOOR", "VORM", "WAAN", "WAAR", "WAND", "WARM", "WEEK", "WEEL", "WEID",
+        "WELK", "WERF", "WERK", "WESP", "WIED", "WIEL", "WIER", "WIND", "WOLF", "WOND",
+        "WOON", "ZAAL", "ZAND", "ZEEP", "ZEER", "ZIEL", "ZOEK", "ZOEN", "ZOET", "ZONE",
+        "ZOUT", "ZUUR"
+      ],
+      "sixLetter": [
+        "HUIDEN", "TAFELS", "APPELS", "ENGELS", "ANGELS", "KABELS", "WAGENS", "PAKKEN", "ZAKKEN", "BAKKEN",
+        "HAKKEN", "LAKKEN", "TAKKEN", "WAKKER", "SMAKEN", "DRAGEN", "DEKENS", "BROKEN", "SPOKEN", "BONDEN",
+        "HONDEN", "RONDEN", "WONDEN", "ZONDEN", "LANDEN", "BANDEN", "HANDEN", "SANDEN", "TANDEN", "WANDEN",
+        "RANDEN", "MANDEN", "VANDEN", "KERKEN", "WERKEN", "BERGEN", "HELDEN", "ZELDEN", "GELDEN", "VELDEN",
+        "MELDEN", "VALLEN", "DUIKEN", "KIJKEN", "LUIKEN", "RUIKEN", "STEDEN", "LENDEN", "PENDEN", "TENDEN",
+        "WENDEN", "ZENDEN", "MAKERS", "BAKERS", "VADERS", "LATERS", "PATERS", "KADERS", "RATERS", "KONING",
+        "HONING", "MENING", "DONKER", "ZONDER", "WONDER", "ZOMERS", "BOEMEN", "TREKEN", "BREKEN", "STEKEN",
+        "BLEKEN", "VLEKEN", "WEEKEN", "MELKEN", "DELVEN", "ZELVEN", "ZUIVER", "DUIVER", "BEZIGE", "KALMTE"
       ]
+    },
+    "wordladder": {
+      "steps": "Stappen",
+      "optimal": "Optimaal",
+      "best": "Record",
+      "score": "Score",
+      "letters": "Letters",
+      "instructions": "Verander het startwoord in het doelwoord — wijzig per stap precies één letter; elke stap moet een echt woord zijn.",
+      "enterWord": "Typ een woord",
+      "go": "Toevoegen",
+      "undo": "Ongedaan",
+      "newPuzzle": "Nieuwe puzzel",
+      "startWord": "Startwoord",
+      "targetWord": "Doel",
+      "errLen": "Moet een woord van {n} letters zijn",
+      "errOneLetter": "Verander precies één letter",
+      "errNotWord": "Niet in de woordenlijst",
+      "errUsed": "Al in de ladder",
+      "win": "Doelwoord bereikt!",
+      "stepsUsed": "Stappen",
+      "newBest": "Nieuw persoonlijk record!",
+      "playAgain": "Opnieuw spelen",
+      "submitScore": "Score indienen",
+      "submitting": "Indienen…",
+      "highScores": "Ranglijst"
     }
   }
 }

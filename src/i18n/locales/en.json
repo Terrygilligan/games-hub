@@ -85,7 +85,8 @@
       "memory": { "name": "Memory Match", "description": "Flip the cards and pair them all in as few moves as possible." },
       "minesweeper": { "name": "Minesweeper", "description": "Clear the field without triggering a single mine." },
       "lexicon": { "name": "Lexicon Blitz", "description": "Match each word to its definition — speed and streaks pay off." },
-      "word-guess": { "name": "Word Guess", "description": "Find the hidden five-letter word in six tries." }
+      "word-guess": { "name": "Word Guess", "description": "Find the hidden five-letter word in six tries." },
+      "word-ladder": { "name": "Word Ladder", "description": "Reach the target word one letter at a time." }
     },
     "snake": {
       "score": "Score",
@@ -296,8 +297,60 @@
         "FORTY", "FORUM", "FRAME", "FRESH", "FRONT", "FROST", "FRUIT", "GIANT", "GIVEN", "GLASS",
         "GLOBE", "GLORY", "GRACE", "GRADE", "GRAIN", "GRAND", "GRANT", "GRAPE", "GRAPH", "GRASS",
         "GREAT", "GREEN", "GREET", "GROUP", "GROWN", "GUARD", "GUESS", "GUEST", "GUIDE", "HABIT",
-        "HAPPY", "HARSH", "HEART", "HEAVY", "HONEY", "HORSE", "HOTEL", "HOUSE", "HUMAN", "HUMOR"
+        "HAPPY", "HARSH", "HEART", "HEAVY", "HONEY", "HORSE", "HOTEL", "HOUSE", "HUMAN", "HUMOR",
+        "GRAIL", "SLATE", "SHARK", "BLAZE", "GLADE", "LANCE", "DUNCE", "SCARE", "SHONE", "STOKE",
+        "STOVE", "STOLE", "SPITE", "SMITE", "LOUSE", "BOUND", "WOUND", "MOUND", "DAILY", "DAIRY",
+        "DANDY", "CANNY", "FANNY", "MARRY", "PARRY", "HARRY", "MERRY", "POLAR", "MOLAR", "CORAL",
+        "MURAL", "PEDAL", "MOTEL", "LODGE", "PIVOT", "WORSE", "FABLE", "STEED", "STEAL", "BLEAK",
+        "CREAK", "CRACK", "BEAST", "YEAST", "DREAD", "PEACH", "ROACH", "BATCH", "MACHO", "COWER",
+        "HOVER", "LOVER", "LOSER", "TOWEL", "SMELL", "GRIME", "TWEET", "GREED", "BREED", "SHAME", "STORK"
+      ],
+      "fourLetter": [
+        "COLD", "CORD", "CARD", "WARD", "WARM", "WORM", "WORD", "BOLD", "FOLD", "GOLD",
+        "HOLD", "MOLD", "SOLD", "TOLD", "HARD", "HARM", "FARM", "FORM", "FIRM", "BARD",
+        "BARN", "DARK", "DARE", "DART", "WART", "MARE", "MORE", "MILE", "MALE", "BALE",
+        "BALL", "BELL", "BILL", "BILE", "FALL", "TALL", "TALE", "TILE", "WILD", "MILD",
+        "WIND", "WINE", "MINE", "MIND", "HAND", "BAND", "LAND", "LANE", "SAND", "SANE",
+        "BANE", "CAKE", "BAKE", "LAKE", "LATE", "MATE", "MADE", "WADE", "WAVE", "GAVE",
+        "CAVE", "HAVE", "HARE", "CARE", "CORE", "FORE", "FIRE", "HIRE", "WIRE", "WORE",
+        "PORE", "PORT", "SORT", "SORE", "BORE", "BORN", "CORN", "FORT", "FOOT", "BOOT",
+        "BOOK", "BOLT", "LOVE", "LOSE", "LOST", "COST", "CAST", "EAST", "LAST", "PAST",
+        "FAST", "MAST", "MIST", "MUST", "DUST", "JUST", "LUST", "LIST", "LINT", "MINT"
+      ],
+      "sixLetter": [
+        "TRAINS", "TRAITS", "PLAINS", "PLAITS", "BRAINS", "GRAINS", "SLATES", "PLATES", "PLANES", "PLACES",
+        "SPACES", "SPARES", "SHARES", "SHORES", "SCORES", "STORES", "STONES", "PHONES", "SHAMES", "FLAMES",
+        "FRAMES", "BLAMES", "BLADES", "GRADES", "TRADES", "TRACES", "TRACKS", "TRICKS", "STICKS", "STOCKS",
+        "STACKS", "SHOCKS", "CLOCKS", "BLOCKS", "BLACKS", "FLOORS", "BOARDS", "HORSES", "HOUSES", "CHAIRS",
+        "CHAINS", "TRAILS", "SCARES", "CABLES", "TABLES", "FABLES", "ROUNDS", "POUNDS", "BOUNDS", "MOUNDS",
+        "SOUNDS", "WOUNDS", "SHAPES", "PLANTS", "SLANTS", "GRANTS", "BLANKS", "STREAM", "STREET", "SWEETS",
+        "SHEETS", "DREAMS", "CREAMS", "TREATS", "STRAIN", "STRAIT", "STRING", "STRONG", "SPRING", "STABLE"
       ]
+    },
+    "wordladder": {
+      "steps": "Steps",
+      "optimal": "Optimal",
+      "best": "Best",
+      "score": "Score",
+      "letters": "Letters",
+      "instructions": "Turn the start word into the target — change exactly one letter per step; every step must be a real word.",
+      "enterWord": "Type a word",
+      "go": "Add",
+      "undo": "Undo",
+      "newPuzzle": "New puzzle",
+      "startWord": "Start word",
+      "targetWord": "Target",
+      "errLen": "Must be a {n}-letter word",
+      "errOneLetter": "Change exactly one letter",
+      "errNotWord": "Not in word list",
+      "errUsed": "Already used in this ladder",
+      "win": "You reached the target!",
+      "stepsUsed": "Steps",
+      "newBest": "New personal best!",
+      "playAgain": "Play again",
+      "submitScore": "Submit score",
+      "submitting": "Submitting…",
+      "highScores": "High scores"
     }
   }
 }

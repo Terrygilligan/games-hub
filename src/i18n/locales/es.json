@@ -85,7 +85,8 @@
       "memory": { "name": "Memory", "description": "Da la vuelta a las cartas y emparéjalas todas en el menor número de movimientos." },
       "minesweeper": { "name": "Buscaminas", "description": "Despeja el campo sin activar ni una sola mina." },
       "lexicon": { "name": "Léxico relámpago", "description": "Relaciona cada palabra con su definición — la rapidez y las rachas se pagan." },
-      "word-guess": { "name": "Adivina la palabra", "description": "Descubre la palabra oculta en seis intentos." }
+      "word-guess": { "name": "Adivina la palabra", "description": "Descubre la palabra oculta en seis intentos." },
+      "word-ladder": { "name": "Escalera de palabras", "description": "Llega a la palabra objetivo letra a letra." }
     },
     "snake": {
       "score": "Puntos",
@@ -292,7 +293,60 @@
         "DIVAN", "DOBLE", "DOCIL", "DOLOR", "DONDE", "DORAR", "DOTAR", "DRAMA", "DUCHA", "DULCE",
         "DUQUE", "DURAR", "EBANO", "EDEMA", "EJIDO", "ELITE", "ELLOS", "EMITO", "ENANO", "ENERO",
         "ENTRE", "ENVIO", "EPOCA", "ERROR", "ESPIA", "ESTAR", "ESTOS", "ETAPA", "ETNIA", "EXODO"
+      ],
+      "fourLetter": [
+        "ALTO", "ALTA", "BAJO", "BAJA", "GATO", "GATA", "HIJO", "HIJA", "LOCO", "LOCA",
+        "NIÑO", "NIÑA", "RICO", "RICA", "SANO", "SANA", "SOLO", "SOLA", "MALO", "MALA",
+        "DURO", "DURA", "CASA", "CARA", "CASO", "MANO", "MAPA", "MASA", "MATA", "MESA",
+        "META", "MIRA", "MODO", "MONO", "MORA", "MOTO", "MURO", "NADA", "NIDO", "PACO",
+        "PALA", "PALO", "PAPA", "PASA", "PASO", "PATA", "PATO", "PELA", "PELO", "PENA",
+        "PICA", "PICO", "PIPA", "PISO", "POCO", "POLO", "POZO", "RAMA", "RANA", "RATA",
+        "RATO", "RAYA", "ROCA", "ROJO", "ROPA", "ROSA", "ROTO", "RUSO", "SACO", "SALA",
+        "SAPO", "SECO", "SENO", "SIMA", "SOPA", "SUMA", "TACO", "TAJO", "TAPA", "TASA",
+        "TAZA", "TELA", "TEMA", "TIRO", "TODO", "TOPO", "TORO", "TRIO", "TUBO", "VACA",
+        "VARA", "VASO", "VELA", "VELO", "VIDA", "VINO", "VISO", "VIVO", "VOTA", "VOTO",
+        "YEMA", "YESO", "YOGA", "ZONA"
+      ],
+      "sixLetter": [
+        "CARROS", "LIBROS", "PERROS", "COCHES", "VERBOS", "FRUTOS", "GUSTOS", "GRUPOS", "CAMPOS", "LARGOS",
+        "CORTOS", "CLAROS", "AMIGOS", "AMIGAS", "BARRAS", "CARTAS", "CAUSAS", "BORDES", "BRAZOS", "BRISAS",
+        "CERROS", "CERDOS", "CLASES", "COSTAS", "COSTOS", "CRUZES", "DARDOS", "DOBLES", "DULCES", "FLORES",
+        "FONDOS", "GALLOS", "GRANDE", "GRASOS", "HACHAS", "HOMBRE", "LARGAS", "LIBRAS", "LINDOS", "LINDAS",
+        "LISTOS", "LISTAS", "MACHOS", "MARCOS", "MARCAS", "MEDIOS", "MEDIAS", "MONTES", "NACHOS", "NERVIO",
+        "PAJARO", "PARDOS", "PARTES", "PASTOS", "PERNOS", "PINTOS", "PISTAS", "PLANOS", "PLATOS", "PLAZAS",
+        "PLAZOS", "PODIOS", "POLLOS", "POLVOS", "POSTES", "PREMIO", "PRIMAS", "PRISAS", "PUNTOS", "PUNTAS",
+        "QUESOS", "RANGOS", "RAPIDO", "RASGOS", "RECTOS", "RECTAS", "REGALO", "REGIOS", "RENTAS", "RESTOS",
+        "RITMOS", "ROLLOS", "RUEDAS", "RUMBOS", "SABIOS", "SABIAS", "SALDOS", "SALMOS", "SALTOS", "SANTOS",
+        "SANTAS", "SECTAS", "SELLOS", "SENDAS", "SERIOS", "SERIAS", "SIGNOS", "SILLAS", "SOBRES", "SOCIOS",
+        "SOCIAS", "SORDOS", "SORDAS", "SUELTA", "TANTOS", "TANTAS", "TARDES", "TECLAS", "TERCOS", "TERCAS",
+        "TEXTOS", "TIGRES", "TONTOS", "TONTAS", "TORTAS", "TOSCOS", "TOSCAS", "TURCOS", "VARGAS", "VARIOS",
+        "VARIAS", "VERSOS", "VIAJES", "VIENTO", "VILLAS", "VISTAS", "VISTOS", "YERBAS", "ZORROS", "TUNEOS"
       ]
+    },
+    "wordladder": {
+      "steps": "Pasos",
+      "optimal": "Óptimo",
+      "best": "Récord",
+      "score": "Puntos",
+      "letters": "Letras",
+      "instructions": "Convierte la palabra inicial en la objetivo: cambia solo una letra por paso y cada paso debe ser una palabra real.",
+      "enterWord": "Escribe una palabra",
+      "go": "Añadir",
+      "undo": "Deshacer",
+      "newPuzzle": "Nuevo reto",
+      "startWord": "Palabra inicial",
+      "targetWord": "Objetivo",
+      "errLen": "Debe ser una palabra de {n} letras",
+      "errOneLetter": "Cambia solo una letra",
+      "errNotWord": "No está en la lista",
+      "errUsed": "Ya está en la escalera",
+      "win": "¡Llegaste a la palabra!",
+      "stepsUsed": "Pasos",
+      "newBest": "¡Nuevo récord personal!",
+      "playAgain": "Jugar de nuevo",
+      "submitScore": "Enviar puntuación",
+      "submitting": "Enviando…",
+      "highScores": "Clasificación"
     }
   }
 }

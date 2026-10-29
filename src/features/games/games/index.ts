@@ -44,4 +44,12 @@ export const GAME_REGISTRY: GameMetadata[] = [
     status: 'available',
     route: '/games/word-guess',
   },
+  {
+    id: 'word-ladder',
+    titleKey: 'games.titles.word-ladder.name',
+    descriptionKey: 'games.titles.word-ladder.description',
+    icon: 'waypoints',
+    status: 'available',
+    route: '/games/word-ladder',
+  },
 ]

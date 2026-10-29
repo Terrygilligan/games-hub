@@ -85,7 +85,8 @@
       "memory": { "name": "Memory", "description": "Decke die Karten auf und finde alle Paare mit möglichst wenigen Zügen." },
       "minesweeper": { "name": "Minesweeper", "description": "Räume das Feld, ohne eine einzige Mine auszulösen." },
       "lexicon": { "name": "Wortblitz", "description": "Ordne jedem Wort die richtige Definition zu — Tempo und Serien zahlen sich aus." },
-      "word-guess": { "name": "Wortraten", "description": "Errate das versteckte Wort in sechs Versuchen." }
+      "word-guess": { "name": "Wortraten", "description": "Errate das versteckte Wort in sechs Versuchen." },
+      "word-ladder": { "name": "Wortleiter", "description": "Erreiche das Zielwort Buchstabe für Buchstabe." }
     },
     "snake": {
       "score": "Punkte",
@@ -294,7 +295,54 @@
         "HARME", "HASEN", "HAUBE", "HAUCH", "HAUFE", "HAUSE", "HECKE", "HEERE", "HEIDE", "HEILE",
         "HEIME", "HELLE", "HELME", "HERDE", "HERNE", "HERZE", "HESSE", "HEUTE", "HILFE", "HINKE",
         "HIRTE", "HOBEL", "HOHEM", "HOLDE", "HOLZE", "HONIG", "HORNE", "HOSEN"
+      ],
+      "fourLetter": [
+        "BALD", "BAUM", "BEIN", "BERG", "BOOT", "DACH", "DING", "DORF", "FACH", "FEST",
+        "GANG", "GAST", "GELD", "GLAS", "HAAR", "HAUS", "HAND", "HASE", "HAUT", "HEFT",
+        "HEIM", "HELD", "HERD", "HERR", "HOLZ", "HUHN", "JAHR", "KAMM", "KERL", "KIND",
+        "KLAR", "KOCH", "KOPF", "KORN", "KRAN", "LAND", "LANG", "LAUB", "LAUF", "LEIM",
+        "LIST", "LOCH", "LUFT", "MAIS", "MAST", "MAUS", "MEER", "MEIN", "MIST", "NEST",
+        "NEUN", "OBST", "PACK", "PAAR", "PARK", "PECH", "PILZ", "PLAN", "POST", "RAUM",
+        "REIF", "REIM", "REST", "RIND", "RING", "ROHR", "ROSA", "ROSS", "SAND", "SATZ",
+        "SAUM", "SEIL", "SENF", "SICH", "SIEG", "SOHN", "STAB", "TANK", "TEAM", "TEIL",
+        "TEST", "TIER", "TURM", "VIER", "WAND", "WARM", "WEIN", "WELT", "WERT", "WILD",
+        "WIND", "WOLF", "WORT", "ZAHL", "ZAUN", "ZEIT", "ZIEL", "ZINS", "ZORN", "TODE"
+      ],
+      "sixLetter": [
+        "TISCHE", "FISCHE", "NACHTE", "FRAUEN", "JAHREN", "WOCHEN", "MONATE", "BÜCHER", "LÄNDER", "MÄNNER",
+        "KINDER", "STUNDE", "BRIEFE", "SPIELE", "LIEDER", "BÄNDER", "KÄMPFE", "TRÄUME", "RÄUBER", "GRÜNDE",
+        "STÄRKE", "FLÄCHE", "EBENEN", "BIBELN", "REGELN", "KARTEN", "GARTEN", "TASTEN", "KOSTEN", "KISTEN",
+        "FESTEN", "RASTEN", "LASTEN", "PASTEN", "BASTEN", "GASTEN", "MASTEN", "KUNDEN", "BUNDEN", "WUNDEN",
+        "BILDER", "FELDER", "HELDEN", "MELDEN", "SELTEN", "WELTEN", "KALTEN", "WALTEN", "HALTEN", "FALTEN",
+        "BALTEN", "MALTEN", "SALZEN", "BALZEN", "MALZEN", "LICHTE", "DICHTE", "SICHTE", "RICHTE", "FEUERN",
+        "TEUERN", "NEUERN", "HEUERN", "BAUERN", "LAUERN", "MAUERN", "SAUERN", "ZAUNEN", "RAUNEN", "DAUNEN",
+        "HUNDEN", "LANDEN", "BANDEN", "HANDEN", "SANDEN", "TANDEN", "WANDEN", "RANDEN", "MANDEN", "FINDEN"
       ]
+    },
+    "wordladder": {
+      "steps": "Schritte",
+      "optimal": "Optimal",
+      "best": "Rekord",
+      "score": "Punkte",
+      "letters": "Buchstaben",
+      "instructions": "Wandle das Startwort in das Zielwort um — ändere pro Schritt genau einen Buchstaben; jeder Schritt muss ein echtes Wort sein.",
+      "enterWord": "Wort eingeben",
+      "go": "Hinzufügen",
+      "undo": "Zurück",
+      "newPuzzle": "Neues Rätsel",
+      "startWord": "Startwort",
+      "targetWord": "Zielwort",
+      "errLen": "Muss ein {n}-Buchstaben-Wort sein",
+      "errOneLetter": "Genau einen Buchstaben ändern",
+      "errNotWord": "Nicht in der Wortliste",
+      "errUsed": "Schon in der Leiter",
+      "win": "Zielwort erreicht!",
+      "stepsUsed": "Schritte",
+      "newBest": "Neuer persönlicher Rekord!",
+      "playAgain": "Nochmal spielen",
+      "submitScore": "Punktestand einreichen",
+      "submitting": "Wird eingereicht…",
+      "highScores": "Bestenliste"
     }
   }
 }

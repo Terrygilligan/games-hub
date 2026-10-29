@@ -85,7 +85,8 @@
       "memory": { "name": "Memory", "description": "Retournez les cartes et associez toutes les paires en un minimum de coups." },
       "minesweeper": { "name": "Démineur", "description": "Dégagez le terrain sans déclencher une seule mine." },
       "lexicon": { "name": "Lexique éclair", "description": "Associe chaque mot à sa définition — rapidité et séries sont récompensées." },
-      "word-guess": { "name": "Devine le mot", "description": "Trouve le mot caché en six essais." }
+      "word-guess": { "name": "Devine le mot", "description": "Trouve le mot caché en six essais." },
+      "word-ladder": { "name": "Échelle de mots", "description": "Atteins le mot cible lettre par lettre." }
     },
     "snake": {
       "score": "Score",
@@ -292,7 +293,73 @@
         "CIMES", "CIVIL", "CLAIR", "CLAME", "CLANS", "CLERC", "CLICS", "CLINS", "CLONE", "CLOUE",
         "COCHE", "CODER", "COEUR", "COINS", "COLLE", "COMTE", "CONGE", "CONTE", "COPIE", "CORNE",
         "CORPS", "COTES", "COUDE", "COUPS", "COURS", "COURT", "CRABE", "CRAIE", "CREDO", "CREME"
+      ],
+      "fourLetter": [
+        "AMIS", "ARTS", "AUBE", "AVIS", "BAIN", "BANC", "BEAU", "BIEN", "BLEU", "BLOC",
+        "BOIS", "BOND", "BORD", "BRAS", "BRUN", "CAGE", "CAMP", "CENT", "CHAT", "CHER",
+        "CIEL", "CINQ", "CLAN", "CLEF", "CLOU", "CLUB", "COIN", "COTE", "COUP", "DANS",
+        "DARD", "DATE", "DENT", "DIEU", "DIRE", "DOME", "DONC", "DORT", "DOUX", "DUNE",
+        "DURS", "ELAN", "ELLE", "ETAT", "EXIL", "FACE", "FAIT", "FAUX", "FIER", "FILM",
+        "FILS", "FINE", "FOIS", "FOND", "FORT", "FOUR", "GAGE", "GALA", "GARE", "GATE",
+        "GAZE", "GENS", "GOLF", "GOUT", "GRAS", "GRIS", "GROS", "HAUT", "HUIT", "IVRE",
+        "JADE", "JAUN", "JOLI", "JOUR", "JUIF", "JUIN", "JURY", "KAKI", "KILO", "KIWI",
+        "LACS", "LAIT", "LAME", "LARD", "LAVE", "LEUR", "LICE", "LIEN", "LIEU", "LION",
+        "LIRE", "LOIN", "LOIS", "LONG", "LORS", "LOUP", "LUNE", "LUXE", "MAIN", "MAIS",
+        "MALE", "MARE", "MARS", "MATE", "MEME", "MENU", "MIDI", "MIEL", "MINI", "MIRE",
+        "MITE", "MODE", "MOIS", "MORT", "MOTS", "MUET", "MURS", "MUSE", "NAGE", "NAIF",
+        "NAIN", "NERF", "NEUF", "NOIR", "NORD", "NOTE", "NOUS", "NUIT", "ONDE", "ONZE",
+        "ORAL", "ORME", "OURS", "PAIN", "PAIR", "PALM", "PARC", "PART", "PAYS", "PEAU",
+        "PERE", "PEUR", "PIED", "PILE", "PION", "PLAT", "PLUS", "POIL", "POIS", "PONT",
+        "PORT", "POSE", "POUR", "PRIX", "PUCE", "PUIS", "PURE", "QUAI", "RACE", "RAGE",
+        "RAIL", "RANG", "RASE", "RATE", "REEL", "REIN", "REVE", "RHUM", "RIEN", "RIME",
+        "RIRE", "RIVE", "ROBE", "ROND", "ROSE", "ROTI", "ROUX", "RUSE", "RUSH", "SAGE",
+        "SALE", "SANG", "SANS", "SAUF", "SAUT", "SEAU", "SEIN", "SENS", "SEUL", "SOIR",
+        "SONT", "SORT", "SOUS", "SPOT", "STOP", "TACT", "TAON", "TARD", "TAUX", "TAXI",
+        "TEST", "TETE", "THON", "TIEN", "TOFU", "TOIT", "TORT", "TRIO", "TROU", "TSAR",
+        "TUBE", "TYPE", "URNE", "VAIN", "VALE", "VENT", "VERT", "VICE", "VIDE", "VING",
+        "VIRE", "VISE", "VITE", "VIVE", "VOIE", "VOIR", "VOIX", "VOLE", "VOTE", "VOUS",
+        "VRAI", "ZONE", "ZOOM"
+      ],
+      "sixLetter": [
+        "VERTES", "BLEUES", "GRISES", "ROUGES", "JAUNES", "BRUNES", "NOIRES", "FEMMES", "BONNES", "BELLES",
+        "CHERES", "CLAIRE", "PETITE", "GRANDE", "VASTES", "PLATES", "DENSES", "RICHES", "FRAISE", "FORTES",
+        "PORTES", "CARTES", "CAUSES", "PAUSES", "PHASES", "PHOTOS", "PIANOS", "PILOTS", "PLACES", "PLANES",
+        "PLANTE", "PLAQUE", "POINTE", "POULES", "PRIMES", "PRISES", "PROSES", "QUEUES", "RAPIDE", "REGLES",
+        "RESTES", "REVUES", "RIGIDE", "RONDES", "RUSTRE", "SABLES", "SALLES", "SALVES", "SAUCES", "SAULES",
+        "SCENES", "SECRET", "SELLES", "SERIES", "SEVERE", "SIGNES", "SOBRES", "SOLEIL", "SOMBRE", "SONDES",
+        "SONGES", "SORTES", "SOURDE", "SOUPES", "SOURDS", "STABLE", "STADES", "STOCKS", "STOPPE", "STORES",
+        "SUITES", "TABLES", "TACHES", "TALONS", "TAMPON", "TANDEM", "TARDES", "TARTES", "TAUPES", "TEMPLE",
+        "TEMPOS", "TENDES", "TENDRE", "TENUES", "TERRES", "TESTES", "TEXTES", "TIGRES", "TIMBRE", "TITRES",
+        "TOILES", "TONNES", "TORDUE", "TORTUE", "TOURNE", "TRACES", "TRAINS", "TRAITS", "TRAMES", "TRENTE",
+        "TULLES", "TUNNEL", "TURBAN", "TURBOS", "UNIONS", "URINES", "USINES", "USURES", "VAGUES", "VALVES",
+        "VANITE", "VARIES", "VENDUE", "VENUES", "VERGES", "VERITE", "VERNIS", "VERRES", "VIERGE", "VIGNES",
+        "VILLAS", "VINYLE", "VISAGE", "VISEES", "VITRES", "VIVRES", "VOCALE", "VOILES", "VOTRES", "VOUTES"
       ]
+    },
+    "wordladder": {
+      "steps": "Étapes",
+      "optimal": "Optimal",
+      "best": "Record",
+      "score": "Score",
+      "letters": "Lettres",
+      "instructions": "Transforme le mot de départ en mot cible : change une seule lettre par étape et chaque étape doit être un vrai mot.",
+      "enterWord": "Tape un mot",
+      "go": "Ajouter",
+      "undo": "Annuler",
+      "newPuzzle": "Nouveau défi",
+      "startWord": "Mot de départ",
+      "targetWord": "Cible",
+      "errLen": "Il faut un mot de {n} lettres",
+      "errOneLetter": "Change une seule lettre",
+      "errNotWord": "Pas dans la liste",
+      "errUsed": "Déjà dans l'échelle",
+      "win": "Mot cible atteint !",
+      "stepsUsed": "Étapes",
+      "newBest": "Nouveau record personnel !",
+      "playAgain": "Rejouer",
+      "submitScore": "Envoyer le score",
+      "submitting": "Envoi…",
+      "highScores": "Classement"
     }
   }
 }
