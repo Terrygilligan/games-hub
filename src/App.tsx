@@ -6,6 +6,7 @@ const SnakeGame = lazy(() => import('./features/games/games/snake/SnakeGame'))
 const MemoryGame = lazy(() => import('./features/games/games/memory/MemoryGame'))
 const MinesweeperGame = lazy(() => import('./features/games/games/minesweeper/MinesweeperGame'))
 const LexiconGame = lazy(() => import('./features/games/games/lexicon/LexiconGame'))
+const WordGuessGame = lazy(() => import('./features/games/games/wordguess/WordGuessGame'))
 
 function Loading() {
   return (
@@ -49,6 +50,14 @@ export default function App() {
           element={
             <Suspense fallback={<Loading />}>
               <LexiconGame />
+            </Suspense>
+          }
+        />
+        <Route
+          path="games/word-guess"
+          element={
+            <Suspense fallback={<Loading />}>
+              <WordGuessGame />
             </Suspense>
           }
         />

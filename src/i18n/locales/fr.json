@@ -84,7 +84,8 @@
       "snake": { "name": "Snake", "description": "Le classique — mangez, grandissez et ne mordez pas votre propre queue." },
       "memory": { "name": "Memory", "description": "Retournez les cartes et associez toutes les paires en un minimum de coups." },
       "minesweeper": { "name": "Démineur", "description": "Dégagez le terrain sans déclencher une seule mine." },
-      "lexicon": { "name": "Lexique éclair", "description": "Associe chaque mot à sa définition — rapidité et séries sont récompensées." }
+      "lexicon": { "name": "Lexique éclair", "description": "Associe chaque mot à sa définition — rapidité et séries sont récompensées." },
+      "word-guess": { "name": "Devine le mot", "description": "Trouve le mot caché en six essais." }
     },
     "snake": {
       "score": "Score",
@@ -250,6 +251,47 @@
         ["serein", "calme; tranquille"],
         ["souple", "flexible; élastique"],
         ["taciturne", "silencieux; peu bavard"]
+      ]
+    },
+    "wordguess": {
+      "streak": "Série",
+      "score": "Score",
+      "best": "Record",
+      "instructions": "Devine le mot caché de cinq lettres en six essais.",
+      "win": "Bravo !",
+      "lose": "Plus d'essais",
+      "theWordWas": "Le mot était",
+      "notInList": "Pas dans la liste",
+      "newBest": "Nouveau record personnel !",
+      "playAgain": "Rejouer",
+      "submitScore": "Envoyer le score",
+      "submitting": "Envoi…",
+      "highScores": "Classement",
+      "keys": [
+        ["A", "Z", "E", "R", "T", "Y", "U", "I", "O", "P"],
+        ["Q", "S", "D", "F", "G", "H", "J", "K", "L", "M"],
+        ["W", "X", "C", "V", "B", "N", "É", "È", "À", "Ç"]
+      ]
+    },
+    "dictionary": {
+      "fiveLetter": [
+        "ABIME", "ABORD", "ACHAT", "ACIDE", "ACTIF", "ADIEU", "ADMET", "AFFUT", "AGENT", "AGILE",
+        "AIDER", "AIGLE", "AIGRE", "AIMER", "ALARM", "ALBUM", "ALIZE", "ALLER", "ALPES", "AMBRE",
+        "AMOUR", "AMPLE", "ANCRE", "ANGLE", "ANIMA", "ANNEE", "ANTRE", "APRES", "ARBRE", "ARDUE",
+        "ARENE", "ARGOT", "ARIDE", "ARMEE", "ARMER", "ARRET", "ASILE", "ATLAS", "ATOME", "AUBES",
+        "AUCUN", "AVARE", "AVION", "AVOUE", "BAGUE", "BALAI", "BALLE", "BANDE", "BARBE", "BARIL",
+        "BARON", "BARRE", "BASSE", "BATIR", "BATON", "BAUME", "BEIGE", "BELGE", "BELLE", "BERET",
+        "BERGE", "BETES", "BIBLE", "BIDON", "BIJOU", "BILAN", "BILLE", "BISON", "BLAME", "BLANC",
+        "BLASE", "BLEME", "BLEUE", "BLEUS", "BLIND", "BLITZ", "BLOCS", "BLOND", "BOEUF", "BOIRE",
+        "BOITE", "BOMBE", "BONDE", "BONNE", "BORDE", "BORNE", "BOSSE", "BOTTE", "BOUEE", "BOULE",
+        "BOURG", "BOXER", "BRAVO", "BREVE", "BRIDE", "BRISE", "BRUIT", "BRULE", "BRUME", "BRUNE",
+        "BRUTE", "BULBE", "BULLE", "BUSES", "BUTER", "BUTIN", "BUTTE", "CACHE", "CADET", "CADRE",
+        "CALME", "CANAL", "CANNE", "CANON", "CANOT", "CAPOT", "CARPE", "CARTE", "CASSE", "CASTE",
+        "CAUSE", "CAVES", "CEDRE", "CELLE", "CERNE", "CHAMP", "CHANT", "CHARE", "CHARM", "CHATE",
+        "CHAUX", "CHEFS", "CHENE", "CHERS", "CHINE", "CHIOT", "CHOSE", "CHUTE", "CIBLE", "CIELS",
+        "CIMES", "CIVIL", "CLAIR", "CLAME", "CLANS", "CLERC", "CLICS", "CLINS", "CLONE", "CLOUE",
+        "COCHE", "CODER", "COEUR", "COINS", "COLLE", "COMTE", "CONGE", "CONTE", "COPIE", "CORNE",
+        "CORPS", "COTES", "COUDE", "COUPS", "COURS", "COURT", "CRABE", "CRAIE", "CREDO", "CREME"
       ]
     }
   }

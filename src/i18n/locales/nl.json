@@ -84,7 +84,8 @@
       "snake": { "name": "Snake", "description": "De klassieker — eet, groei en bijt niet in je eigen staart." },
       "memory": { "name": "Memory", "description": "Draai de kaarten om en vind alle paren in zo min mogelijk zetten." },
       "minesweeper": { "name": "Mijnenveger", "description": "Ruim het veld zonder een enkele mijn te laten ontploffen." },
-      "lexicon": { "name": "Lexicon Blitz", "description": "Koppel elk woord aan de juiste definitie — snelheid en reeksen lonen." }
+      "lexicon": { "name": "Lexicon Blitz", "description": "Koppel elk woord aan de juiste definitie — snelheid en reeksen lonen." },
+      "word-guess": { "name": "Woord raden", "description": "Raad het verborgen woord in zes pogingen." }
     },
     "snake": {
       "score": "Score",
@@ -248,6 +249,50 @@
         ["zoet", "met suikersmaak; lief"],
         ["zorgzaam", "zorgvuldig; attent"],
         ["zwak", "niet sterk; weinig kracht"]
+      ]
+    },
+    "wordguess": {
+      "streak": "Reeks",
+      "score": "Score",
+      "best": "Record",
+      "instructions": "Raad het verborgen vijfletterwoord in zes pogingen.",
+      "win": "Geraden!",
+      "lose": "Pogingen op",
+      "theWordWas": "Het woord was",
+      "notInList": "Niet in de woordenlijst",
+      "newBest": "Nieuw persoonlijk record!",
+      "playAgain": "Opnieuw spelen",
+      "submitScore": "Score indienen",
+      "submitting": "Indienen…",
+      "highScores": "Ranglijst",
+      "keys": [
+        ["Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P"],
+        ["A", "S", "D", "F", "G", "H", "J", "K", "L"],
+        ["Z", "X", "C", "V", "B", "N", "M", "É", "Ë", "Ï"]
+      ]
+    },
+    "dictionary": {
+      "fiveLetter": [
+        "AAPJE", "AARDE", "ACHTE", "ACTIE", "ADEMT", "AFWAS", "AGENT", "AKKER", "ALARM", "ALBUM",
+        "ALLEN", "ALLES", "ALTEN", "APPEN", "APPEL", "ARENA", "ARMEN", "ARMER", "AVOND", "BAARD",
+        "BACON", "BADEN", "BAKEN", "BAKER", "BALEN", "BALIE", "BALLO", "BALSA", "BAMBO", "BANEN",
+        "BANKT", "BARBE", "BAREN", "BARGE", "BARKS", "BARON", "BARST", "BASEN", "BASIS", "BATIG",
+        "BAZEL", "BAZEN", "BEBEL", "BEDEL", "BEDRU", "BEELD", "BEEMD", "BEERS", "BEGON", "BEIDE",
+        "BEIEN", "BEIGE", "BEKER", "BEKJE", "BELEN", "BELGD", "BELLA", "BELTE", "BEMIN", "BENDE",
+        "BENIG", "BENUL", "BERED", "BEREN", "BERGE", "BERST", "BESJE", "BESTE", "BETEL", "BETER",
+        "BETON", "BEURE", "BEURS", "BEZAT", "BEZEM", "BEZEN", "BIEBE", "BIEDE", "BIJNA", "BIKKE",
+        "BILDE", "BINGO", "BINNE", "BITSE", "BLAAF", "BLAAR", "BLAES", "BLAME", "BLANK", "BLASE",
+        "BLAUW", "BLEED", "BLEEK", "BLEND", "BLERK", "BLIJK", "BLIJF", "BLIJT", "BLIND", "BLINK",
+        "BLODE", "BLOEI", "BLOEM", "BLOKE", "BLOND", "BLOOT", "BOARD", "BOCKE", "BODEM", "BOEJE",
+        "BOERT", "BOETE", "BOGEN", "BOGIE", "BOIDS", "BOKKE", "BOLEN", "BOLLE", "BOLUS", "BOMEN",
+        "BOMMA", "BONDE", "BONEN", "BONGO", "BONTE", "BONUS", "BOODS", "BOOMT", "BOORD", "BOOST",
+        "BOOTS", "BORDE", "BOREL", "BOREN", "BORGE", "BORNE", "BORST", "BOSJE", "BOSON", "BOTER",
+        "BOTJE", "BOTON", "BOTTE", "BOVEN", "BOXEN", "BOXER", "BRAAM", "BRAAK", "BRABO", "BRADY",
+        "BRAND", "BRASA", "BRAVO", "BREDE", "BREED", "BREEG", "BREEN", "BREIN", "BREME", "BRENG",
+        "BREUK", "BREVE", "BRIEF", "BRIES", "BRIJN", "BRIKK", "BRIKS", "BROED", "BROEI", "BROEK",
+        "BROER", "BROKE", "BROME", "BRONS", "BRONT", "BROOD", "BROOM", "BROOS", "BRUGS", "BRUIN",
+        "BRULS", "BRUNE", "BRUUT", "BUDDY", "BUIEN", "BUIKS", "BUILT", "BUINE", "BUISE", "BULKT",
+        "BULLE", "BULTE", "BUNDE", "BUNST", "BUNTE", "BURGT", "BURSE", "BUSJE", "BUZEN"
       ]
     }
   }

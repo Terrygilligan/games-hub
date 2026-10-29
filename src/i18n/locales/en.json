@@ -84,7 +84,8 @@
       "snake": { "name": "Snake", "description": "The classic — eat, grow, don't bite your own tail." },
       "memory": { "name": "Memory Match", "description": "Flip the cards and pair them all in as few moves as possible." },
       "minesweeper": { "name": "Minesweeper", "description": "Clear the field without triggering a single mine." },
-      "lexicon": { "name": "Lexicon Blitz", "description": "Match each word to its definition — speed and streaks pay off." }
+      "lexicon": { "name": "Lexicon Blitz", "description": "Match each word to its definition — speed and streaks pay off." },
+      "word-guess": { "name": "Word Guess", "description": "Find the hidden five-letter word in six tries." }
     },
     "snake": {
       "score": "Score",
@@ -252,6 +253,50 @@
         ["thrive", "to grow strongly; prosper"],
         ["vivid", "bright and intense"],
         ["weary", "very tired; exhausted"]
+      ]
+    },
+    "wordguess": {
+      "streak": "Streak",
+      "score": "Score",
+      "best": "Best",
+      "instructions": "Guess the hidden five-letter word in six tries.",
+      "win": "You got it!",
+      "lose": "Out of guesses",
+      "theWordWas": "The word was",
+      "notInList": "Not in word list",
+      "newBest": "New personal best!",
+      "playAgain": "Play again",
+      "submitScore": "Submit score",
+      "submitting": "Submitting…",
+      "highScores": "High scores",
+      "keys": [
+        ["Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P"],
+        ["A", "S", "D", "F", "G", "H", "J", "K", "L"],
+        ["Z", "X", "C", "V", "B", "N", "M"]
+      ]
+    },
+    "dictionary": {
+      "fiveLetter": [
+        "ABOUT", "ABOVE", "ACTOR", "ACUTE", "ADMIT", "ADOPT", "ADORE", "AGILE", "ALARM", "ALBUM",
+        "ALERT", "ALIVE", "ALLOW", "ANGEL", "ANGRY", "APPLE", "APPLY", "ARENA", "ARGUE", "ARISE",
+        "ARMOR", "ASSET", "ATLAS", "AVOID", "AWARD", "AWARE", "BADGE", "BASIC", "BEACH", "BEARD",
+        "BENCH", "BIRTH", "BLACK", "BLADE", "BLAME", "BLANK", "BLAST", "BLEND", "BLESS", "BLIND",
+        "BLOCK", "BLOOM", "BOARD", "BONUS", "BOOST", "BRAIN", "BRAND", "BRAVE", "BREAD", "BREAK",
+        "BRICK", "BRIDE", "BRIEF", "BRING", "BROAD", "BROWN", "BRUSH", "BUILD", "BUNCH", "BURST",
+        "BUYER", "CABIN", "CABLE", "CANDY", "CARGO", "CARRY", "CATCH", "CAUSE", "CHAIN", "CHAIR",
+        "CHARM", "CHART", "CHASE", "CHEAP", "CHECK", "CHEST", "CHIEF", "CHILD", "CIVIL", "CLAIM",
+        "CLASS", "CLEAN", "CLEAR", "CLIMB", "CLOCK", "CLOSE", "CLOUD", "COACH", "COAST", "COLOR",
+        "COUNT", "COURT", "COVER", "CRAFT", "CRANE", "CRASH", "CREAM", "CRIME", "CROSS", "CROWD",
+        "CROWN", "CYCLE", "DANCE", "DEALT", "DEBUT", "DELAY", "DEPTH", "DIARY", "DODGE", "DOUBT",
+        "DOZEN", "DRAFT", "DRAIN", "DREAM", "DRESS", "DRINK", "DRIVE", "EAGER", "EAGLE", "EARLY",
+        "EARTH", "EIGHT", "ELBOW", "ELDER", "ELECT", "ELITE", "EMPTY", "ENEMY", "ENJOY", "ENTER",
+        "ENTRY", "EQUAL", "ERROR", "EVENT", "EVERY", "EXACT", "EXIST", "EXTRA", "FAINT", "FAITH",
+        "FALSE", "FANCY", "FATAL", "FAULT", "FEAST", "FIBER", "FIELD", "FIFTY", "FIGHT", "FINAL",
+        "FIRST", "FLAME", "FLASH", "FLEET", "FLOOR", "FLOUR", "FLUID", "FOCUS", "FORCE", "FORTH",
+        "FORTY", "FORUM", "FRAME", "FRESH", "FRONT", "FROST", "FRUIT", "GIANT", "GIVEN", "GLASS",
+        "GLOBE", "GLORY", "GRACE", "GRADE", "GRAIN", "GRAND", "GRANT", "GRAPE", "GRAPH", "GRASS",
+        "GREAT", "GREEN", "GREET", "GROUP", "GROWN", "GUARD", "GUESS", "GUEST", "GUIDE", "HABIT",
+        "HAPPY", "HARSH", "HEART", "HEAVY", "HONEY", "HORSE", "HOTEL", "HOUSE", "HUMAN", "HUMOR"
       ]
     }
   }

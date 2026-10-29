@@ -84,7 +84,8 @@
       "snake": { "name": "Snake", "description": "El clásico — come, crece y no te muerdas la cola." },
       "memory": { "name": "Memory", "description": "Da la vuelta a las cartas y emparéjalas todas en el menor número de movimientos." },
       "minesweeper": { "name": "Buscaminas", "description": "Despeja el campo sin activar ni una sola mina." },
-      "lexicon": { "name": "Léxico relámpago", "description": "Relaciona cada palabra con su definición — la rapidez y las rachas se pagan." }
+      "lexicon": { "name": "Léxico relámpago", "description": "Relaciona cada palabra con su definición — la rapidez y las rachas se pagan." },
+      "word-guess": { "name": "Adivina la palabra", "description": "Descubre la palabra oculta en seis intentos." }
     },
     "snake": {
       "score": "Puntos",
@@ -250,6 +251,47 @@
         ["tosco", "grosero; rústico"],
         ["ufano", "orgulloso; vanidoso"],
         ["veloz", "muy rápido"]
+      ]
+    },
+    "wordguess": {
+      "streak": "Racha",
+      "score": "Puntos",
+      "best": "Récord",
+      "instructions": "Adivina la palabra oculta de cinco letras en seis intentos.",
+      "win": "¡Lo lograste!",
+      "lose": "Sin intentos",
+      "theWordWas": "La palabra era",
+      "notInList": "No está en la lista",
+      "newBest": "¡Nuevo récord personal!",
+      "playAgain": "Jugar de nuevo",
+      "submitScore": "Enviar puntuación",
+      "submitting": "Enviando…",
+      "highScores": "Clasificación",
+      "keys": [
+        ["Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P"],
+        ["A", "S", "D", "F", "G", "H", "J", "K", "L", "Ñ"],
+        ["Z", "X", "C", "V", "B", "N", "M"]
+      ]
+    },
+    "dictionary": {
+      "fiveLetter": [
+        "ABETO", "ABRIL", "ACERO", "ACTOR", "ADOBE", "AGUAS", "AIRES", "ALBUM", "ALCES", "ALGAS",
+        "ALTAR", "ALTOS", "AMBOS", "AMIGO", "AMORE", "ANDAR", "ANCHO", "ANGEL", "ANIMA", "ANTES",
+        "ARBOL", "ARENA", "ARTES", "ASILO", "ASTRO", "ATLAS", "AVION", "AYUDA", "AZOTE", "AZULS",
+        "BALON", "BANCO", "BANDA", "BARCO", "BARRO", "BARRA", "BASAR", "BAYAS", "BAZAR", "BEBER",
+        "BESOS", "BICHO", "BLUSA", "BOBOS", "BOMBA", "BORDE", "BOTON", "BOXEO", "BRAZO", "BREVE",
+        "BRISA", "BROMA", "BRUMA", "BRUTO", "BURLA", "BURRO", "BUSCA", "CABLE", "CABRA", "CACAO",
+        "CADIZ", "CAJAS", "CALDO", "CALMA", "CALOR", "CALVO", "CAMPO", "CANAL", "CANTO", "CAÑON",
+        "CAPAZ", "CARAS", "CARGO", "CARNE", "CARRO", "CARTA", "CASAS", "CASCO", "CAUSA", "CEBRA",
+        "CEDRO", "CELDA", "CENIZ", "CERDO", "CERRO", "CHICA", "CHICO", "CHILE", "CHINA", "CIELO",
+        "CIEGA", "CIFRA", "CINCO", "CINTA", "CIRCO", "CISMA", "CITAR", "CIVIL", "CLARO", "CLAVE",
+        "CLIMA", "COBRE", "COCHE", "COCOS", "COLAR", "COLOR", "COMER", "COMET", "COMIC", "COMUN",
+        "CONGO", "COPAS", "CORAL", "CORRE", "CORTE", "COSTA", "CREAR", "CREDO", "CREMA", "CRUZA",
+        "CUOTA", "CUALE", "CUART", "CUCHI", "CUERO", "CULPA", "CURVA", "DADOS", "DANZA", "DATOS",
+        "DEBER", "DEBIL", "DEDOS", "DEJAR", "DEMON", "DENSA", "DENIS", "DICHA", "DIETA", "DIOXO",
+        "DIVAN", "DOBLE", "DOCIL", "DOLOR", "DONDE", "DORAR", "DOTAR", "DRAMA", "DUCHA", "DULCE",
+        "DUQUE", "DURAR", "EBANO", "EDEMA", "EJIDO", "ELITE", "ELLOS", "EMITO", "ENANO", "ENERO",
+        "ENTRE", "ENVIO", "EPOCA", "ERROR", "ESPIA", "ESTAR", "ESTOS", "ETAPA", "ETNIA", "EXODO"
       ]
     }
   }

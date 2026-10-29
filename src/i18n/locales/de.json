@@ -84,7 +84,8 @@
       "snake": { "name": "Snake", "description": "Der Klassiker — friss, wachse und beiß nicht in deinen eigenen Schwanz." },
       "memory": { "name": "Memory", "description": "Decke die Karten auf und finde alle Paare mit möglichst wenigen Zügen." },
       "minesweeper": { "name": "Minesweeper", "description": "Räume das Feld, ohne eine einzige Mine auszulösen." },
-      "lexicon": { "name": "Wortblitz", "description": "Ordne jedem Wort die richtige Definition zu — Tempo und Serien zahlen sich aus." }
+      "lexicon": { "name": "Wortblitz", "description": "Ordne jedem Wort die richtige Definition zu — Tempo und Serien zahlen sich aus." },
+      "word-guess": { "name": "Wortraten", "description": "Errate das versteckte Wort in sechs Versuchen." }
     },
     "snake": {
       "score": "Punkte",
@@ -249,6 +250,50 @@
         ["zierlich", "klein und fein gebaut"],
         ["zornig", "sehr wütend"],
         ["zweifelhaft", "unsicher; fragwürdig"]
+      ]
+    },
+    "wordguess": {
+      "streak": "Serie",
+      "score": "Punkte",
+      "best": "Rekord",
+      "instructions": "Errate das versteckte Fünf-Buchstaben-Wort in sechs Versuchen.",
+      "win": "Geschafft!",
+      "lose": "Keine Versuche mehr",
+      "theWordWas": "Das Wort war",
+      "notInList": "Nicht in der Wortliste",
+      "newBest": "Neuer persönlicher Rekord!",
+      "playAgain": "Nochmal spielen",
+      "submitScore": "Punktestand einreichen",
+      "submitting": "Wird eingereicht…",
+      "highScores": "Bestenliste",
+      "keys": [
+        ["Q", "W", "E", "R", "T", "Z", "U", "I", "O", "P", "Ü"],
+        ["A", "S", "D", "F", "G", "H", "J", "K", "L", "Ö", "Ä"],
+        ["Y", "X", "C", "V", "B", "N", "M"]
+      ]
+    },
+    "dictionary": {
+      "fiveLetter": [
+        "ABEND", "ACHSE", "ADLER", "AFFEN", "AHORN", "ALARM", "ALBUM", "ALPEN", "ALTER", "ANGEL",
+        "ANGST", "APFEL", "APRIL", "ARMUT", "ATLAS", "AUGEN", "BACKE", "BADEN", "BANDE", "BASAR",
+        "BAUCH", "BAUER", "BEERE", "BEIDE", "BEINE", "BERGE", "BETON", "BETTE", "BIENE", "BILDE",
+        "BINSE", "BIRNE", "BLASE", "BLASS", "BLATT", "BLECH", "BLICK", "BLIND", "BLITZ", "BLUME",
+        "BODEN", "BOGEN", "BOHNE", "BOMBE", "BRAUE", "BRAUN", "BRAUT", "BREIT", "BUCHE", "BUNTE",
+        "DATUM", "DECKE", "DICHT", "DIESE", "DINGE", "DIRNE", "DOZEN", "DRAHT", "DRALL", "DRUCK",
+        "DUNST", "DURST", "EBENE", "ECHSE", "EDLER", "EHERN", "EICHE", "EIGER", "EILEN", "EIMER",
+        "EINIG", "EISEN", "EITER", "EKLEM", "ELEND", "ELTER", "ENGEL", "ENGER", "ENKEL", "ENTEN",
+        "ERBER", "ERDEN", "ERNST", "ERSTE", "ESSEN", "ESSIG", "ETAGE", "ETWAS", "EULER", "FABEL",
+        "FADEN", "FAHNE", "FAHRT", "FALLE", "FALTE", "FARBE", "FASER", "FAUST", "FEDER", "FEGER",
+        "FEHDE", "FEIER", "FEIGE", "FEIND", "FELDE", "FELGE", "FELLE", "FERSE", "FESTE", "FETEN",
+        "FICHT", "FILME", "FINNE", "FINST", "FIRME", "FLACH", "FLECK", "FLINK", "FLOTT", "FLUSS",
+        "FOHLE", "FOLGE", "FOLIE", "FORST", "FOTZE", "FRAGE", "FRECH", "FREUD", "FRIED", "FRONT",
+        "FROST", "FRUCH", "FUDER", "FUNKE", "GABEL", "GANZE", "GASSE", "GASTE", "GEIST", "GELBE",
+        "GENUG", "GERNE", "GESTE", "GETRE", "GLANZ", "GLATT", "GLEIS", "GLUCK", "GNADE", "GOTTE",
+        "GRABE", "GRASS", "GRAUE", "GRIFF", "GRILL", "GRIMM", "GROBE", "GRUBE", "GRUND", "GRUSS",
+        "GUMMI", "HAFEN", "HAFTE", "HALDE", "HALLE", "HALME", "HAMEN", "HANDY", "HANSE", "HARKE",
+        "HARME", "HASEN", "HAUBE", "HAUCH", "HAUFE", "HAUSE", "HECKE", "HEERE", "HEIDE", "HEILE",
+        "HEIME", "HELLE", "HELME", "HERDE", "HERNE", "HERZE", "HESSE", "HEUTE", "HILFE", "HINKE",
+        "HIRTE", "HOBEL", "HOHEM", "HOLDE", "HOLZE", "HONIG", "HORNE", "HOSEN"
       ]
     }
   }
