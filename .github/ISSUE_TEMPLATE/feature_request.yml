@@ -1,0 +1,21 @@
+name: Feature Suggestion
+description: Propose a new lightweight, offline-first tool idea
+title: "[Feature]: "
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## Have a Feature Idea?
+
+        This utility suite is built and maintained entirely by a 76-year-old independent developer living on a homestead. I only build tools that I personally find useful or enjoy crafting, so I can't promise to build every suggestion.
+
+        However, if you have a brilliant idea for a lightweight, offline-first tool, share it anyway! If it tickles my curiosity, it just might show up in a future update.
+  - type: textarea
+    id: idea
+    attributes:
+      label: Feature Idea Details
+      description: Describe the tool or improvement — what it should do, and why it would be handy. Bonus points if it fits the "runs entirely in your browser" rule.
+      placeholder: "e.g. A unit price / price-per-100g comparator for groceries — type shelf prices, it tells you which pack is cheaper."
+    validations:
+      required: true

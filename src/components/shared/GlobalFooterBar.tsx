@@ -54,6 +54,16 @@ export default function GlobalFooterBar({ itemKey }: GlobalFooterBarProps) {
   const [lastBackup, setLastBackup] = useState<string | null>(() => cfg.backup.lastBackupAt())
   const [installAvailable, setInstallAvailable] = useState(deferredPrompt !== null)
   const [installHint, setInstallHint] = useState(false)
+  const [reviewOpen, setReviewOpen] = useState(false)
+  const [reviewText, setReviewText] = useState('')
+  const [reviewSending, setReviewSending] = useState(false)
+  const [reviewed, setReviewed] = useState(() => {
+    try {
+      return !!localStorage.getItem(`${cfg.storagePrefix}reviewed.${itemKey}`)
+    } catch {
+      return false
+    }
+  })
   const fileRef = useRef<HTMLInputElement>(null)
 
   useEffect(() => {
@@ -90,6 +100,24 @@ export default function GlobalFooterBar({ itemKey }: GlobalFooterBarProps) {
     setMyVote(stars)
     void cfg.submitRating(itemKey, stars).then((ok) => {
       if (ok) void cfg.fetchRating(itemKey).then(setSnapshot)
+    })
+  }
+
+  const sendReview = () => {
+    const text = reviewText.trim()
+    if (!text || !cfg.submitReview || reviewed || reviewSending) return
+    setReviewSending(true)
+    void cfg.submitReview(itemKey, myVote, text).then((ok) => {
+      setReviewSending(false)
+      if (ok) {
+        setReviewed(true)
+        setReviewOpen(false)
+        try {
+          localStorage.setItem(`${cfg.storagePrefix}reviewed.${itemKey}`, '1')
+        } catch {
+          // storage unavailable
+        }
+      }
     })
   }
 
@@ -170,6 +198,38 @@ export default function GlobalFooterBar({ itemKey }: GlobalFooterBarProps) {
           {snapshot &&
             ` · ${cfg.t('average', { avg: snapshot.average.toFixed(1) })} · ${cfg.t('ratings', { count: snapshot.count })}`}
         </span>
+        {myVote > 0 && cfg.submitReview && (
+          reviewed ? (
+            <p className="text-[11px] text-emerald-500">{cfg.t('reviewThanks')}</p>
+          ) : reviewOpen ? (
+            <div className="mt-1 flex w-full max-w-xs flex-col gap-1.5">
+              <textarea
+                value={reviewText}
+                onChange={(e) => setReviewText(e.target.value)}
+                maxLength={500}
+                rows={3}
+                placeholder={cfg.t('reviewPlaceholder')}
+                className="w-full resize-none rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm focus:border-sky-500 focus:outline-none dark:border-slate-700 dark:bg-slate-900"
+              />
+              <button
+                type="button"
+                onClick={sendReview}
+                disabled={!reviewText.trim() || reviewSending}
+                className="h-9 rounded-lg bg-sky-600 text-xs font-semibold text-white transition hover:bg-sky-500 disabled:opacity-40"
+              >
+                {cfg.t('submitReview')}
+              </button>
+            </div>
+          ) : (
+            <button
+              type="button"
+              onClick={() => setReviewOpen(true)}
+              className="text-[11px] text-slate-400 underline-offset-2 transition hover:text-slate-600 hover:underline dark:hover:text-slate-300"
+            >
+              {cfg.t('writeReview')}
+            </button>
+          )
+        )}
       </div>
 
       <div className="mt-4 flex flex-wrap items-center justify-center gap-2">
@@ -229,6 +289,9 @@ export default function GlobalFooterBar({ itemKey }: GlobalFooterBarProps) {
       </p>
 
       <p className="mt-3 text-xs text-slate-500">{cfg.t('tagline')}</p>
+      <p className="mt-1 text-[11px] text-slate-400 dark:text-slate-500">
+        {cfg.t('privacyLine')}
+      </p>
 
       {(BugReport || FeatureSuggest || Settings) && (
         <div className="mt-3 flex items-center justify-center gap-4">

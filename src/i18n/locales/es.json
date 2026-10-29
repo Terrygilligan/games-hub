@@ -7,6 +7,11 @@
     "footer": "Juegos de navegador gratuitos — sin cuentas, sin descargas."
   },
   "footer": {
+    "writeReview": "Escribir una reseña",
+    "privacyLine": "Tus archivos y datos nunca salen de tu dispositivo · Solo estadísticas anónimas · TOG Games",
+    "reviewPlaceholder": "Cuenta a otros qué piensas…",
+    "submitReview": "Enviar reseña",
+    "reviewThanks": "¡Gracias por la reseña!",
     "rate": "Valorar",
     "thanks": "¡Gracias por tu valoración!",
     "ratings": "{count} valoraciones",
@@ -397,6 +402,18 @@
           "down": ["Viviendas", "Plural de luna"]
         }
       ]
+    },
+    "nav": {
+      "allGames": "Todos los juegos",
+      "wordGames": "Juegos de palabras",
+      "puzzles": "Puzles",
+      "classic": "Clásicos",
+      "favorites": "Favoritos",
+      "utilityHub": "Utility Hub",
+      "installable": "PWA instalable — funciona sin conexión",
+      "toggle": "Alternar navegación",
+      "favAdd": "Añadir a favoritos",
+      "favRemove": "Quitar de favoritos"
     }
   }
 }

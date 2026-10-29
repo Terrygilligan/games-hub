@@ -1,8 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { ArrowLeft, Trophy } from 'lucide-react'
-import Header from '../../../../components/Header'
-import Footer from '../../../../components/Footer'
 import { useTranslation } from '../../../../i18n'
 import { getNickname, getPlayerId, setNickname } from '../../services/playerIdentity'
 import { submitScore } from '../../services/leaderboardService'
@@ -221,7 +219,6 @@ export default function MinesweeperGame() {
 
   return (
     <div className="flex min-h-screen flex-col bg-white text-slate-900 dark:bg-slate-950 dark:text-slate-100">
-      <Header />
       <main className="mx-auto w-full max-w-2xl flex-1 px-4 py-6 sm:px-8">
         <div className="mb-4 flex items-center justify-between">
           <Link
@@ -310,7 +307,6 @@ export default function MinesweeperGame() {
           {t('games.minesweeper.instructions')}
         </p>
       </main>
-      <Footer itemKey="minesweeper" />
 
       {showLeaderboard && (
         <LeaderboardModal

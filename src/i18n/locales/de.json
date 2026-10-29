@@ -7,6 +7,11 @@
     "footer": "Kostenlose Browserspiele — keine Konten, keine Downloads."
   },
   "footer": {
+    "writeReview": "Bewertung schreiben",
+    "privacyLine": "Deine Dateien & Daten verlassen nie dein Gerät · Nur anonyme Nutzungsstatistiken · TOG Games",
+    "reviewPlaceholder": "Sag anderen, was du denkst…",
+    "submitReview": "Bewertung senden",
+    "reviewThanks": "Danke für die Bewertung!",
     "rate": "Bewerten",
     "thanks": "Danke für deine Bewertung!",
     "ratings": "{count} Bewertungen",
@@ -393,6 +398,18 @@
           "down": ["Mehrere Lebewesen", "Wasser vom Himmel"]
         }
       ]
+    },
+    "nav": {
+      "allGames": "Alle Spiele",
+      "wordGames": "Wortspiele",
+      "puzzles": "Denkspiele",
+      "classic": "Klassiker",
+      "favorites": "Favoriten",
+      "utilityHub": "Utility Hub",
+      "installable": "Installierbare PWA — funktioniert offline",
+      "toggle": "Navigation umschalten",
+      "favAdd": "Zu Favoriten",
+      "favRemove": "Aus Favoriten entfernen"
     }
   }
 }

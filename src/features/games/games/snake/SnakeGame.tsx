@@ -1,8 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { ArrowLeft, ChevronDown, ChevronLeft, ChevronRight, ChevronUp, Trophy } from 'lucide-react'
-import Header from '../../../../components/Header'
-import Footer from '../../../../components/Footer'
 import { useTranslation } from '../../../../i18n'
 import { getNickname, getPlayerId, setNickname } from '../../services/playerIdentity'
 import { submitScore } from '../../services/leaderboardService'
@@ -257,7 +255,6 @@ export default function SnakeGame() {
 
   return (
     <div className="flex min-h-screen flex-col bg-white text-slate-900 dark:bg-slate-950 dark:text-slate-100">
-      <Header />
       <main className="mx-auto w-full max-w-2xl flex-1 px-4 py-6 sm:px-8">
         <div className="mb-4 flex items-center justify-between">
           <Link
@@ -348,7 +345,6 @@ export default function SnakeGame() {
           <span className="sm:hidden">{t('games.snake.controlsTouch')}</span>
         </p>
       </main>
-      <Footer itemKey="snake" />
 
       {showLeaderboard && (
         <LeaderboardModal

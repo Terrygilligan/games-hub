@@ -1,8 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { ArrowLeft, Dices, Trophy } from 'lucide-react'
-import Header from '../../../../components/Header'
-import Footer from '../../../../components/Footer'
 import { getDict, useTranslation } from '../../../../i18n'
 import type { Lang } from '../../../../i18n'
 import { getNickname, getPlayerId, setNickname } from '../../services/playerIdentity'
@@ -196,7 +194,6 @@ export default function WordLadderGame() {
 
   return (
     <div className="flex min-h-screen flex-col bg-white text-slate-900 dark:bg-slate-950 dark:text-slate-100">
-      <Header />
       <main className="mx-auto w-full max-w-2xl flex-1 px-4 py-6 sm:px-8">
         <div className="mb-4 flex items-center justify-between">
           <Link
@@ -294,7 +291,6 @@ export default function WordLadderGame() {
           )}
         </div>
       </main>
-      <Footer itemKey="word-ladder" />
 
       {showLeaderboard && (
         <LeaderboardModal

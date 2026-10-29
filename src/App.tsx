@@ -1,5 +1,6 @@
 import { lazy, Suspense } from 'react'
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
+import Layout from './components/Layout'
 import GamesHubView from './features/games/GamesHubView'
 
 const SnakeGame = lazy(() => import('./features/games/games/snake/SnakeGame'))
@@ -19,77 +20,25 @@ function Loading() {
   )
 }
 
+const lazyEl = (el: React.ReactNode) => <Suspense fallback={<Loading />}>{el}</Suspense>
+
 export default function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route index element={<GamesHubView />} />
-        <Route
-          path="games/snake"
-          element={
-            <Suspense fallback={<Loading />}>
-              <SnakeGame />
-            </Suspense>
-          }
-        />
-        <Route
-          path="games/memory"
-          element={
-            <Suspense fallback={<Loading />}>
-              <MemoryGame />
-            </Suspense>
-          }
-        />
-        <Route
-          path="games/minesweeper"
-          element={
-            <Suspense fallback={<Loading />}>
-              <MinesweeperGame />
-            </Suspense>
-          }
-        />
-        <Route
-          path="games/lexicon"
-          element={
-            <Suspense fallback={<Loading />}>
-              <LexiconGame />
-            </Suspense>
-          }
-        />
-        <Route
-          path="games/word-guess"
-          element={
-            <Suspense fallback={<Loading />}>
-              <WordGuessGame />
-            </Suspense>
-          }
-        />
-        <Route
-          path="games/word-ladder"
-          element={
-            <Suspense fallback={<Loading />}>
-              <WordLadderGame />
-            </Suspense>
-          }
-        />
-        <Route
-          path="games/sudoku"
-          element={
-            <Suspense fallback={<Loading />}>
-              <SudokuGame />
-            </Suspense>
-          }
-        />
-        <Route
-          path="games/crossword"
-          element={
-            <Suspense fallback={<Loading />}>
-              <CrosswordGame />
-            </Suspense>
-          }
-        />
-        <Route path="games" element={<Navigate to="/" replace />} />
-        <Route path="*" element={<Navigate to="/" replace />} />
+        <Route element={<Layout />}>
+          <Route index element={<GamesHubView />} />
+          <Route path="games/snake" element={lazyEl(<SnakeGame />)} />
+          <Route path="games/memory" element={lazyEl(<MemoryGame />)} />
+          <Route path="games/minesweeper" element={lazyEl(<MinesweeperGame />)} />
+          <Route path="games/lexicon" element={lazyEl(<LexiconGame />)} />
+          <Route path="games/word-guess" element={lazyEl(<WordGuessGame />)} />
+          <Route path="games/word-ladder" element={lazyEl(<WordLadderGame />)} />
+          <Route path="games/sudoku" element={lazyEl(<SudokuGame />)} />
+          <Route path="games/crossword" element={lazyEl(<CrosswordGame />)} />
+          <Route path="games" element={<Navigate to="/" replace />} />
+          <Route path="*" element={<Navigate to="/" replace />} />
+        </Route>
       </Routes>
     </BrowserRouter>
   )

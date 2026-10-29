@@ -1,10 +1,11 @@
 import { Link } from 'react-router-dom'
-import { Bomb, BookOpen, Gamepad2, Hash, LayoutGrid, Play, Puzzle, Trophy, Type, Waypoints, Worm } from 'lucide-react'
+import { Bomb, BookOpen, Gamepad2, Hash, Heart, LayoutGrid, Play, Puzzle, Trophy, Type, Waypoints, Worm } from 'lucide-react'
 import type { LucideIcon } from 'lucide-react'
 import type { GameMetadata } from '../types'
 import { useTranslation } from '../../../i18n'
+import { isFavorite, toggleFavorite } from '../favorites'
 
-const ICONS: Record<string, LucideIcon> = {
+export const ICONS: Record<string, LucideIcon> = {
   worm: Worm,
   'layout-grid': LayoutGrid,
   bomb: Bomb,
@@ -24,9 +25,23 @@ export default function GameCard({ game, onShowLeaderboard }: GameCardProps) {
   const { t } = useTranslation()
   const Icon = ICONS[game.icon] ?? Gamepad2
   const playable = game.status === 'available' && Boolean(game.route)
+  const fav = isFavorite(game.id)
 
   return (
     <div className="group relative flex flex-col rounded-2xl border border-slate-200 bg-white transition hover:border-slate-600 hover:bg-slate-200/70 dark:border-slate-800 dark:bg-slate-900 dark:hover:bg-slate-800/60">
+      <button
+        type="button"
+        onClick={() => toggleFavorite(game.id)}
+        aria-label={fav ? t('games.nav.favRemove') : t('games.nav.favAdd')}
+        title={fav ? t('games.nav.favRemove') : t('games.nav.favAdd')}
+        className={`absolute right-3 top-3 rounded-lg p-1.5 transition ${
+          fav
+            ? 'text-rose-500'
+            : 'text-slate-300 hover:text-rose-400 dark:text-slate-600 dark:hover:text-rose-400'
+        }`}
+      >
+        <Heart size={16} fill={fav ? 'currentColor' : 'none'} />
+      </button>
       <div className="flex flex-1 flex-col p-6">
         <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-xl bg-slate-200 text-sky-600 transition group-hover:bg-sky-500/10 dark:bg-slate-800 dark:text-sky-400">
           <Icon size={22} />

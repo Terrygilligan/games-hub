@@ -31,6 +31,35 @@ export async function submitRating(itemId: string, stars: number): Promise<boole
   }
 }
 
+// Anonymous written reviews in `item_reviews` — separate collection so review
+// docs never pollute the star aggregates: { itemId, playerId, stars, review,
+// app, createdAt }.
+const REVIEWS_COLLECTION = 'item_reviews'
+
+export async function submitReview(
+  itemId: string,
+  stars: number,
+  review: string,
+): Promise<boolean> {
+  const db = await getDb()
+  const text = review.trim().slice(0, 500)
+  if (!db || !text) return false
+  try {
+    const { addDoc, collection, serverTimestamp } = await import('@firebase/firestore')
+    await addDoc(collection(db, REVIEWS_COLLECTION), {
+      itemId,
+      playerId: getPlayerId(),
+      stars,
+      review: text,
+      app: 'games-hub',
+      createdAt: serverTimestamp(),
+    })
+    return true
+  } catch {
+    return false
+  }
+}
+
 export async function fetchRating(itemId: string): Promise<RatingSnapshot | null> {
   const db = await getDb()
   if (!db) return null

@@ -3,8 +3,8 @@ import { Bug, Check, Copy, ExternalLink, X } from 'lucide-react'
 import { dataKeys, storageEstimate } from '../lib/backup'
 import { useTranslation } from '../i18n'
 
-// No public issue tracker yet — link stays hidden until a repo exists.
-const ISSUES_URL: string | null = null
+const ISSUES_URL: string | null =
+  'https://github.com/Terrygilligan/games-hub/issues/new?template=bug_report.yml'
 
 export default function BugReport() {
   const { t } = useTranslation()

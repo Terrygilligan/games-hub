@@ -28,6 +28,10 @@ export interface FooterBarConfig {
   submitRating: (itemKey: string, stars: number) => Promise<boolean>
   fetchRating: (itemKey: string) => Promise<RatingSnapshot | null>
 
+  // Optional written-review backend — if absent, the footer hides the
+  // review affordance entirely.
+  submitReview?: (itemKey: string, stars: number, review: string) => Promise<boolean>
+
   backup: {
     exportBackup: () => void
     importBackup: (file: File) => Promise<number>

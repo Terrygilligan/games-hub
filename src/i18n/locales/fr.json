@@ -7,6 +7,11 @@
     "footer": "Jeux de navigateur gratuits — sans compte, sans téléchargement."
   },
   "footer": {
+    "writeReview": "Écrire un avis",
+    "privacyLine": "Vos fichiers et données ne quittent jamais votre appareil · Statistiques anonymes uniquement · TOG Games",
+    "reviewPlaceholder": "Dis aux autres ce que tu en penses…",
+    "submitReview": "Envoyer l'avis",
+    "reviewThanks": "Merci pour l'avis !",
     "rate": "Noter",
     "thanks": "Merci pour ta note !",
     "ratings": "{count} notes",
@@ -410,6 +415,18 @@
           "down": ["Récit moral avec animaux", "La Terre"]
         }
       ]
+    },
+    "nav": {
+      "allGames": "Tous les jeux",
+      "wordGames": "Jeux de mots",
+      "puzzles": "Casse-tête",
+      "classic": "Classiques",
+      "favorites": "Favoris",
+      "utilityHub": "Utility Hub",
+      "installable": "PWA installable — fonctionne hors ligne",
+      "toggle": "Basculer la navigation",
+      "favAdd": "Ajouter aux favoris",
+      "favRemove": "Retirer des favoris"
     }
   }
 }

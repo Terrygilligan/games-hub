@@ -3,7 +3,7 @@
 // FooterBarConfig contract onto this project's i18n/services/libs.
 import { t } from '../../i18n'
 import { getPlayerId } from '../../features/games/services/playerIdentity'
-import { fetchRating, submitRating } from '../../lib/ratings'
+import { fetchRating, submitRating, submitReview } from '../../lib/ratings'
 import {
   clearAllData,
   exportBackup,
@@ -24,6 +24,7 @@ export const footerConfig: FooterBarConfig = {
   playerId: getPlayerId,
   submitRating,
   fetchRating,
+  submitReview,
   backup: {
     exportBackup,
     importBackup,

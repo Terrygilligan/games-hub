@@ -7,6 +7,11 @@
     "footer": "Gratis browserspellen — geen accounts, geen downloads."
   },
   "footer": {
+    "writeReview": "Schrijf een review",
+    "privacyLine": "Je bestanden en gegevens verlaten je apparaat nooit · Alleen anonieme gebruiksstatistieken · TOG Games",
+    "reviewPlaceholder": "Vertel anderen wat je ervan vindt…",
+    "submitReview": "Review versturen",
+    "reviewThanks": "Bedankt voor de review!",
     "rate": "Beoordeel",
     "thanks": "Bedankt voor je beoordeling!",
     "ratings": "{count} beoordelingen",
@@ -402,6 +407,18 @@
           "down": ["Rijdt op rails", "Hard natuurlijk materiaal"]
         }
       ]
+    },
+    "nav": {
+      "allGames": "Alle spellen",
+      "wordGames": "Woordspellen",
+      "puzzles": "Puzzels",
+      "classic": "Klassiek",
+      "favorites": "Favorieten",
+      "utilityHub": "Utility Hub",
+      "installable": "Installeerbare PWA — werkt offline",
+      "toggle": "Navigatie wisselen",
+      "favAdd": "Aan favorieten toevoegen",
+      "favRemove": "Uit favorieten verwijderen"
     }
   }
 }

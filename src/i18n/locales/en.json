@@ -7,6 +7,11 @@
     "footer": "Free browser games — no accounts, no downloads."
   },
   "footer": {
+    "writeReview": "Write a review",
+    "privacyLine": "Your Files & Data Never Leave Your Device · Anonymous Usage Stats Only · TOG Games",
+    "reviewPlaceholder": "Tell others what you think…",
+    "submitReview": "Submit review",
+    "reviewThanks": "Thanks for the review!",
     "rate": "Rate this",
     "thanks": "Thanks for rating!",
     "ratings": "{count} ratings",
@@ -401,6 +406,18 @@
           "down": ["Ice crystals on a cold morning", "Spooky apparition"]
         }
       ]
+    },
+    "nav": {
+      "allGames": "All Games",
+      "wordGames": "Word Games",
+      "puzzles": "Puzzles",
+      "classic": "Classic",
+      "favorites": "Favorites",
+      "utilityHub": "Utility Hub",
+      "installable": "Installable PWA — works offline",
+      "toggle": "Toggle navigation",
+      "favAdd": "Add to favorites",
+      "favRemove": "Remove from favorites"
     }
   }
 }

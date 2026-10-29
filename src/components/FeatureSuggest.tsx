@@ -2,8 +2,8 @@ import { useState } from 'react'
 import { Check, Copy, ExternalLink, Lightbulb, X } from 'lucide-react'
 import { useTranslation } from '../i18n'
 
-// No public issue tracker yet — link stays hidden until a repo exists.
-const ISSUES_URL: string | null = null
+const ISSUES_URL: string | null =
+  'https://github.com/Terrygilligan/games-hub/issues/new?template=feature_request.yml'
 
 export default function FeatureSuggest() {
   const { t } = useTranslation()

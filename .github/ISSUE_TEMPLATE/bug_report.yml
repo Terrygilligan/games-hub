@@ -1,0 +1,32 @@
+name: Bug Report
+description: File an anonymous bug report for online-games-hub.com
+title: "[Bug]: "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## Found a Bug?
+
+        This utility suite is built and maintained entirely by a 76-year-old independent developer living on a homestead. There is no corporate support desk, and I don't have the time or energy to answer individual support emails.
+
+        However, if you spot a bug or broken feature, let me know anyway! I regularly update and patch the app, so your bug reports go straight into the fix queue for the next update.
+
+        *No account details or personal data are needed — just tell me what broke. The optional diagnostics below are a small anonymous helper, not a requirement.*
+  - type: textarea
+    id: what-went-wrong
+    attributes:
+      label: What went wrong?
+      description: What you did, what you expected to happen, and what actually happened. Which tool were you using?
+      placeholder: "e.g. In the Expense Tracker, after scanning a receipt the amount field stayed empty even though the total was visible on the photo."
+    validations:
+      required: true
+  - type: textarea
+    id: diagnostics
+    attributes:
+      label: App diagnostics (optional)
+      description: If you tapped "Copy Diagnostics" in the app (footer → Report a Bug), paste it here — it's anonymous technical details only, and helps me find the problem faster. Totally fine to leave blank.
+      placeholder: "Optional: paste any copied diagnostics here — or just leave this blank."
+      render: json
+    validations:
+      required: false
