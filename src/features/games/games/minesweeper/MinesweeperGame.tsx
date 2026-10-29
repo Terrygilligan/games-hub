@@ -160,6 +160,7 @@ export default function MinesweeperGame() {
     if (phase === 'ready') {
       board = placeMines(idx, cfg)
       startRef.current = Date.now()
+      setFlagsPlaced(0)
       setPhase('playing')
     }
 

@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { ArrowLeft, Trophy } from 'lucide-react'
 import { getDict, useTranslation } from '../../../../i18n'
@@ -67,10 +67,12 @@ export default function WordGuessGame() {
   const { lang, t } = useTranslation()
 
   const dict = getDict(lang).games
-  const words = dict.dictionary.fiveLetter.filter((w) => w.length === WORD_LEN)
-  const dictSet = new Set(words)
+  const dictSet = useMemo(
+    () => new Set(dict.dictionary.fiveLetter.filter((w) => w.length === WORD_LEN)),
+    [dict],
+  )
   const keyRows = dict.wordguess.keys as string[][]
-  const keySet = new Set(keyRows.flat())
+  const keySet = useMemo(() => new Set(keyRows.flat()), [keyRows])
 
   const [target, setTarget] = useState('')
   const [guesses, setGuesses] = useState<string[]>([])

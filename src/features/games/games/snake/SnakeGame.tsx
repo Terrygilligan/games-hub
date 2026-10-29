@@ -194,6 +194,10 @@ export default function SnakeGame() {
       return
     }
     let raf = 0
+    // Reset timing on (re)entry — a stale lastRef would drain the entire
+    // paused duration into one instant multi-step (teleport/death).
+    accRef.current = 0
+    lastRef.current = 0
     const loop = (time: number) => {
       if (!lastRef.current) lastRef.current = time
       accRef.current += time - lastRef.current

@@ -102,10 +102,14 @@ export default function SudokuGame() {
       500,
     )
     return () => window.clearInterval(id)
-  }, [phase, elapsed])
+  }, [phase])
 
   const pickMode = (m: ModeKey) => {
-    saveNum(MODE_KEY, MODES.findIndex((x) => x.key === m))
+    try {
+      localStorage.setItem(MODE_KEY, m)
+    } catch {
+      // storage unavailable
+    }
     setMode(m)
   }
 

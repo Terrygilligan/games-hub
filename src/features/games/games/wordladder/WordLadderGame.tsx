@@ -115,7 +115,7 @@ export default function WordLadderGame() {
       500,
     )
     return () => window.clearInterval(id)
-  }, [phase, elapsed])
+  }, [phase])
 
   const pickMode = (m: Mode) => {
     saveNum(MODE_KEY, m)

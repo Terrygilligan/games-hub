@@ -98,7 +98,7 @@ export default function CrosswordGame() {
       500,
     )
     return () => window.clearInterval(id)
-  }, [phase, elapsed])
+  }, [phase])
 
   const focusInput = () => inputRef.current?.focus({ preventScroll: true })
 
