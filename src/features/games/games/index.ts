@@ -52,4 +52,20 @@ export const GAME_REGISTRY: GameMetadata[] = [
     status: 'available',
     route: '/games/word-ladder',
   },
+  {
+    id: 'sudoku',
+    titleKey: 'games.titles.sudoku.name',
+    descriptionKey: 'games.titles.sudoku.description',
+    icon: 'hash',
+    status: 'available',
+    route: '/games/sudoku',
+  },
+  {
+    id: 'crossword',
+    titleKey: 'games.titles.crossword.name',
+    descriptionKey: 'games.titles.crossword.description',
+    icon: 'puzzle',
+    status: 'available',
+    route: '/games/crossword',
+  },
 ]

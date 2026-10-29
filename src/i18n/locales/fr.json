@@ -86,7 +86,9 @@
       "minesweeper": { "name": "Démineur", "description": "Dégagez le terrain sans déclencher une seule mine." },
       "lexicon": { "name": "Lexique éclair", "description": "Associe chaque mot à sa définition — rapidité et séries sont récompensées." },
       "word-guess": { "name": "Devine le mot", "description": "Trouve le mot caché en six essais." },
-      "word-ladder": { "name": "Échelle de mots", "description": "Atteins le mot cible lettre par lettre." }
+      "word-ladder": { "name": "Échelle de mots", "description": "Atteins le mot cible lettre par lettre." },
+      "sudoku": { "name": "Sudoku", "description": "Remplis la grille 9×9 pour que chaque ligne, colonne et carré contienne 1–9." },
+      "crossword": { "name": "Mots croisés", "description": "Remplis la grille avec les indices." }
     },
     "snake": {
       "score": "Score",
@@ -360,6 +362,54 @@
       "submitScore": "Envoyer le score",
       "submitting": "Envoi…",
       "highScores": "Classement"
+    },
+    "sudoku": {
+      "easy": "Facile",
+      "medium": "Moyen",
+      "hard": "Difficile",
+      "mistakes": "Erreurs",
+      "time": "Temps",
+      "best": "Record",
+      "score": "Score",
+      "notes": "Notes",
+      "erase": "Effacer",
+      "newPuzzle": "Nouveau défi",
+      "win": "Résolu !",
+      "newBest": "Nouveau record personnel !",
+      "playAgain": "Rejouer",
+      "submitScore": "Envoyer le score",
+      "submitting": "Envoi…",
+      "highScores": "Classement"
+    },
+    "crossword": {
+      "across": "Horizontales",
+      "down": "Verticales",
+      "check": "Vérifier",
+      "reveal": "Révéler",
+      "hints": "Indices",
+      "time": "Temps",
+      "best": "Record",
+      "score": "Score",
+      "win": "Résolu !",
+      "newBest": "Nouveau record personnel !",
+      "playAgain": "Rejouer",
+      "submitScore": "Envoyer le score",
+      "submitting": "Envoi…",
+      "highScores": "Classement",
+      "newPuzzle": "Nouveau défi",
+      "enterLetter": "Tape une lettre",
+      "puzzles": [
+        {
+          "grid": ["PARIS", "O###A", "ROYAL", "T###O", "ETAIN"],
+          "across": ["Capitale de la France", "Relatif au roi", "Métal argenté (étain)"],
+          "down": ["On l'ouvre pour entrer", "Pièce de réception"]
+        },
+        {
+          "grid": ["FORUM", "A###O", "BIDON", "L###D", "ELOGE"],
+          "across": ["Place publique antique", "Récipient ; « faux » aussi", "Louange (éloge)"],
+          "down": ["Récit moral avec animaux", "La Terre"]
+        }
+      ]
     }
   }
 }

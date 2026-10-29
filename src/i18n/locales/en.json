@@ -86,7 +86,9 @@
       "minesweeper": { "name": "Minesweeper", "description": "Clear the field without triggering a single mine." },
       "lexicon": { "name": "Lexicon Blitz", "description": "Match each word to its definition — speed and streaks pay off." },
       "word-guess": { "name": "Word Guess", "description": "Find the hidden five-letter word in six tries." },
-      "word-ladder": { "name": "Word Ladder", "description": "Reach the target word one letter at a time." }
+      "word-ladder": { "name": "Word Ladder", "description": "Reach the target word one letter at a time." },
+      "sudoku": { "name": "Sudoku", "description": "Fill the 9×9 grid so every row, column and box holds 1–9." },
+      "crossword": { "name": "Crossword", "description": "Fill the grid using the clues." }
     },
     "snake": {
       "score": "Score",
@@ -351,6 +353,54 @@
       "submitScore": "Submit score",
       "submitting": "Submitting…",
       "highScores": "High scores"
+    },
+    "sudoku": {
+      "easy": "Easy",
+      "medium": "Medium",
+      "hard": "Hard",
+      "mistakes": "Mistakes",
+      "time": "Time",
+      "best": "Best",
+      "score": "Score",
+      "notes": "Notes",
+      "erase": "Erase",
+      "newPuzzle": "New puzzle",
+      "win": "Solved!",
+      "newBest": "New personal best!",
+      "playAgain": "Play again",
+      "submitScore": "Submit score",
+      "submitting": "Submitting…",
+      "highScores": "High scores"
+    },
+    "crossword": {
+      "across": "Across",
+      "down": "Down",
+      "check": "Check",
+      "reveal": "Reveal",
+      "hints": "Hints",
+      "time": "Time",
+      "best": "Best",
+      "score": "Score",
+      "win": "Solved!",
+      "newBest": "New personal best!",
+      "playAgain": "Play again",
+      "submitScore": "Submit score",
+      "submitting": "Submitting…",
+      "highScores": "High scores",
+      "newPuzzle": "New puzzle",
+      "enterLetter": "Type a letter",
+      "puzzles": [
+        {
+          "grid": ["CLASS", "R###L", "OUTDO", "W###P", "NURSE"],
+          "across": ["School group; a social rank", "Surpass; do better than", "Hospital caregiver"],
+          "down": ["Royal headpiece", "Incline; side of a hill"]
+        },
+        {
+          "grid": ["FLING", "R###H", "OUTGO", "S###S", "TRUST"],
+          "across": ["Throw forcefully", "Exceed; surpass", "Confidence in someone"],
+          "down": ["Ice crystals on a cold morning", "Spooky apparition"]
+        }
+      ]
     }
   }
 }

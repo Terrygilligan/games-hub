@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { Bomb, BookOpen, Gamepad2, LayoutGrid, Play, Trophy, Type, Waypoints, Worm } from 'lucide-react'
+import { Bomb, BookOpen, Gamepad2, Hash, LayoutGrid, Play, Puzzle, Trophy, Type, Waypoints, Worm } from 'lucide-react'
 import type { LucideIcon } from 'lucide-react'
 import type { GameMetadata } from '../types'
 import { useTranslation } from '../../../i18n'
@@ -11,6 +11,8 @@ const ICONS: Record<string, LucideIcon> = {
   'book-open': BookOpen,
   type: Type,
   waypoints: Waypoints,
+  hash: Hash,
+  puzzle: Puzzle,
 }
 
 interface GameCardProps {

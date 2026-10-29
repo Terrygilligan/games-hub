@@ -8,6 +8,8 @@ const MinesweeperGame = lazy(() => import('./features/games/games/minesweeper/Mi
 const LexiconGame = lazy(() => import('./features/games/games/lexicon/LexiconGame'))
 const WordGuessGame = lazy(() => import('./features/games/games/wordguess/WordGuessGame'))
 const WordLadderGame = lazy(() => import('./features/games/games/wordladder/WordLadderGame'))
+const SudokuGame = lazy(() => import('./features/games/games/sudoku/SudokuGame'))
+const CrosswordGame = lazy(() => import('./features/games/games/crossword/CrosswordGame'))
 
 function Loading() {
   return (
@@ -67,6 +69,22 @@ export default function App() {
           element={
             <Suspense fallback={<Loading />}>
               <WordLadderGame />
+            </Suspense>
+          }
+        />
+        <Route
+          path="games/sudoku"
+          element={
+            <Suspense fallback={<Loading />}>
+              <SudokuGame />
+            </Suspense>
+          }
+        />
+        <Route
+          path="games/crossword"
+          element={
+            <Suspense fallback={<Loading />}>
+              <CrosswordGame />
             </Suspense>
           }
         />

@@ -86,7 +86,9 @@
       "minesweeper": { "name": "Mijnenveger", "description": "Ruim het veld zonder een enkele mijn te laten ontploffen." },
       "lexicon": { "name": "Lexicon Blitz", "description": "Koppel elk woord aan de juiste definitie — snelheid en reeksen lonen." },
       "word-guess": { "name": "Woord raden", "description": "Raad het verborgen woord in zes pogingen." },
-      "word-ladder": { "name": "Woordladder", "description": "Bereik het doelwoord letter voor letter." }
+      "word-ladder": { "name": "Woordladder", "description": "Bereik het doelwoord letter voor letter." },
+      "sudoku": { "name": "Sudoku", "description": "Vul het 9×9-raster zodat elke rij, kolom en elk blok 1–9 bevat." },
+      "crossword": { "name": "Kruiswoord", "description": "Vul het raster met de hints." }
     },
     "snake": {
       "score": "Score",
@@ -352,6 +354,54 @@
       "submitScore": "Score indienen",
       "submitting": "Indienen…",
       "highScores": "Ranglijst"
+    },
+    "sudoku": {
+      "easy": "Makkelijk",
+      "medium": "Gemiddeld",
+      "hard": "Moeilijk",
+      "mistakes": "Fouten",
+      "time": "Tijd",
+      "best": "Record",
+      "score": "Score",
+      "notes": "Notities",
+      "erase": "Wissen",
+      "newPuzzle": "Nieuwe puzzel",
+      "win": "Opgelost!",
+      "newBest": "Nieuw persoonlijk record!",
+      "playAgain": "Opnieuw spelen",
+      "submitScore": "Score indienen",
+      "submitting": "Indienen…",
+      "highScores": "Ranglijst"
+    },
+    "crossword": {
+      "across": "Horizontaal",
+      "down": "Verticaal",
+      "check": "Controleren",
+      "reveal": "Onthullen",
+      "hints": "Tips",
+      "time": "Tijd",
+      "best": "Record",
+      "score": "Score",
+      "win": "Opgelost!",
+      "newBest": "Nieuw persoonlijk record!",
+      "playAgain": "Opnieuw spelen",
+      "submitScore": "Score indienen",
+      "submitting": "Indienen…",
+      "highScores": "Ranglijst",
+      "newPuzzle": "Nieuwe puzzel",
+      "enterLetter": "Typ een letter",
+      "puzzles": [
+        {
+          "grid": ["BROEK", "L###E", "OMBER", "E###S", "MOEST"],
+          "across": ["Kledingstuk met twee pijpen", "Bruine aardkleur", "Was verplicht"],
+          "down": ["Plant met kleurige kroon", "Feest in december"]
+        },
+        {
+          "grid": ["TURFS", "R###T", "ALLEE", "I###E", "NAGEN"],
+          "across": ["Stukken grasmat", "Bomenlaan", "Knaagt aan"],
+          "down": ["Rijdt op rails", "Hard natuurlijk materiaal"]
+        }
+      ]
     }
   }
 }

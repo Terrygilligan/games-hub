@@ -86,7 +86,9 @@
       "minesweeper": { "name": "Minesweeper", "description": "Räume das Feld, ohne eine einzige Mine auszulösen." },
       "lexicon": { "name": "Wortblitz", "description": "Ordne jedem Wort die richtige Definition zu — Tempo und Serien zahlen sich aus." },
       "word-guess": { "name": "Wortraten", "description": "Errate das versteckte Wort in sechs Versuchen." },
-      "word-ladder": { "name": "Wortleiter", "description": "Erreiche das Zielwort Buchstabe für Buchstabe." }
+      "word-ladder": { "name": "Wortleiter", "description": "Erreiche das Zielwort Buchstabe für Buchstabe." },
+      "sudoku": { "name": "Sudoku", "description": "Fülle das 9×9-Raster, sodass jede Zeile, Spalte und jedes Kästchen 1–9 enthält." },
+      "crossword": { "name": "Kreuzworträtsel", "description": "Fülle das Raster mithilfe der Hinweise." }
     },
     "snake": {
       "score": "Punkte",
@@ -343,6 +345,54 @@
       "submitScore": "Punktestand einreichen",
       "submitting": "Wird eingereicht…",
       "highScores": "Bestenliste"
+    },
+    "sudoku": {
+      "easy": "Leicht",
+      "medium": "Mittel",
+      "hard": "Schwer",
+      "mistakes": "Fehler",
+      "time": "Zeit",
+      "best": "Rekord",
+      "score": "Punkte",
+      "notes": "Notizen",
+      "erase": "Löschen",
+      "newPuzzle": "Neues Rätsel",
+      "win": "Gelöst!",
+      "newBest": "Neuer persönlicher Rekord!",
+      "playAgain": "Nochmal spielen",
+      "submitScore": "Punktestand einreichen",
+      "submitting": "Wird eingereicht…",
+      "highScores": "Bestenliste"
+    },
+    "crossword": {
+      "across": "Waagrecht",
+      "down": "Senkrecht",
+      "check": "Prüfen",
+      "reveal": "Aufdecken",
+      "hints": "Hinweise",
+      "time": "Zeit",
+      "best": "Rekord",
+      "score": "Punkte",
+      "win": "Gelöst!",
+      "newBest": "Neuer persönlicher Rekord!",
+      "playAgain": "Nochmal spielen",
+      "submitScore": "Punktestand einreichen",
+      "submitting": "Wird eingereicht…",
+      "highScores": "Bestenliste",
+      "newPuzzle": "Neues Rätsel",
+      "enterLetter": "Buchstabe eingeben",
+      "puzzles": [
+        {
+          "grid": ["WEDEL", "O###A", "LESEN", "K###G", "EBENE"],
+          "across": ["Mit dem Schwanz schwenken", "Buchstaben entziffern", "Fläche; Niveau"],
+          "down": ["Weißes Gebilde am Himmel", "Nicht kurz"]
+        },
+        {
+          "grid": ["TIGER", "I###E", "ESSIG", "R###E", "ESPEN"],
+          "across": ["Große gestreifte Raubkatze", "Saurer Würzzusatz", "Zitterpappeln"],
+          "down": ["Mehrere Lebewesen", "Wasser vom Himmel"]
+        }
+      ]
     }
   }
 }

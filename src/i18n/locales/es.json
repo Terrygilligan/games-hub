@@ -86,7 +86,9 @@
       "minesweeper": { "name": "Buscaminas", "description": "Despeja el campo sin activar ni una sola mina." },
       "lexicon": { "name": "Léxico relámpago", "description": "Relaciona cada palabra con su definición — la rapidez y las rachas se pagan." },
       "word-guess": { "name": "Adivina la palabra", "description": "Descubre la palabra oculta en seis intentos." },
-      "word-ladder": { "name": "Escalera de palabras", "description": "Llega a la palabra objetivo letra a letra." }
+      "word-ladder": { "name": "Escalera de palabras", "description": "Llega a la palabra objetivo letra a letra." },
+      "sudoku": { "name": "Sudoku", "description": "Rellena la cuadrícula 9×9 para que cada fila, columna y caja tenga 1–9." },
+      "crossword": { "name": "Crucigrama", "description": "Rellena la cuadrícula con las pistas." }
     },
     "snake": {
       "score": "Puntos",
@@ -347,6 +349,54 @@
       "submitScore": "Enviar puntuación",
       "submitting": "Enviando…",
       "highScores": "Clasificación"
+    },
+    "sudoku": {
+      "easy": "Fácil",
+      "medium": "Media",
+      "hard": "Difícil",
+      "mistakes": "Errores",
+      "time": "Tiempo",
+      "best": "Récord",
+      "score": "Puntos",
+      "notes": "Notas",
+      "erase": "Borrar",
+      "newPuzzle": "Nuevo reto",
+      "win": "¡Resuelto!",
+      "newBest": "¡Nuevo récord personal!",
+      "playAgain": "Jugar de nuevo",
+      "submitScore": "Enviar puntuación",
+      "submitting": "Enviando…",
+      "highScores": "Clasificación"
+    },
+    "crossword": {
+      "across": "Horizontales",
+      "down": "Verticales",
+      "check": "Comprobar",
+      "reveal": "Revelar",
+      "hints": "Pistas",
+      "time": "Tiempo",
+      "best": "Récord",
+      "score": "Puntos",
+      "win": "¡Resuelto!",
+      "newBest": "¡Nuevo récord personal!",
+      "playAgain": "Jugar de nuevo",
+      "submitScore": "Enviar puntuación",
+      "submitting": "Enviando…",
+      "highScores": "Clasificación",
+      "newPuzzle": "Nuevo reto",
+      "enterLetter": "Escribe una letra",
+      "puzzles": [
+        {
+          "grid": ["BOXER", "A###E", "NORIA", "C###T", "OMEGA"],
+          "across": ["Púgil del ring", "Rueda para sacar agua", "Última letra griega"],
+          "down": ["Asiento largo; banca", "Soga para atar ganado"]
+        },
+        {
+          "grid": ["CANAL", "A###U", "SALEN", "A###A", "SUYOS"],
+          "across": ["Vía de agua artificial", "Tercera persona plural de salir", "Posesivo de ellos"],
+          "down": ["Viviendas", "Plural de luna"]
+        }
+      ]
     }
   }
 }
