@@ -60,6 +60,18 @@
       "empty": "Los juegos están en camino — vuelve pronto."
     },
     "nickname": {
+      "info": "Sobre los apodos",
+      "infoSteps": [
+        "Tu apodo se guarda solo en este dispositivo — sin cuenta, sin registro.",
+        "El mismo nombre se usa en todos los juegos.",
+        "Permanece hasta que borres los datos de la app (pie → Borrar datos).",
+        "Los nombres no se reservan — te avisamos si el tuyo ya está en esta tabla."
+      ],
+      "nameTaken": "Ese nombre ya está en esta tabla",
+      "changeName": "Cambiarlo",
+      "submitAnyway": "Enviar igualmente",
+      "checking": "Comprobando…",
+      "gotIt": "¡Entendido!",
       "prompt": "Elige un apodo para las clasificaciones",
       "label": "Apodo",
       "placeholder": "p. ej. PixelFox",

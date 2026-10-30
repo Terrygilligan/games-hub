@@ -60,6 +60,18 @@
       "empty": "Spiele sind unterwegs — schau bald wieder vorbei."
     },
     "nickname": {
+      "info": "Über Spitznamen",
+      "infoSteps": [
+        "Dein Spitzname wird nur auf diesem Gerät gespeichert — kein Konto, keine Anmeldung.",
+        "Derselbe Name gilt für alle Spiele.",
+        "Er bleibt, bis du die App-Daten löschst (Fußzeile → Daten löschen).",
+        "Namen sind nicht reserviert — wir warnen dich, wenn deiner schon auf dieser Tafel steht."
+      ],
+      "nameTaken": "Dieser Name steht schon auf der Tafel",
+      "changeName": "Ändern",
+      "submitAnyway": "Trotzdem senden",
+      "checking": "Prüfe…",
+      "gotIt": "Verstanden!",
       "prompt": "Wähle einen Spitznamen für die Bestenlisten",
       "label": "Spitzname",
       "placeholder": "z. B. PixelFox",

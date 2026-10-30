@@ -1,7 +1,6 @@
-import { useState } from 'react'
 import { Play, Trophy } from 'lucide-react'
 import { useTranslation } from '../../../../i18n'
-import { MAX_NICKNAME_LENGTH } from '../../services/playerIdentity'
+import NicknameGate from '../../components/NicknameGate'
 
 const formatTime = (seconds: number): string => {
   const m = Math.floor(seconds / 60)
@@ -33,8 +32,6 @@ export default function VictoryModal({
   onShowLeaderboard,
 }: VictoryModalProps) {
   const { t } = useTranslation()
-  const [nickname, setNicknameInput] = useState(defaultNickname)
-  const canSubmit = isNewBest && !submitted && nickname.trim().length > 0
 
   return (
     <div className="absolute inset-0 flex items-center justify-center rounded-2xl bg-slate-950/80 p-6 backdrop-blur-sm">
@@ -52,23 +49,14 @@ export default function VictoryModal({
 
         {isNewBest && !submitted && (
           <>
-            <input
-              type="text"
-              value={nickname}
-              onChange={(e) => setNicknameInput(e.target.value)}
-              maxLength={MAX_NICKNAME_LENGTH}
-              placeholder={t('games.nickname.placeholder')}
-              aria-label={t('games.nickname.label')}
-              className="h-11 w-full rounded-lg border border-slate-600 bg-slate-800 px-3 text-center text-sm text-white placeholder:text-slate-500 focus:border-sky-500 focus:outline-none"
+            <NicknameGate
+              gameId="minesweeper"
+              defaultNickname={defaultNickname}
+              submitting={submitting}
+              submitLabel={t('games.minesweeper.submitScore')}
+              submittingLabel={t('games.minesweeper.submitting')}
+              onSubmit={onSubmit}
             />
-            <button
-              type="button"
-              disabled={!canSubmit || submitting}
-              onClick={() => onSubmit(nickname)}
-              className="h-11 w-full rounded-lg bg-sky-600 text-sm font-medium text-white transition hover:bg-sky-500 disabled:opacity-40"
-            >
-              {submitting ? t('games.minesweeper.submitting') : t('games.minesweeper.submitScore')}
-            </button>
           </>
         )}
         {submitted && (

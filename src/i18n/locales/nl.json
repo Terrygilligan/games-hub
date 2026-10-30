@@ -60,6 +60,18 @@
       "empty": "Spellen zijn onderweg — kom snel weer terug."
     },
     "nickname": {
+      "info": "Over bijnamen",
+      "infoSteps": [
+        "Je bijnaam wordt alleen op dit apparaat opgeslagen — geen account, geen aanmelding.",
+        "Dezelfde naam geldt voor alle spellen.",
+        "Hij blijft tot je de app-gegevens wist (voettekst → Gegevens wissen).",
+        "Namen zijn niet gereserveerd — we waarschuwen je als die van jou al op dit scorebord staat."
+      ],
+      "nameTaken": "Die naam staat al op dit scorebord",
+      "changeName": "Aanpassen",
+      "submitAnyway": "Toch versturen",
+      "checking": "Controleren…",
+      "gotIt": "Begrepen!",
       "prompt": "Kies een bijnaam voor de ranglijsten",
       "label": "Bijnaam",
       "placeholder": "bijv. PixelFox",

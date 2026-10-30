@@ -25,6 +25,34 @@ export async function submitScore(payload: ScorePayload): Promise<boolean> {
   }
 }
 
+// Soft nickname-uniqueness check — warns when a name is already on this game's
+// board under a different playerId. Returns false when the backend is absent
+// (offline → just allow). Case-insensitive; names aren't reserved.
+export async function isNameTaken(
+  gameId: string,
+  nickname: string,
+  playerId: string,
+): Promise<boolean> {
+  const db = await getDb()
+  if (!db) return false
+  const name = nickname.trim().toLowerCase()
+  if (!name) return false
+  try {
+    const { collection, getDocs, limit, query, where } = await import('@firebase/firestore')
+    const snap = await getDocs(
+      query(collection(db, COLLECTION), where('gameId', '==', gameId), limit(500)),
+    )
+    return snap.docs.some(
+      (d) =>
+        d.data().playerId !== playerId &&
+        typeof d.data().nickname === 'string' &&
+        d.data().nickname.toLowerCase() === name,
+    )
+  } catch {
+    return false
+  }
+}
+
 export async function fetchTopScores(gameId: string): Promise<LeaderboardEntry[]> {
   const db = await getDb()
   if (!db) return []

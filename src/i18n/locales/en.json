@@ -60,6 +60,18 @@
       "empty": "Games are on the way — check back soon."
     },
     "nickname": {
+      "info": "About nicknames",
+      "infoSteps": [
+        "Your nickname is saved only on this device — no account, no sign-up.",
+        "The same name is used across all games.",
+        "It stays until you clear app data (footer → Clear data).",
+        "Names aren't reserved — we warn you if yours is already on this game's board."
+      ],
+      "nameTaken": "That name is already on this board",
+      "changeName": "Change it",
+      "submitAnyway": "Submit anyway",
+      "checking": "Checking…",
+      "gotIt": "Got it!",
       "prompt": "Choose a nickname for the leaderboards",
       "label": "Nickname",
       "placeholder": "e.g. PixelFox",

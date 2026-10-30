@@ -60,6 +60,18 @@
       "empty": "Les jeux arrivent — revenez bientôt."
     },
     "nickname": {
+      "info": "À propos des pseudos",
+      "infoSteps": [
+        "Ton pseudo est sauvegardé uniquement sur cet appareil — pas de compte, pas d'inscription.",
+        "Le même nom sert dans tous les jeux.",
+        "Il reste jusqu'à ce que tu effaces les données de l'app (pied → Effacer les données).",
+        "Les noms ne sont pas réservés — on te prévient si le tien figure déjà sur ce tableau."
+      ],
+      "nameTaken": "Ce nom figure déjà sur ce tableau",
+      "changeName": "Le changer",
+      "submitAnyway": "Envoyer quand même",
+      "checking": "Vérification…",
+      "gotIt": "Compris !",
       "prompt": "Choisissez un pseudo pour les classements",
       "label": "Pseudo",
       "placeholder": "ex. PixelFox",
