@@ -9,6 +9,12 @@
   "footer": {
     "writeReview": "Escribir una reseña",
     "privacyLine": "Tus archivos y datos nunca salen de tu dispositivo · Solo estadísticas anónimas · TOG Games",
+    "describeBug": "Describe qué salió mal — qué hiciste y qué pasó",
+    "describeIdea": "Describe tu idea…",
+    "reportSent": "¡Gracias — informe recibido!",
+    "anonNote": "Anónimo — solo se adjunta un enlace a la página e info del navegador.",
+    "sending": "Enviando…",
+    "sendReport": "Enviar informe",
     "reviewPlaceholder": "Cuenta a otros qué piensas…",
     "submitReview": "Enviar reseña",
     "reviewThanks": "¡Gracias por la reseña!",

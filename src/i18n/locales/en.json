@@ -9,6 +9,12 @@
   "footer": {
     "writeReview": "Write a review",
     "privacyLine": "Your Files & Data Never Leave Your Device · Anonymous Usage Stats Only · TOG Games",
+    "describeBug": "Describe what went wrong — what you did and what happened",
+    "describeIdea": "Describe your idea…",
+    "reportSent": "Thanks — report received!",
+    "anonNote": "Anonymous — only a page link and browser info are attached.",
+    "sending": "Sending…",
+    "sendReport": "Send report",
     "reviewPlaceholder": "Tell others what you think…",
     "submitReview": "Submit review",
     "reviewThanks": "Thanks for the review!",

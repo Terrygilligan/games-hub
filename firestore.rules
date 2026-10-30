@@ -130,6 +130,28 @@ service cloud.firestore {
       allow update, delete: if false;
     }
 
+    // Anonymous bug/feature reports: write-only — public create with
+    // validated fields, no public read so reports stay private.
+    match /feedback_reports/{entryId} {
+      allow read: if false;
+      allow create: if request.resource.data.keys().hasOnly(
+                        ['type', 'message', 'url', 'userAgent', 'lang', 'app', 'createdAt'])
+                    && request.resource.data.type in ['bug', 'feature']
+                    && request.resource.data.message is string
+                    && request.resource.data.message.size() > 0
+                    && request.resource.data.message.size() <= 2000
+                    && request.resource.data.url is string
+                    && request.resource.data.url.size() <= 500
+                    && request.resource.data.userAgent is string
+                    && request.resource.data.userAgent.size() <= 500
+                    && request.resource.data.lang is string
+                    && request.resource.data.lang.size() <= 32
+                    && request.resource.data.app is string
+                    && request.resource.data.app.size() <= 32
+                    && request.resource.data.createdAt is timestamp;
+      allow update, delete: if false;
+    }
+
     match /{document=**} {
       allow read, write: if false;
     }

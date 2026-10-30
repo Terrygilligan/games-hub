@@ -9,6 +9,12 @@
   "footer": {
     "writeReview": "Schrijf een review",
     "privacyLine": "Je bestanden en gegevens verlaten je apparaat nooit · Alleen anonieme gebruiksstatistieken · TOG Games",
+    "describeBug": "Beschrijf wat er misging — wat je deed en wat er gebeurde",
+    "describeIdea": "Beschrijf je idee…",
+    "reportSent": "Bedankt — melding ontvangen!",
+    "anonNote": "Anoniem — alleen een paginalink en browserinfo worden meegestuurd.",
+    "sending": "Versturen…",
+    "sendReport": "Melding versturen",
     "reviewPlaceholder": "Vertel anderen wat je ervan vindt…",
     "submitReview": "Review versturen",
     "reviewThanks": "Bedankt voor de review!",
