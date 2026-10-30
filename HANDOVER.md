@@ -60,6 +60,12 @@ Config: `vite.config.ts` (react + tailwind + VitePWA, manifest "Games Hub"), `fi
 
 `npm run build` passes clean (tsc -b + vite build + PWA output) — see git log / last verification date. Install requires `--legacy-peer-deps` (vite-plugin-pwa peer range lags Vite 7, same as Utility Hub).
 
+## Anonymous feedback (shared with Utility Hub)
+
+- Report a Bug / Suggest a Feature in both apps write to a shared **`feedback_reports`** Firestore collection on `farmfresh-5e95e` — `app` field is `games-hub` or `utility-hub`, `type` is `bug`/`feature`. Write-only rules (public create, read denied) — reports stay private to the owner.
+- Anti-abuse: hidden honeypot input (bots get fake success), 2-min per-device cooldown, App Check (reCAPTCHA Enterprise) wired in `lib/firebase.ts` — **inert until registered + enforced in Firebase console → App Check** (don't enforce until confirmed working — it gates ALL Firestore writes).
+- **Daily task**: pull the digest with `node scripts/report-digest.mjs [limit]` (uses the firebase-tools login — owner scope bypasses read-deny) or read the collection in the Firebase console. No email — the firestore-send-email route was evaluated and dropped (keeps owner's address out of the bundle).
+
 ## Roadmap
 
 1. **First games** — snake, memory match, minesweeper: `games/<id>/` container + registry flip to `available` + lazy route `/games/<id>` in `App.tsx` + `games.titles.<id>` keys.
