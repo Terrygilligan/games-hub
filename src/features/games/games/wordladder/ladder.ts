@@ -9,6 +9,13 @@ export const isOneLetterDiff = (a: string, b: string): boolean => {
   return d === 1
 }
 
+export const letterDiff = (a: string, b: string): number => {
+  if (a.length !== b.length) return Math.abs(a.length - b.length) + 1
+  let d = 0
+  for (let i = 0; i < a.length; i++) if (a[i] !== b[i]) d++
+  return d
+}
+
 // BFS distance from start to target over dict (Infinity = unreachable).
 export const shortestPath = (start: string, target: string, dict: string[]): number => {
   if (start === target) return 0
@@ -25,6 +32,36 @@ export const shortestPath = (start: string, target: string, dict: string[]): num
     }
   }
   return Infinity
+}
+
+// BFS shortest path from start to target — returns the full word list
+// including both endpoints, or null when unreachable. Used for hints.
+export const findPath = (
+  dict: string[],
+  start: string,
+  target: string,
+): string[] | null => {
+  if (start === target) return [start]
+  const parent = new Map<string, string | null>([[start, null]])
+  const q = [start]
+  while (q.length) {
+    const w = q.shift() as string
+    for (const n of dict) {
+      if (parent.has(n) || !isOneLetterDiff(w, n)) continue
+      parent.set(n, w)
+      if (n === target) {
+        const path = [n]
+        let cur: string | null | undefined = w
+        while (cur) {
+          path.unshift(cur)
+          cur = parent.get(cur)
+        }
+        return path
+      }
+      q.push(n)
+    }
+  }
+  return null
 }
 
 // Generate a guaranteed-solvable puzzle: BFS from a random start, pick a
