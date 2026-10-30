@@ -15,6 +15,7 @@
     "anonNote": "Anonyme — seuls un lien de page et les infos du navigateur sont joints.",
     "sending": "Envoi…",
     "sendReport": "Envoyer le rapport",
+    "reportCooldown": "Attends un instant avant d'envoyer un autre rapport.",
     "reviewPlaceholder": "Dis aux autres ce que tu en penses…",
     "submitReview": "Envoyer l'avis",
     "reviewThanks": "Merci pour l'avis !",

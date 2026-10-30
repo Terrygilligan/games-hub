@@ -20,10 +20,42 @@ export function isFirebaseConfigured(): boolean {
 let appPromise: Promise<FirebaseApp | null> | null = null
 let dbPromise: Promise<Firestore | null> | null = null
 
+// App Check (reCAPTCHA Enterprise) — deferred to idle so the ~160KB bundle
+// never blocks render. Inert until enforcement is enabled in the Firebase
+// console → App Check; feedback writes still work either way.
+const APPCHECK_SITE_KEY = '6Le8sxotAAAAAMtXi1w6zoGwCE3r6bGFKh3Phf-G'
+let appCheckStarted = false
+const startAppCheck = (app: FirebaseApp) => {
+  if (appCheckStarted) return
+  appCheckStarted = true
+  const init = () =>
+    import('@firebase/app-check')
+      .then(({ initializeAppCheck, ReCaptchaEnterpriseProvider }) => {
+        try {
+          initializeAppCheck(app, {
+            provider: new ReCaptchaEnterpriseProvider(APPCHECK_SITE_KEY),
+            isTokenAutoRefreshEnabled: true,
+          })
+        } catch {
+          // already initialized
+        }
+      })
+      .catch(() => {})
+  if (typeof window !== 'undefined' && 'requestIdleCallback' in window) {
+    window.requestIdleCallback(init, { timeout: 5000 })
+  } else {
+    setTimeout(init, 3000)
+  }
+}
+
 export function getFirebaseApp(): Promise<FirebaseApp | null> {
   if (!isFirebaseConfigured()) return Promise.resolve(null)
   appPromise ??= import('@firebase/app')
-    .then(({ initializeApp }) => initializeApp(firebaseConfig))
+    .then(({ initializeApp }) => {
+      const app = initializeApp(firebaseConfig)
+      startAppCheck(app)
+      return app
+    })
     .catch(() => null)
   return appPromise
 }
