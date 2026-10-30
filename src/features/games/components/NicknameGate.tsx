@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { HelpCircle, X } from 'lucide-react'
-import { getDict, useTranslation } from '../../i18n'
+import { getDict, useTranslation } from '../../../i18n'
 import { getPlayerId, MAX_NICKNAME_LENGTH } from '../services/playerIdentity'
 import { isNameTaken } from '../services/leaderboardService'
 
