@@ -20,7 +20,7 @@ import type { FooterBarConfig } from './types'
 export const footerConfig: FooterBarConfig = {
   t: (key, vars) => t(`footer.${key}`, vars),
   storagePrefix: 'games-hub.',
-  coffeeUrl: 'https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=terrythemeat%40hotmail.com',
+  coffeeUrl: 'https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=2Q8NHQCFDDLKQ',
   playerId: getPlayerId,
   submitRating,
   fetchRating,
