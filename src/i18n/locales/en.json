@@ -119,7 +119,9 @@
       "simon": { "name": "Simon", "description": "Repeat the growing sequence of lights and tones." },
       "breakout": { "name": "Breakout", "description": "Keep the ball in play, smash every brick, clear the levels." },
       "typing": { "name": "Typing Speed", "description": "Three sentences on the clock — speed counts, accuracy counts twice." },
-      "connect-four": { "name": "Connect Four", "description": "Drop discs, connect four before the computer does." }
+      "connect-four": { "name": "Connect Four", "description": "Drop discs, connect four before the computer does." },
+      "fifteen": { "name": "15 Puzzle", "description": "Slide the tiles into order — fewest moves wins." },
+      "aim": { "name": "Aim Trainer", "description": "Hit as many targets as you can in 30 seconds." }
     },
     "snake": {
       "score": "Score",
@@ -594,6 +596,43 @@
       "submitScore": "Submit score",
       "submitting": "Submitting…",
       "highScores": "High scores"
+    },
+    "fifteen": {
+      "moves": "Moves",
+      "time": "Time",
+      "best": "Best",
+      "newGame": "New game",
+      "instructions": "Slide the numbered tiles into order — tap a tile next to the gap, or use the arrow keys.",
+      "tapToStart": "Tap to start",
+      "hint": "Score = 1000 − (5 × moves) − seconds. Fewer, faster moves pay more.",
+      "gameOver": "Solved!",
+      "finalScore": "Final score",
+      "newBest": "New personal best!",
+      "playAgain": "Play again",
+      "submitScore": "Submit score",
+      "submitting": "Submitting…",
+      "highScores": "High scores"
+    },
+    "aim": {
+      "time": "Time",
+      "hits": "Hits",
+      "accuracy": "Accuracy",
+      "best": "Best",
+      "newGame": "New game",
+      "instructions": "Tap each target as it appears — you have 30 seconds. Each hit scores 10 points.",
+      "tapToStart": "Tap to start",
+      "hint": "Steady beats fast — missed taps don't add points.",
+      "gameOver": "Time's up!",
+      "finalScore": "Final score",
+      "newBest": "New personal best!",
+      "playAgain": "Play again",
+      "submitScore": "Submit score",
+      "submitting": "Submitting…",
+      "highScores": "High scores"
+    },
+    "daily": {
+      "daily": "Daily",
+      "hint": "Same puzzle for everyone today — separate daily leaderboard."
     },
     "nav": {
       "allGames": "All Games",

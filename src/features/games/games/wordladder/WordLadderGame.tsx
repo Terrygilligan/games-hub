@@ -2,6 +2,7 @@ import { useCallback, useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { ArrowLeft, Dices, HelpCircle, Lightbulb, Trophy } from 'lucide-react'
 import { getDict, useTranslation } from '../../../../i18n'
+import { enFive, enFour, enSix } from '../../../../i18n/dictionaries/enWords'
 import type { Lang } from '../../../../i18n'
 import { getNickname, getPlayerId, setNickname } from '../../services/playerIdentity'
 import { submitScore } from '../../services/leaderboardService'
@@ -46,6 +47,14 @@ const DICT_KEYS: Record<Mode, 'fourLetter' | 'fiveLetter' | 'sixLetter'> = {
   4: 'fourLetter',
   5: 'fiveLetter',
   6: 'sixLetter',
+}
+
+// Broad English accept-list: the curated dict stays the puzzle generator,
+// but move validation also accepts any real English word of the right length.
+const EN_WIDE: Record<Mode, Set<string>> = {
+  4: new Set(enFour),
+  5: new Set(enFive),
+  6: new Set(enSix),
 }
 
 const dictFor = (lang: Lang, mode: Mode): string[] => {
@@ -158,7 +167,8 @@ export default function WordLadderGame() {
       flashError(t('games.wordladder.errUsed'))
       return
     }
-    if (!dict.includes(word)) {
+    const inWide = lang === 'en' && EN_WIDE[mode].has(word.toLowerCase())
+    if (!dict.includes(word) && !inWide) {
       flashError(t('games.wordladder.errNotWord').replace('{word}', word))
       return
     }

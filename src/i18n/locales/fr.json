@@ -119,7 +119,9 @@
       "simon": { "name": "Simon", "description": "Reproduis la séquence grandissante de lumières et de sons." },
       "breakout": { "name": "Casse-briques", "description": "Garde la balle en jeu, casse toutes les briques et passe les niveaux." },
       "typing": { "name": "Vitesse de frappe", "description": "Trois phrases contre la montre — la vitesse compte, la précision double." },
-      "connect-four": { "name": "Puissance 4", "description": "Lâche tes jetons et aligne quatre avant l'ordinateur." }
+      "connect-four": { "name": "Puissance 4", "description": "Lâche tes jetons et aligne quatre avant l'ordinateur." },
+      "fifteen": { "name": "Taquin", "description": "Remets les tuiles dans l'ordre en un minimum de coups." },
+      "aim": { "name": "Tir de précision", "description": "Touche un maximum de cibles en 30 secondes." }
     },
     "snake": {
       "score": "Score",
@@ -603,6 +605,43 @@
       "submitScore": "Envoyer le score",
       "submitting": "Envoi…",
       "highScores": "Classement"
+    },
+    "fifteen": {
+      "moves": "Coups",
+      "time": "Temps",
+      "best": "Record",
+      "newGame": "Nouvelle partie",
+      "instructions": "Glisse les tuiles numérotées dans l'ordre — tape une tuile à côté du trou ou utilise les flèches.",
+      "tapToStart": "Tape pour commencer",
+      "hint": "Score = 1000 − (5 × coups) − secondes. Moins de coups et plus de vitesse rapportent plus.",
+      "gameOver": "Résolu !",
+      "finalScore": "Score final",
+      "newBest": "Nouveau record personnel !",
+      "playAgain": "Rejouer",
+      "submitScore": "Envoyer le score",
+      "submitting": "Envoi…",
+      "highScores": "Classement"
+    },
+    "aim": {
+      "time": "Temps",
+      "hits": "Touches",
+      "accuracy": "Précision",
+      "best": "Record",
+      "newGame": "Nouvelle partie",
+      "instructions": "Tape chaque cible dès qu'elle apparaît — tu as 30 secondes. Chaque touche rapporte 10 points.",
+      "tapToStart": "Tape pour commencer",
+      "hint": "La régularité bat la vitesse — les clics manqués ne rapportent rien.",
+      "gameOver": "Temps écoulé !",
+      "finalScore": "Score final",
+      "newBest": "Nouveau record personnel !",
+      "playAgain": "Rejouer",
+      "submitScore": "Envoyer le score",
+      "submitting": "Envoi…",
+      "highScores": "Classement"
+    },
+    "daily": {
+      "daily": "Quotidien",
+      "hint": "Le même puzzle pour tout le monde aujourd'hui — classement quotidien à part."
     },
     "nav": {
       "allGames": "Tous les jeux",

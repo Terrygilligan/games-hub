@@ -124,4 +124,20 @@ export const GAME_REGISTRY: GameMetadata[] = [
     status: 'available',
     route: '/games/connect-four',
   },
+  {
+    id: 'fifteen',
+    titleKey: 'games.titles.fifteen.name',
+    descriptionKey: 'games.titles.fifteen.description',
+    icon: 'grid-3x3',
+    status: 'available',
+    route: '/games/fifteen',
+  },
+  {
+    id: 'aim',
+    titleKey: 'games.titles.aim.name',
+    descriptionKey: 'games.titles.aim.description',
+    icon: 'crosshair',
+    status: 'available',
+    route: '/games/aim',
+  },
 ]

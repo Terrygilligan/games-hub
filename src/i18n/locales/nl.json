@@ -119,7 +119,9 @@
       "simon": { "name": "Simon", "description": "Herhaal de groeiende reeks lichten en tonen." },
       "breakout": { "name": "Breakout", "description": "Houd de bal in het spel, breek alle stenen en speel de levels vrij." },
       "typing": { "name": "Typsnelheid", "description": "Drie zinnen tegen de klok — snelheid telt, nauwkeurigheid dubbel." },
-      "connect-four": { "name": "Vier op een rij", "description": "Laat schijven vallen en maak vier op een rij vóór de computer." }
+      "connect-four": { "name": "Vier op een rij", "description": "Laat schijven vallen en maak vier op een rij vóór de computer." },
+      "fifteen": { "name": "Schuifpuzzel", "description": "Schuif de tegels in volgorde — zo min mogelijk zetten." },
+      "aim": { "name": "Doeltrainer", "description": "Raak zoveel mogelijk doelen in 30 seconden." }
     },
     "snake": {
       "score": "Score",
@@ -595,6 +597,43 @@
       "submitScore": "Score indienen",
       "submitting": "Indienen…",
       "highScores": "Ranglijst"
+    },
+    "fifteen": {
+      "moves": "Zetten",
+      "time": "Tijd",
+      "best": "Beste",
+      "newGame": "Nieuw spel",
+      "instructions": "Schuif de genummerde tegels in volgorde — tik een tegel naast de leegte of gebruik de pijltjes.",
+      "tapToStart": "Tik om te starten",
+      "hint": "Score = 1000 − (5 × zetten) − seconden. Minder en snellere zetten betalen meer.",
+      "gameOver": "Opgelost!",
+      "finalScore": "Eindscore",
+      "newBest": "Nieuw persoonlijk record!",
+      "playAgain": "Opnieuw spelen",
+      "submitScore": "Score indienen",
+      "submitting": "Indienen…",
+      "highScores": "Ranglijst"
+    },
+    "aim": {
+      "time": "Tijd",
+      "hits": "Raken",
+      "accuracy": "Nauwkeurigheid",
+      "best": "Beste",
+      "newGame": "Nieuw spel",
+      "instructions": "Tik elk doel aan zodra het verschijnt — je hebt 30 seconden. Elke treffer levert 10 punten.",
+      "tapToStart": "Tik om te starten",
+      "hint": "Rustig verslaat snel — mistikken leveren niets op.",
+      "gameOver": "Tijd voorbij!",
+      "finalScore": "Eindscore",
+      "newBest": "Nieuw persoonlijk record!",
+      "playAgain": "Opnieuw spelen",
+      "submitScore": "Score indienen",
+      "submitting": "Indienen…",
+      "highScores": "Ranglijst"
+    },
+    "daily": {
+      "daily": "Dagelijks",
+      "hint": "Vandaag dezelfde puzzel voor iedereen — aparte dagranglijst."
     },
     "nav": {
       "allGames": "Alle spellen",

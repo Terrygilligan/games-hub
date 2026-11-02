@@ -1,9 +1,10 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { ArrowLeft, RotateCcw, Trophy } from 'lucide-react'
+import { ArrowLeft, CalendarDays, RotateCcw, Trophy } from 'lucide-react'
 import { useTranslation } from '../../../../i18n'
 import { getNickname, getPlayerId, setNickname } from '../../services/playerIdentity'
 import { submitScore } from '../../services/leaderboardService'
+import { dailyLabel, dailySeed, mulberry32 } from '../../services/daily'
 import LeaderboardModal from '../../components/LeaderboardModal'
 import GameOverModal from './GameOverModal'
 
@@ -20,39 +21,40 @@ interface Question {
   answer: number
 }
 
-const rnd = (min: number, max: number) => min + Math.floor(Math.random() * (max - min + 1))
+const rnd = (rng: () => number, min: number, max: number) =>
+  min + Math.floor(rng() * (max - min + 1))
 
-const makeQuestion = (mode: Mode): Question => {
+const makeQuestion = (mode: Mode, rng: () => number = Math.random): Question => {
   if (mode === 'easy') {
-    const a = rnd(2, 30)
-    const b = rnd(2, 30)
-    return Math.random() < 0.5
+    const a = rnd(rng, 2, 30)
+    const b = rnd(rng, 2, 30)
+    return rng() < 0.5
       ? { a, b, op: '+', answer: a + b }
       : a >= b
         ? { a, b, op: '-', answer: a - b }
         : { a: b, b: a, op: '-', answer: b - a }
   }
-  if (Math.random() < 0.5) {
-    const a = rnd(3, 12)
-    const b = rnd(3, 12)
+  if (rng() < 0.5) {
+    const a = rnd(rng, 3, 12)
+    const b = rnd(rng, 3, 12)
     return { a, b, op: '×', answer: a * b }
   }
-  const b = rnd(2, 12)
-  const answer = rnd(2, 12)
+  const b = rnd(rng, 2, 12)
+  const answer = rnd(rng, 2, 12)
   return { a: b * answer, b, op: '÷', answer }
 }
 
-const loadBest = (mode: Mode): number => {
+const loadBest = (mode: Mode, daily = false): number => {
   try {
-    return Number(localStorage.getItem(`${BEST_KEY}.${mode}`)) || 0
+    return Number(localStorage.getItem(`${BEST_KEY}.${mode}${daily ? '.daily' : ''}`)) || 0
   } catch {
     return 0
   }
 }
 
-const saveBest = (mode: Mode, v: number) => {
+const saveBest = (mode: Mode, daily: boolean, v: number) => {
   try {
-    localStorage.setItem(`${BEST_KEY}.${mode}`, String(v))
+    localStorage.setItem(`${BEST_KEY}.${mode}${daily ? '.daily' : ''}`, String(v))
   } catch {
     // storage unavailable — best won't persist
   }
@@ -67,6 +69,8 @@ export default function MathDrillGame() {
   const scoreRef = useRef(0)
   const streakRef = useRef(0)
   const inputRef = useRef<HTMLInputElement>(null)
+  const dailyRef = useRef(false)
+  const rngRef = useRef<() => number>(Math.random)
 
   const [phase, setPhase] = useState<Phase>('ready')
   const [mode, setMode] = useState<Mode>('easy')
@@ -81,6 +85,7 @@ export default function MathDrillGame() {
   const [submitting, setSubmitting] = useState(false)
   const [submitted, setSubmitted] = useState(false)
   const [showLeaderboard, setShowLeaderboard] = useState(false)
+  const [daily, setDaily] = useState(false)
 
   const setPhaseSync = useCallback((p: Phase) => {
     phaseRef.current = p
@@ -89,8 +94,8 @@ export default function MathDrillGame() {
 
   const finish = useCallback(() => {
     const final = scoreRef.current
-    if (final > loadBest(modeRef.current)) {
-      saveBest(modeRef.current, final)
+    if (final > loadBest(modeRef.current, dailyRef.current)) {
+      saveBest(modeRef.current, dailyRef.current, final)
       setBest(final)
       setIsNewBest(true)
     }
@@ -100,6 +105,7 @@ export default function MathDrillGame() {
   const start = useCallback(
     (m: Mode) => {
       modeRef.current = m
+      rngRef.current = dailyRef.current ? mulberry32(dailySeed()) : Math.random
       setMode(m)
       scoreRef.current = 0
       streakRef.current = 0
@@ -107,7 +113,7 @@ export default function MathDrillGame() {
       setCorrect(0)
       setStreak(0)
       setTimeLeft(DURATION_S)
-      setQuestion(makeQuestion(m))
+      setQuestion(makeQuestion(m, rngRef.current))
       setEntry('')
       setIsNewBest(false)
       setSubmitting(false)
@@ -134,6 +140,14 @@ export default function MathDrillGame() {
     setPhaseSync('ready')
   }, [setPhaseSync])
 
+  const toggleDaily = useCallback(() => {
+    const next = !dailyRef.current
+    dailyRef.current = next
+    setDaily(next)
+    setBest(loadBest(modeRef.current, next))
+    back()
+  }, [back])
+
   const submit = useCallback(() => {
     if (phaseRef.current !== 'playing' || entry.trim() === '') return
     if (Number(entry) === question.answer) {
@@ -142,7 +156,7 @@ export default function MathDrillGame() {
       setStreak(streakRef.current)
       setScore(scoreRef.current)
       setCorrect((c) => c + 1)
-      setQuestion(makeQuestion(modeRef.current))
+      setQuestion(makeQuestion(modeRef.current, rngRef.current))
       setEntry('')
     } else {
       streakRef.current = 0
@@ -159,7 +173,7 @@ export default function MathDrillGame() {
     setSubmitting(true)
     setNickname(name)
     const ok = await submitScore({
-      gameId: `math-drill.${modeRef.current}`,
+      gameId: `math-drill${dailyRef.current ? '-daily' : ''}.${modeRef.current}`,
       playerId: getPlayerId(),
       nickname: name,
       score: scoreRef.current,
@@ -179,15 +193,31 @@ export default function MathDrillGame() {
             <ArrowLeft size={16} />
             {t('games.actions.backToHub')}
           </Link>
-          <button
-            type="button"
-            onClick={() => setShowLeaderboard(true)}
-            aria-label={t('games.math-drill.highScores')}
-            className="inline-flex items-center gap-1.5 rounded-lg px-3 py-2 text-sm font-medium text-sky-600 transition hover:bg-sky-500/10 dark:text-sky-400"
-          >
-            <Trophy size={15} />
-            <span className="hidden sm:inline">{t('games.math-drill.highScores')}</span>
-          </button>
+          <div className="flex items-center gap-1">
+            <button
+              type="button"
+              onClick={toggleDaily}
+              aria-label={t('games.daily.daily')}
+              title={t('games.daily.hint')}
+              className={`inline-flex items-center gap-1.5 rounded-lg px-3 py-2 text-sm font-medium transition ${
+                daily
+                  ? 'bg-amber-500/15 text-amber-600 dark:text-amber-400'
+                  : 'text-slate-500 hover:bg-slate-500/10 dark:text-slate-400'
+              }`}
+            >
+              <CalendarDays size={15} />
+              <span className="hidden sm:inline">{t('games.daily.daily')}</span>
+            </button>
+            <button
+              type="button"
+              onClick={() => setShowLeaderboard(true)}
+              aria-label={t('games.math-drill.highScores')}
+              className="inline-flex items-center gap-1.5 rounded-lg px-3 py-2 text-sm font-medium text-sky-600 transition hover:bg-sky-500/10 dark:text-sky-400"
+            >
+              <Trophy size={15} />
+              <span className="hidden sm:inline">{t('games.math-drill.highScores')}</span>
+            </button>
+          </div>
         </div>
 
         <div className="mb-4 flex items-center justify-between text-sm">
@@ -220,7 +250,9 @@ export default function MathDrillGame() {
         </div>
 
         <p className="mb-4 text-sm text-slate-500 dark:text-slate-400">
-          {t('games.math-drill.instructions')}
+          {daily
+            ? `${t('games.daily.hint')} — ${dailyLabel()}`
+            : t('games.math-drill.instructions')}
         </p>
 
         <div className="relative mx-auto w-full max-w-[480px]">
@@ -294,8 +326,8 @@ export default function MathDrillGame() {
 
       {showLeaderboard && (
         <LeaderboardModal
-          gameId={`math-drill.${mode}`}
-          title={`${t('games.titles.math-drill.name')} — ${mode === 'easy' ? t('games.math-drill.modeEasy') : t('games.math-drill.modeHard')}`}
+          gameId={`math-drill${daily ? '-daily' : ''}.${mode}`}
+          title={`${t('games.titles.math-drill.name')}${daily ? ` — ${dailyLabel()}` : ''} — ${mode === 'easy' ? t('games.math-drill.modeEasy') : t('games.math-drill.modeHard')}`}
           onClose={() => setShowLeaderboard(false)}
         />
       )}

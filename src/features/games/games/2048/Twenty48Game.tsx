@@ -1,9 +1,10 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { ArrowLeft, Info, RotateCcw, Trophy, X } from 'lucide-react'
+import { ArrowLeft, CalendarDays, Info, RotateCcw, Trophy, X } from 'lucide-react'
 import { useTranslation } from '../../../../i18n'
 import { getNickname, getPlayerId, setNickname } from '../../services/playerIdentity'
 import { submitScore } from '../../services/leaderboardService'
+import { dailyLabel, dailySeed, mulberry32 } from '../../services/daily'
 import LeaderboardModal from '../../components/LeaderboardModal'
 import Board2048 from './Board2048'
 import GameOverModal from './GameOverModal'
@@ -31,17 +32,17 @@ const DIRS: Record<string, Vec> = {
   right: { x: 1, y: 0 },
 }
 
-const loadBest = (): number => {
+const loadBest = (daily = false): number => {
   try {
-    return Number(localStorage.getItem(BEST_KEY)) || 0
+    return Number(localStorage.getItem(`${BEST_KEY}${daily ? '.daily' : ''}`)) || 0
   } catch {
     return 0
   }
 }
 
-const saveBest = (v: number) => {
+const saveBest = (daily: boolean, v: number) => {
   try {
-    localStorage.setItem(BEST_KEY, String(v))
+    localStorage.setItem(`${BEST_KEY}${daily ? '.daily' : ''}`, String(v))
   } catch {
     // storage unavailable — best won't persist
   }
@@ -58,15 +59,15 @@ const emptyCells = (tiles: Tile[]): { row: number; col: number }[] => {
   return free
 }
 
-const spawnIn = (tiles: Tile[], nextId: () => number): Tile[] => {
+const spawnIn = (tiles: Tile[], nextId: () => number, rng: () => number = Math.random): Tile[] => {
   const free = emptyCells(tiles)
-  const cell = free[Math.floor(Math.random() * free.length)]
+  const cell = free[Math.floor(rng() * free.length)]
   if (!cell) return tiles
   return [
     ...tiles,
     {
       id: nextId(),
-      value: Math.random() < 0.9 ? 2 : 4,
+      value: rng() < 0.9 ? 2 : 4,
       row: cell.row,
       col: cell.col,
       spawned: true,
@@ -139,6 +140,8 @@ export default function Twenty48Game() {
   const phaseRef = useRef<Phase>('playing')
   const wonRef = useRef(false)
   const cleanupRef = useRef<number | undefined>(undefined)
+  const dailyRef = useRef(false)
+  const rngRef = useRef<() => number>(Math.random)
 
   const [tiles, setTiles] = useState<Tile[]>(() => {
     const fresh = spawnIn(spawnIn([], nextId), nextId)
@@ -153,6 +156,7 @@ export default function Twenty48Game() {
   const [submitted, setSubmitted] = useState(false)
   const [showLeaderboard, setShowLeaderboard] = useState(false)
   const [showHelp, setShowHelp] = useState(false)
+  const [daily, setDaily] = useState(false)
 
   const setPhaseSync = useCallback((p: Phase) => {
     phaseRef.current = p
@@ -176,20 +180,29 @@ export default function Twenty48Game() {
 
   const restart = useCallback(() => {
     window.clearTimeout(cleanupRef.current)
+    rngRef.current = dailyRef.current ? mulberry32(dailySeed()) : Math.random
     wonRef.current = false
     scoreRef.current = 0
     setScore(0)
     setIsNewBest(false)
     setSubmitting(false)
     setSubmitted(false)
-    setBoard(spawnIn(spawnIn([], nextId), nextId))
+    setBoard(spawnIn(spawnIn([], nextId, rngRef.current), nextId, rngRef.current))
     setPhaseSync('playing')
   }, [nextId, setBoard, setPhaseSync])
 
+  const toggleDaily = useCallback(() => {
+    const next = !dailyRef.current
+    dailyRef.current = next
+    setDaily(next)
+    setBest(loadBest(next))
+    restart()
+  }, [restart])
+
   const finish = useCallback(() => {
     const final = scoreRef.current
-    if (final > loadBest()) {
-      saveBest(final)
+    if (final > loadBest(dailyRef.current)) {
+      saveBest(dailyRef.current, final)
       setBest(final)
       setIsNewBest(true)
     }
@@ -201,7 +214,7 @@ export default function Twenty48Game() {
       if (phaseRef.current !== 'playing') return
       const result = computeMove(tilesRef.current, dir)
       if (!result.moved) return
-      const next = spawnIn(result.tiles, nextId)
+      const next = spawnIn(result.tiles, nextId, rngRef.current)
       setBoard(next)
       scoreRef.current += result.gained
       setScore(scoreRef.current)
@@ -245,7 +258,7 @@ export default function Twenty48Game() {
     setSubmitting(true)
     setNickname(name)
     const ok = await submitScore({
-      gameId: '2048',
+      gameId: `2048${dailyRef.current ? '-daily' : ''}`,
       playerId: getPlayerId(),
       nickname: name,
       score: scoreRef.current,
@@ -266,6 +279,20 @@ export default function Twenty48Game() {
             {t('games.actions.backToHub')}
           </Link>
           <div className="flex items-center gap-1">
+            <button
+              type="button"
+              onClick={toggleDaily}
+              aria-label={t('games.daily.daily')}
+              title={t('games.daily.hint')}
+              className={`inline-flex items-center gap-1.5 rounded-lg px-3 py-2 text-sm font-medium transition ${
+                daily
+                  ? 'bg-amber-500/15 text-amber-600 dark:text-amber-400'
+                  : 'text-slate-500 hover:bg-slate-500/10 dark:text-slate-400'
+              }`}
+            >
+              <CalendarDays size={15} />
+              <span className="hidden sm:inline">{t('games.daily.daily')}</span>
+            </button>
             <button
               type="button"
               onClick={() => setShowHelp(true)}
@@ -307,7 +334,7 @@ export default function Twenty48Game() {
         </div>
 
         <p className="mb-4 text-sm text-slate-500 dark:text-slate-400">
-          {t('games.2048.instructions')}
+          {daily ? `${t('games.daily.hint')} — ${dailyLabel()}` : t('games.2048.instructions')}
         </p>
 
         <div className="relative mx-auto w-full max-w-[480px]">
@@ -372,8 +399,8 @@ export default function Twenty48Game() {
 
       {showLeaderboard && (
         <LeaderboardModal
-          gameId="2048"
-          title={t('games.titles.2048.name')}
+          gameId={`2048${daily ? '-daily' : ''}`}
+          title={`${t('games.titles.2048.name')}${daily ? ` — ${dailyLabel()}` : ''}`}
           onClose={() => setShowLeaderboard(false)}
         />
       )}

@@ -119,7 +119,9 @@
       "simon": { "name": "Simón", "description": "Repite la creciente secuencia de luces y tonos." },
       "breakout": { "name": "Breakout", "description": "Mantén la bola en juego, rompe todos los ladrillos y supera los niveles." },
       "typing": { "name": "Velocidad de escritura", "description": "Tres frases contrarreloj — la velocidad cuenta y la precisión el doble." },
-      "connect-four": { "name": "Conecta cuatro", "description": "Suelta fichas y conecta cuatro antes que la máquina." }
+      "connect-four": { "name": "Conecta cuatro", "description": "Suelta fichas y conecta cuatro antes que la máquina." },
+      "fifteen": { "name": "Puzle 15", "description": "Ordena las fichas con el menor número de jugadas." },
+      "aim": { "name": "Puntería", "description": "Acierta tantos objetivos como puedas en 30 segundos." }
     },
     "snake": {
       "score": "Puntos",
@@ -590,6 +592,43 @@
       "submitScore": "Enviar puntuación",
       "submitting": "Enviando…",
       "highScores": "Clasificación"
+    },
+    "fifteen": {
+      "moves": "Jugadas",
+      "time": "Tiempo",
+      "best": "Récord",
+      "newGame": "Nueva partida",
+      "instructions": "Desliza las fichas numeradas hasta ordenarlas — toca una ficha junto al hueco o usa las flechas.",
+      "tapToStart": "Toca para empezar",
+      "hint": "Puntos = 1000 − (5 × jugadas) − segundos. Menos jugadas y más rapidez pagan más.",
+      "gameOver": "¡Resuelto!",
+      "finalScore": "Puntuación final",
+      "newBest": "¡Nuevo récord personal!",
+      "playAgain": "Jugar de nuevo",
+      "submitScore": "Enviar puntuación",
+      "submitting": "Enviando…",
+      "highScores": "Clasificación"
+    },
+    "aim": {
+      "time": "Tiempo",
+      "hits": "Aciertos",
+      "accuracy": "Precisión",
+      "best": "Récord",
+      "newGame": "Nueva partida",
+      "instructions": "Toca cada objetivo en cuanto aparezca — tienes 30 segundos. Cada acierto da 10 puntos.",
+      "tapToStart": "Toca para empezar",
+      "hint": "La firmeza gana a la velocidad — los fallos no dan puntos.",
+      "gameOver": "¡Se acabó el tiempo!",
+      "finalScore": "Puntuación final",
+      "newBest": "¡Nuevo récord personal!",
+      "playAgain": "Jugar de nuevo",
+      "submitScore": "Enviar puntuación",
+      "submitting": "Enviando…",
+      "highScores": "Clasificación"
+    },
+    "daily": {
+      "daily": "Diario",
+      "hint": "El mismo puzle para todos hoy — clasificación diaria aparte."
     },
     "nav": {
       "allGames": "Todos los juegos",

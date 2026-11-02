@@ -119,7 +119,9 @@
       "simon": { "name": "Simon", "description": "Wiederhole die wachsende Folge aus Licht und Tönen." },
       "breakout": { "name": "Breakout", "description": "Halte den Ball im Spiel, zertrümmere alle Steine, räume die Levels ab." },
       "typing": { "name": "Tippgeschwindigkeit", "description": "Drei Sätze gegen die Uhr — Tempo zählt, Genauigkeit doppelt." },
-      "connect-four": { "name": "Vier gewinnt", "description": "Wirf Steine ein und verbinde vier, bevor es der Computer tut." }
+      "connect-four": { "name": "Vier gewinnt", "description": "Wirf Steine ein und verbinde vier, bevor es der Computer tut." },
+      "fifteen": { "name": "15-Puzzle", "description": "Schiebe die Kacheln in die richtige Reihenfolge — wenigste Züge gewinnen." },
+      "aim": { "name": "Zieltrainer", "description": "Triff in 30 Sekunden so viele Ziele wie möglich." }
     },
     "snake": {
       "score": "Punkte",
@@ -586,6 +588,43 @@
       "submitScore": "Punktestand einreichen",
       "submitting": "Wird eingereicht…",
       "highScores": "Bestenliste"
+    },
+    "fifteen": {
+      "moves": "Züge",
+      "time": "Zeit",
+      "best": "Rekord",
+      "newGame": "Neues Spiel",
+      "instructions": "Schiebe die nummerierten Kacheln in die richtige Reihenfolge — tippe eine Kachel neben der Lücke an oder nutze die Pfeiltasten.",
+      "tapToStart": "Tippen zum Starten",
+      "hint": "Punkte = 1000 − (5 × Züge) − Sekunden. Weniger, schnellere Züge zahlen mehr.",
+      "gameOver": "Gelöst!",
+      "finalScore": "Endstand",
+      "newBest": "Neuer persönlicher Rekord!",
+      "playAgain": "Nochmal spielen",
+      "submitScore": "Punktestand einreichen",
+      "submitting": "Wird eingereicht…",
+      "highScores": "Bestenliste"
+    },
+    "aim": {
+      "time": "Zeit",
+      "hits": "Treffer",
+      "accuracy": "Genauigkeit",
+      "best": "Rekord",
+      "newGame": "Neues Spiel",
+      "instructions": "Tippe jedes Ziel an, sobald es erscheint — du hast 30 Sekunden. Jeder Treffer gibt 10 Punkte.",
+      "tapToStart": "Tippen zum Starten",
+      "hint": "Ruhig schlägt schnell — Fehltipps geben keine Punkte.",
+      "gameOver": "Zeit um!",
+      "finalScore": "Endstand",
+      "newBest": "Neuer persönlicher Rekord!",
+      "playAgain": "Nochmal spielen",
+      "submitScore": "Punktestand einreichen",
+      "submitting": "Wird eingereicht…",
+      "highScores": "Bestenliste"
+    },
+    "daily": {
+      "daily": "Täglich",
+      "hint": "Gleiches Puzzle für alle heute — eigene Tages-Bestenliste."
     },
     "nav": {
       "allGames": "Alle Spiele",
