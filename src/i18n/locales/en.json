@@ -452,7 +452,12 @@
       "playAgain": "Play again",
       "submitScore": "Submit score",
       "submitting": "Submitting…",
-      "highScores": "High scores"
+      "highScores": "High scores",
+      "howToPlay": "How to play",
+      "ruleSlide": "Slide: arrow keys, WASD or swiping moves every tile in that direction.",
+      "ruleMerge": "Merge: two tiles with the same number fuse into one worth double.",
+      "ruleSpawn": "Spawn: after every move a new 2 (usually) or 4 tile appears in a free cell.",
+      "ruleGoal": "Goal: build a 2048 tile. The game ends when the board fills with no merges left."
     },
     "nav": {
       "allGames": "All Games",

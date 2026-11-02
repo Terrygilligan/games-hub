@@ -448,7 +448,12 @@
       "playAgain": "Jugar de nuevo",
       "submitScore": "Enviar puntuación",
       "submitting": "Enviando…",
-      "highScores": "Clasificación"
+      "highScores": "Clasificación",
+      "howToPlay": "Cómo jugar",
+      "ruleSlide": "Deslizar: flechas, WASD o deslizamiento mueven todas las fichas en esa dirección.",
+      "ruleMerge": "Combinar: dos fichas con el mismo número se fusionan en una que vale el doble.",
+      "ruleSpawn": "Aparece: tras cada movimiento surge una nueva ficha 2 (normalmente) o 4 en una celda libre.",
+      "ruleGoal": "Objetivo: consigue la ficha 2048. La partida termina cuando el tablero se llena sin combinaciones posibles."
     },
     "nav": {
       "allGames": "Todos los juegos",

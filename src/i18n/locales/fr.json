@@ -461,7 +461,12 @@
       "playAgain": "Rejouer",
       "submitScore": "Envoyer le score",
       "submitting": "Envoi…",
-      "highScores": "Classement"
+      "highScores": "Classement",
+      "howToPlay": "Comment jouer",
+      "ruleSlide": "Glisser : les flèches, WASD ou un glissement déplacent toutes les tuiles dans cette direction.",
+      "ruleMerge": "Fusionner : deux tuiles de même nombre fusionnent en une tuile de valeur double.",
+      "ruleSpawn": "Apparition : après chaque coup, une nouvelle tuile 2 (souvent) ou 4 apparaît sur une case libre.",
+      "ruleGoal": "But : atteindre la tuile 2048. La partie se termine quand la grille est pleine sans fusion possible."
     },
     "nav": {
       "allGames": "Tous les jeux",

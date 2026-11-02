@@ -79,10 +79,12 @@ export default function Board2048({ tiles, onMove }: Board2048Props) {
         <div
           key={tile.id}
           style={{
-            transform: `translate(calc(var(--gap) + ${tile.col} * (var(--cell) + var(--gap))), calc(var(--gap) + ${tile.row} * (var(--cell) + var(--gap))))`,
+            left: `calc(var(--gap) + ${tile.col} * (var(--cell) + var(--gap)))`,
+            top: `calc(var(--gap) + ${tile.row} * (var(--cell) + var(--gap)))`,
+            transition: 'left 120ms ease-linear, top 120ms ease-linear',
             zIndex: tile.merged ? 20 : tile.gone ? 5 : 10,
           }}
-          className="absolute left-0 top-0 h-[var(--cell)] w-[var(--cell)] transition-transform duration-[120ms] ease-linear"
+          className="absolute h-[var(--cell)] w-[var(--cell)]"
         >
           <div
             style={

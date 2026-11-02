@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { ArrowLeft, RotateCcw, Trophy } from 'lucide-react'
+import { ArrowLeft, Info, RotateCcw, Trophy, X } from 'lucide-react'
 import { useTranslation } from '../../../../i18n'
 import { getNickname, getPlayerId, setNickname } from '../../services/playerIdentity'
 import { submitScore } from '../../services/leaderboardService'
@@ -152,6 +152,7 @@ export default function Twenty48Game() {
   const [submitting, setSubmitting] = useState(false)
   const [submitted, setSubmitted] = useState(false)
   const [showLeaderboard, setShowLeaderboard] = useState(false)
+  const [showHelp, setShowHelp] = useState(false)
 
   const setPhaseSync = useCallback((p: Phase) => {
     phaseRef.current = p
@@ -264,14 +265,26 @@ export default function Twenty48Game() {
             <ArrowLeft size={16} />
             {t('games.actions.backToHub')}
           </Link>
-          <button
-            type="button"
-            onClick={() => setShowLeaderboard(true)}
-            className="inline-flex items-center gap-1.5 rounded-lg px-3 py-2 text-sm font-medium text-sky-600 transition hover:bg-sky-500/10 dark:text-sky-400"
-          >
-            <Trophy size={15} />
-            {t('games.2048.highScores')}
-          </button>
+          <div className="flex items-center gap-1">
+            <button
+              type="button"
+              onClick={() => setShowHelp(true)}
+              aria-label={t('games.2048.howToPlay')}
+              className="inline-flex items-center gap-1.5 rounded-lg px-3 py-2 text-sm font-medium text-slate-500 transition hover:bg-slate-500/10 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-200"
+            >
+              <Info size={15} />
+              <span className="hidden sm:inline">{t('games.2048.howToPlay')}</span>
+            </button>
+            <button
+              type="button"
+              onClick={() => setShowLeaderboard(true)}
+              aria-label={t('games.2048.highScores')}
+              className="inline-flex items-center gap-1.5 rounded-lg px-3 py-2 text-sm font-medium text-sky-600 transition hover:bg-sky-500/10 dark:text-sky-400"
+            >
+              <Trophy size={15} />
+              <span className="hidden sm:inline">{t('games.2048.highScores')}</span>
+            </button>
+          </div>
         </div>
 
         <div className="mb-4 flex items-center justify-between text-sm">
@@ -299,6 +312,30 @@ export default function Twenty48Game() {
 
         <div className="relative mx-auto w-full max-w-[480px]">
           <Board2048 tiles={tiles} onMove={handleMove} />
+
+          {showHelp && (
+            <div className="absolute inset-0 flex items-center justify-center rounded-2xl bg-slate-950/80 p-5 backdrop-blur-sm">
+              <div className="relative w-full max-w-sm rounded-xl bg-slate-900 p-5 text-left">
+                <button
+                  type="button"
+                  onClick={() => setShowHelp(false)}
+                  aria-label={t('games.2048.howToPlay')}
+                  className="absolute right-3 top-3 rounded-md p-1 text-slate-400 transition hover:text-white"
+                >
+                  <X size={16} />
+                </button>
+                <h2 className="mb-3 text-lg font-bold text-white">
+                  {t('games.2048.howToPlay')}
+                </h2>
+                <ul className="space-y-2.5 text-sm text-slate-300">
+                  <li>{t('games.2048.ruleSlide')}</li>
+                  <li>{t('games.2048.ruleMerge')}</li>
+                  <li>{t('games.2048.ruleSpawn')}</li>
+                  <li>{t('games.2048.ruleGoal')}</li>
+                </ul>
+              </div>
+            </div>
+          )}
 
           {phase === 'won' && (
             <div className="absolute inset-0 flex flex-col items-center justify-center gap-4 rounded-2xl bg-slate-950/80 p-6 text-center backdrop-blur-sm">

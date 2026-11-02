@@ -453,7 +453,12 @@
       "playAgain": "Opnieuw spelen",
       "submitScore": "Score indienen",
       "submitting": "Indienen…",
-      "highScores": "Ranglijst"
+      "highScores": "Ranglijst",
+      "howToPlay": "Hoe te spelen",
+      "ruleSlide": "Schuiven: pijltjestoetsen, WASD of vegen verplaatst alle tegels in die richting.",
+      "ruleMerge": "Samenvoegen: twee tegels met hetzelfde getal smelten samen tot één met dubbele waarde.",
+      "ruleSpawn": "Verschijning: na elke zet verschijnt een nieuwe tegel 2 (meestal) of 4 op een leeg veld.",
+      "ruleGoal": "Doel: maak de tegel 2048. Het spel eindigt als het bord vol is zonder samenvoegingen."
     },
     "nav": {
       "allGames": "Alle spellen",

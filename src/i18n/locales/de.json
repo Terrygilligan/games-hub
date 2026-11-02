@@ -444,7 +444,12 @@
       "playAgain": "Nochmal spielen",
       "submitScore": "Punktestand einreichen",
       "submitting": "Wird eingereicht…",
-      "highScores": "Bestenliste"
+      "highScores": "Bestenliste",
+      "howToPlay": "So wird gespielt",
+      "ruleSlide": "Schieben: Pfeiltasten, WASD oder Wischen bewegen alle Kacheln in diese Richtung.",
+      "ruleMerge": "Verschmelzen: zwei Kacheln mit derselben Zahl werden zu einer mit doppeltem Wert.",
+      "ruleSpawn": "Neu: nach jedem Zug erscheint eine neue 2 (meistens) oder 4 auf einem freien Feld.",
+      "ruleGoal": "Ziel: erreiche die Kachel 2048. Das Spiel endet, wenn das Feld voll ist und nichts mehr verschmilzt."
     },
     "nav": {
       "allGames": "Alle Spiele",
