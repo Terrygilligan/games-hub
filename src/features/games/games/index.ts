@@ -108,4 +108,20 @@ export const GAME_REGISTRY: GameMetadata[] = [
     status: 'available',
     route: '/games/breakout',
   },
+  {
+    id: 'typing',
+    titleKey: 'games.titles.typing.name',
+    descriptionKey: 'games.titles.typing.description',
+    icon: 'keyboard',
+    status: 'available',
+    route: '/games/typing',
+  },
+  {
+    id: 'connect-four',
+    titleKey: 'games.titles.connect-four.name',
+    descriptionKey: 'games.titles.connect-four.description',
+    icon: 'columns-4',
+    status: 'available',
+    route: '/games/connect-four',
+  },
 ]
