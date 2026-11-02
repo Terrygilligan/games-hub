@@ -379,6 +379,7 @@
       "hint": "Pista",
       "guide": "Cómo jugar",
       "guideGotIt": "¡Entendido!",
+      "dictNote": "Lista de palabras: ~{n}K palabras — las palabras raras pueden no aceptarse.",
       "guideSteps": [
         "Cambia exactamente una letra por paso.",
         "Cada paso debe ser una palabra real de la lista.",

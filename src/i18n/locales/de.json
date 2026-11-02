@@ -375,6 +375,7 @@
       "hint": "Hinweis",
       "guide": "Wie man spielt",
       "guideGotIt": "Verstanden!",
+      "dictNote": "Wortliste: ~{n}K Wörter — seltene Wörter werden evtl. nicht akzeptiert.",
       "guideSteps": [
         "Ändere pro Schritt genau einen Buchstaben.",
         "Jeder Schritt muss ein echtes Wort aus der Liste sein.",

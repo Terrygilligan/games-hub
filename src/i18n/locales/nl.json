@@ -384,6 +384,7 @@
       "hint": "Hint",
       "guide": "Hoe te spelen",
       "guideGotIt": "Begrepen!",
+      "dictNote": "Woordenlijst: ~{n}K woorden — zeldzame woorden worden mogelijk niet geaccepteerd.",
       "guideSteps": [
         "Verander precies één letter per stap.",
         "Elke stap moet een echt woord uit de lijst zijn.",

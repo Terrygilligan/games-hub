@@ -3,6 +3,11 @@ import { Link } from 'react-router-dom'
 import { ArrowLeft, Dices, HelpCircle, Lightbulb, Trophy } from 'lucide-react'
 import { getDict, useTranslation } from '../../../../i18n'
 import { enFive, enFour, enSix } from '../../../../i18n/dictionaries/enWords'
+import * as bgWords from '../../../../i18n/dictionaries/bgWords'
+import * as deWords from '../../../../i18n/dictionaries/deWords'
+import * as esWords from '../../../../i18n/dictionaries/esWords'
+import * as frWords from '../../../../i18n/dictionaries/frWords'
+import * as nlWords from '../../../../i18n/dictionaries/nlWords'
 import type { Lang } from '../../../../i18n'
 import { getNickname, getPlayerId, setNickname } from '../../services/playerIdentity'
 import { submitScore } from '../../services/leaderboardService'
@@ -49,12 +54,15 @@ const DICT_KEYS: Record<Mode, 'fourLetter' | 'fiveLetter' | 'sixLetter'> = {
   6: 'sixLetter',
 }
 
-// Broad English accept-list: the curated dict stays the puzzle generator,
-// but move validation also accepts any real English word of the right length.
-const EN_WIDE: Record<Mode, Set<string>> = {
-  4: new Set(enFour),
-  5: new Set(enFive),
-  6: new Set(enSix),
+// Broad accept-lists: the curated dict stays the puzzle generator, but move
+// validation also accepts any real word of the right length per language.
+const WIDE: Record<Lang, Record<Mode, Set<string>>> = {
+  en: { 4: new Set(enFour), 5: new Set(enFive), 6: new Set(enSix) },
+  bg: { 4: new Set(bgWords.four), 5: new Set(bgWords.five), 6: new Set(bgWords.six) },
+  de: { 4: new Set(deWords.four), 5: new Set(deWords.five), 6: new Set(deWords.six) },
+  es: { 4: new Set(esWords.four), 5: new Set(esWords.five), 6: new Set(esWords.six) },
+  fr: { 4: new Set(frWords.four), 5: new Set(frWords.five), 6: new Set(frWords.six) },
+  nl: { 4: new Set(nlWords.four), 5: new Set(nlWords.five), 6: new Set(nlWords.six) },
 }
 
 const dictFor = (lang: Lang, mode: Mode): string[] => {
@@ -167,7 +175,7 @@ export default function WordLadderGame() {
       flashError(t('games.wordladder.errUsed'))
       return
     }
-    const inWide = lang === 'en' && EN_WIDE[mode].has(word.toLowerCase())
+    const inWide = WIDE[lang]?.[mode]?.has(word.toLowerCase())
     if (!dict.includes(word) && !inWide) {
       flashError(t('games.wordladder.errNotWord').replace('{word}', word))
       return
@@ -337,6 +345,12 @@ export default function WordLadderGame() {
           </div>
           <p className="mt-3 text-center text-xs text-slate-500 dark:text-slate-400">
             {t('games.wordladder.instructions')}
+          </p>
+          <p className="mt-1 text-center text-xs text-slate-400 dark:text-slate-500">
+            {t('games.wordladder.dictNote').replace(
+              '{n}',
+              String(Math.round((WIDE[lang][mode].size + dictFor(lang, mode).length) / 1000)),
+            )}
           </p>
 
           {phase === 'won' && (

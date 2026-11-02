@@ -392,6 +392,7 @@
       "hint": "Indice",
       "guide": "Comment jouer",
       "guideGotIt": "Compris !",
+      "dictNote": "Liste de mots : ~{n}K mots — les mots rares peuvent être refusés.",
       "guideSteps": [
         "Change exactement une lettre par étape.",
         "Chaque étape doit être un mot réel de la liste.",

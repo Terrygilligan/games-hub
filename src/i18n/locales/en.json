@@ -383,6 +383,7 @@
       "hint": "Hint",
       "guide": "How to play",
       "guideGotIt": "Got it!",
+      "dictNote": "Word list: ~{n}K words — rare words may not be accepted.",
       "guideSteps": [
         "Change exactly one letter per step.",
         "Every step must be a real word from the list.",
