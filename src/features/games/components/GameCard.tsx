@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { Bomb, BookOpen, Gamepad2, Hash, Heart, Layers, LayoutGrid, Play, Puzzle, Trophy, Type, Waypoints, Worm } from 'lucide-react'
+import { Bomb, BookOpen, Brain, BrickWall, Calculator, Gamepad2, Hash, Heart, Layers, LayoutGrid, Play, Puzzle, Trophy, Type, Waypoints, Worm, Zap } from 'lucide-react'
 import type { LucideIcon } from 'lucide-react'
 import type { GameMetadata } from '../types'
 import { useTranslation } from '../../../i18n'
@@ -15,6 +15,10 @@ export const ICONS: Record<string, LucideIcon> = {
   hash: Hash,
   puzzle: Puzzle,
   layers: Layers,
+  zap: Zap,
+  calculator: Calculator,
+  brain: Brain,
+  'brick-wall': BrickWall,
 }
 
 interface GameCardProps {

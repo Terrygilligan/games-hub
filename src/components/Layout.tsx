@@ -27,8 +27,8 @@ const COLLAPSE_KEY = 'games-hub.nav.collapsed'
 
 const NAV_GROUPS: { labelKey: string; ids: string[] }[] = [
   { labelKey: 'games.nav.wordGames', ids: ['word-guess', 'word-ladder', 'lexicon', 'crossword'] },
-  { labelKey: 'games.nav.puzzles', ids: ['sudoku', 'minesweeper', 'memory'] },
-  { labelKey: 'games.nav.classic', ids: ['snake', '2048'] },
+  { labelKey: 'games.nav.puzzles', ids: ['sudoku', 'minesweeper', 'memory', 'math-drill'] },
+  { labelKey: 'games.nav.classic', ids: ['snake', '2048', 'reaction', 'simon', 'breakout'] },
 ]
 
 function readCollapsed(): Record<string, boolean> {

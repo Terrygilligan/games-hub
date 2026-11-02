@@ -12,6 +12,10 @@ const WordLadderGame = lazy(() => import('./features/games/games/wordladder/Word
 const SudokuGame = lazy(() => import('./features/games/games/sudoku/SudokuGame'))
 const CrosswordGame = lazy(() => import('./features/games/games/crossword/CrosswordGame'))
 const Twenty48Game = lazy(() => import('./features/games/games/2048/Twenty48Game'))
+const ReactionGame = lazy(() => import('./features/games/games/reaction/ReactionGame'))
+const MathDrillGame = lazy(() => import('./features/games/games/mathdrill/MathDrillGame'))
+const SimonGame = lazy(() => import('./features/games/games/simon/SimonGame'))
+const BreakoutGame = lazy(() => import('./features/games/games/breakout/BreakoutGame'))
 
 function Loading() {
   return (
@@ -38,6 +42,10 @@ export default function App() {
           <Route path="games/sudoku" element={lazyEl(<SudokuGame />)} />
           <Route path="games/crossword" element={lazyEl(<CrosswordGame />)} />
           <Route path="games/2048" element={lazyEl(<Twenty48Game />)} />
+          <Route path="games/reaction" element={lazyEl(<ReactionGame />)} />
+          <Route path="games/math-drill" element={lazyEl(<MathDrillGame />)} />
+          <Route path="games/simon" element={lazyEl(<SimonGame />)} />
+          <Route path="games/breakout" element={lazyEl(<BreakoutGame />)} />
           <Route path="games" element={<Navigate to="/" replace />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Route>
