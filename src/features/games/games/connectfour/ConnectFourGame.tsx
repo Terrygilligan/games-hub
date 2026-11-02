@@ -41,6 +41,7 @@ export default function ConnectFourGame() {
   const movesRef = useRef(0)
   const timerRef = useRef<number | undefined>(undefined)
   const scoreRef = useRef(0)
+  const resultRef = useRef<Result>(null)
 
   const [board, setBoard] = useState<Board>(emptyBoard)
   const [phase, setPhase] = useState<Phase>('ready')
@@ -64,6 +65,7 @@ export default function ConnectFourGame() {
 
   const endGame = useCallback(
     (b: Board, res: Result) => {
+      resultRef.current = res
       setResult(res)
       setWinLine(winningCells(b))
       if (res === 'win') {
@@ -76,7 +78,8 @@ export default function ConnectFourGame() {
           setIsNewBest(true)
         }
       }
-      setPhaseSync('over')
+      // hold the board for a beat so the player sees the winning move
+      timerRef.current = window.setTimeout(() => setPhaseSync('over'), 900)
     },
     [setPhaseSync],
   )
@@ -98,7 +101,7 @@ export default function ConnectFourGame() {
 
   const dropIn = useCallback(
     (col: number) => {
-      if (phaseRef.current !== 'playing' || turn !== 1) return
+      if (phaseRef.current !== 'playing' || turn !== 1 || resultRef.current !== null) return
       if (dropRow(board, col) < 0) return
       const next = play(board, col, 1)
       movesRef.current += 1
@@ -122,6 +125,7 @@ export default function ConnectFourGame() {
       setDifficulty(d)
       movesRef.current = 0
       scoreRef.current = 0
+      resultRef.current = null
       setBoard(emptyBoard())
       setMoves(0)
       setResult(null)
@@ -242,7 +246,7 @@ export default function ConnectFourGame() {
                   onClick={() => dropIn(c)}
                   onMouseEnter={() => setHoverCol(c)}
                   onMouseLeave={() => setHoverCol(null)}
-                  disabled={phase !== 'playing' || turn !== 1}
+                  disabled={phase !== 'playing' || turn !== 1 || result !== null}
                   aria-label={`Column ${c + 1}`}
                   className="flex flex-col gap-1.5 sm:gap-2"
                 >
