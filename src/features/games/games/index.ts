@@ -68,4 +68,12 @@ export const GAME_REGISTRY: GameMetadata[] = [
     status: 'available',
     route: '/games/crossword',
   },
+  {
+    id: '2048',
+    titleKey: 'games.titles.2048.name',
+    descriptionKey: 'games.titles.2048.description',
+    icon: 'layers',
+    status: 'available',
+    route: '/games/2048',
+  },
 ]

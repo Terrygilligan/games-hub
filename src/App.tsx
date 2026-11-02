@@ -11,6 +11,7 @@ const WordGuessGame = lazy(() => import('./features/games/games/wordguess/WordGu
 const WordLadderGame = lazy(() => import('./features/games/games/wordladder/WordLadderGame'))
 const SudokuGame = lazy(() => import('./features/games/games/sudoku/SudokuGame'))
 const CrosswordGame = lazy(() => import('./features/games/games/crossword/CrosswordGame'))
+const Twenty48Game = lazy(() => import('./features/games/games/2048/Twenty48Game'))
 
 function Loading() {
   return (
@@ -36,6 +37,7 @@ export default function App() {
           <Route path="games/word-ladder" element={lazyEl(<WordLadderGame />)} />
           <Route path="games/sudoku" element={lazyEl(<SudokuGame />)} />
           <Route path="games/crossword" element={lazyEl(<CrosswordGame />)} />
+          <Route path="games/2048" element={lazyEl(<Twenty48Game />)} />
           <Route path="games" element={<Navigate to="/" replace />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Route>

@@ -112,7 +112,8 @@
       "word-guess": { "name": "Devine le mot", "description": "Trouve le mot caché en six essais." },
       "word-ladder": { "name": "Échelle de mots", "description": "Atteins le mot cible lettre par lettre." },
       "sudoku": { "name": "Sudoku", "description": "Remplis la grille 9×9 pour que chaque ligne, colonne et carré contienne 1–9." },
-      "crossword": { "name": "Mots croisés", "description": "Remplis la grille avec les indices." }
+      "crossword": { "name": "Mots croisés", "description": "Remplis la grille avec les indices." },
+      "2048": { "name": "2048", "description": "Glisse les tuiles et fusionne-les jusqu'à 2048." }
     },
     "snake": {
       "score": "Score",
@@ -444,6 +445,23 @@
           "down": ["Récit moral avec animaux", "La Terre"]
         }
       ]
+    },
+    "2048": {
+      "score": "Score",
+      "best": "Record",
+      "instructions": "Fusionne les tuiles de même nombre et atteins 2048.",
+      "controlsDesktop": "Flèches ou WASD pour glisser les tuiles",
+      "controlsTouch": "Glisse pour déplacer les tuiles",
+      "newGame": "Nouvelle partie",
+      "youWin": "Tu as atteint 2048 !",
+      "keepPlaying": "Continuer à jouer",
+      "gameOver": "Partie terminée",
+      "finalScore": "Score final",
+      "newBest": "Nouveau record personnel !",
+      "playAgain": "Rejouer",
+      "submitScore": "Envoyer le score",
+      "submitting": "Envoi…",
+      "highScores": "Classement"
     },
     "nav": {
       "allGames": "Tous les jeux",

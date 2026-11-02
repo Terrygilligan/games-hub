@@ -112,7 +112,8 @@
       "word-guess": { "name": "Adivina la palabra", "description": "Descubre la palabra oculta en seis intentos." },
       "word-ladder": { "name": "Escalera de palabras", "description": "Llega a la palabra objetivo letra a letra." },
       "sudoku": { "name": "Sudoku", "description": "Rellena la cuadrícula 9×9 para que cada fila, columna y caja tenga 1–9." },
-      "crossword": { "name": "Crucigrama", "description": "Rellena la cuadrícula con las pistas." }
+      "crossword": { "name": "Crucigrama", "description": "Rellena la cuadrícula con las pistas." },
+      "2048": { "name": "2048", "description": "Desliza las fichas y combínalas hasta 2048." }
     },
     "snake": {
       "score": "Puntos",
@@ -431,6 +432,23 @@
           "down": ["Viviendas", "Plural de luna"]
         }
       ]
+    },
+    "2048": {
+      "score": "Puntos",
+      "best": "Récord",
+      "instructions": "Combina fichas con el mismo número y llega a 2048.",
+      "controlsDesktop": "Flechas o WASD para deslizar las fichas",
+      "controlsTouch": "Desliza para mover las fichas",
+      "newGame": "Nueva partida",
+      "youWin": "¡Llegaste a 2048!",
+      "keepPlaying": "Seguir jugando",
+      "gameOver": "Fin de la partida",
+      "finalScore": "Puntuación final",
+      "newBest": "¡Nuevo récord personal!",
+      "playAgain": "Jugar de nuevo",
+      "submitScore": "Enviar puntuación",
+      "submitting": "Enviando…",
+      "highScores": "Clasificación"
     },
     "nav": {
       "allGames": "Todos los juegos",

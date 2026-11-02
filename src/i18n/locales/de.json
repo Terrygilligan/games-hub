@@ -112,7 +112,8 @@
       "word-guess": { "name": "Wortraten", "description": "Errate das versteckte Wort in sechs Versuchen." },
       "word-ladder": { "name": "Wortleiter", "description": "Erreiche das Zielwort Buchstabe für Buchstabe." },
       "sudoku": { "name": "Sudoku", "description": "Fülle das 9×9-Raster, sodass jede Zeile, Spalte und jedes Kästchen 1–9 enthält." },
-      "crossword": { "name": "Kreuzworträtsel", "description": "Fülle das Raster mithilfe der Hinweise." }
+      "crossword": { "name": "Kreuzworträtsel", "description": "Fülle das Raster mithilfe der Hinweise." },
+      "2048": { "name": "2048", "description": "Schiebe die Kacheln und verschmelze sie bis 2048." }
     },
     "snake": {
       "score": "Punkte",
@@ -427,6 +428,23 @@
           "down": ["Mehrere Lebewesen", "Wasser vom Himmel"]
         }
       ]
+    },
+    "2048": {
+      "score": "Punkte",
+      "best": "Rekord",
+      "instructions": "Verschmelze Kacheln mit derselben Zahl und erreiche 2048.",
+      "controlsDesktop": "Pfeiltasten oder WASD zum Verschieben der Kacheln",
+      "controlsTouch": "Wische, um die Kacheln zu verschieben",
+      "newGame": "Neues Spiel",
+      "youWin": "Du hast 2048 erreicht!",
+      "keepPlaying": "Weiterspielen",
+      "gameOver": "Spiel vorbei",
+      "finalScore": "Endstand",
+      "newBest": "Neuer persönlicher Rekord!",
+      "playAgain": "Nochmal spielen",
+      "submitScore": "Punktestand einreichen",
+      "submitting": "Wird eingereicht…",
+      "highScores": "Bestenliste"
     },
     "nav": {
       "allGames": "Alle Spiele",

@@ -152,6 +152,24 @@ service cloud.firestore {
       allow update, delete: if false;
     }
 
+    // === online-utilities additions (anonymous, zero-auth) ===
+
+    // Per-tool aggregate rating counters: public read, merge-only writes with
+    // validated fields. ratingSum can never exceed 5x ratingCount.
+    match /tool_ratings/{toolId} {
+      allow read: if true;
+      allow create, update: if toolId.size() <= 64
+                    && request.resource.data.keys().hasOnly(
+                        ['ratingSum', 'ratingCount', 'updatedAt'])
+                    && request.resource.data.ratingSum is number
+                    && request.resource.data.ratingSum >= 0
+                    && request.resource.data.ratingCount is number
+                    && request.resource.data.ratingCount >= 0
+                    && request.resource.data.ratingSum <= request.resource.data.ratingCount * 5
+                    && request.resource.data.updatedAt is timestamp;
+      allow delete: if false;
+    }
+
     match /{document=**} {
       allow read, write: if false;
     }

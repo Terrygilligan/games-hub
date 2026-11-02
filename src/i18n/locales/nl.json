@@ -112,7 +112,8 @@
       "word-guess": { "name": "Woord raden", "description": "Raad het verborgen woord in zes pogingen." },
       "word-ladder": { "name": "Woordladder", "description": "Bereik het doelwoord letter voor letter." },
       "sudoku": { "name": "Sudoku", "description": "Vul het 9×9-raster zodat elke rij, kolom en elk blok 1–9 bevat." },
-      "crossword": { "name": "Kruiswoord", "description": "Vul het raster met de hints." }
+      "crossword": { "name": "Kruiswoord", "description": "Vul het raster met de hints." },
+      "2048": { "name": "2048", "description": "Schuif de tegels en voeg ze samen tot 2048." }
     },
     "snake": {
       "score": "Score",
@@ -436,6 +437,23 @@
           "down": ["Rijdt op rails", "Hard natuurlijk materiaal"]
         }
       ]
+    },
+    "2048": {
+      "score": "Score",
+      "best": "Beste",
+      "instructions": "Voeg tegels met hetzelfde getal samen en bereik 2048.",
+      "controlsDesktop": "Pijltjestoetsen of WASD om de tegels te schuiven",
+      "controlsTouch": "Veeg om de tegels te schuiven",
+      "newGame": "Nieuw spel",
+      "youWin": "Je hebt 2048 bereikt!",
+      "keepPlaying": "Blijf spelen",
+      "gameOver": "Game over",
+      "finalScore": "Eindscore",
+      "newBest": "Nieuw persoonlijk record!",
+      "playAgain": "Opnieuw spelen",
+      "submitScore": "Score indienen",
+      "submitting": "Indienen…",
+      "highScores": "Ranglijst"
     },
     "nav": {
       "allGames": "Alle spellen",

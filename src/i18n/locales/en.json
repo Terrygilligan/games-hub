@@ -112,7 +112,8 @@
       "word-guess": { "name": "Word Guess", "description": "Find the hidden five-letter word in six tries." },
       "word-ladder": { "name": "Word Ladder", "description": "Reach the target word one letter at a time." },
       "sudoku": { "name": "Sudoku", "description": "Fill the 9×9 grid so every row, column and box holds 1–9." },
-      "crossword": { "name": "Crossword", "description": "Fill the grid using the clues." }
+      "crossword": { "name": "Crossword", "description": "Fill the grid using the clues." },
+      "2048": { "name": "2048", "description": "Slide the tiles and merge your way to 2048." }
     },
     "snake": {
       "score": "Score",
@@ -435,6 +436,23 @@
           "down": ["Ice crystals on a cold morning", "Spooky apparition"]
         }
       ]
+    },
+    "2048": {
+      "score": "Score",
+      "best": "Best",
+      "instructions": "Merge tiles with the same number and reach 2048.",
+      "controlsDesktop": "Arrow keys or WASD to slide the tiles",
+      "controlsTouch": "Swipe to slide the tiles",
+      "newGame": "New game",
+      "youWin": "You made 2048!",
+      "keepPlaying": "Keep playing",
+      "gameOver": "Game over",
+      "finalScore": "Final score",
+      "newBest": "New personal best!",
+      "playAgain": "Play again",
+      "submitScore": "Submit score",
+      "submitting": "Submitting…",
+      "highScores": "High scores"
     },
     "nav": {
       "allGames": "All Games",
