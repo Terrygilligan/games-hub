@@ -314,7 +314,7 @@ export default function Twenty48Game() {
           <Board2048 tiles={tiles} onMove={handleMove} />
 
           {showHelp && (
-            <div className="absolute inset-0 flex items-center justify-center rounded-2xl bg-slate-950/80 p-5 backdrop-blur-sm">
+            <div className="absolute inset-0 flex items-center justify-center rounded-2xl bg-slate-950 p-5">
               <div className="relative w-full max-w-sm rounded-xl bg-slate-900 p-5 text-left">
                 <button
                   type="button"
