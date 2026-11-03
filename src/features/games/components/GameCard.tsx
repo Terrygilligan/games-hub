@@ -61,26 +61,28 @@ export default function GameCard({ game, onShowLeaderboard }: GameCardProps) {
         </p>
         <div className="mt-4 flex items-center gap-2">
           {playable && game.route ? (
-            <Link
-              to={game.route}
-              className="inline-flex items-center gap-1.5 rounded-lg bg-sky-700 px-3 py-2 text-sm font-medium text-white transition hover:bg-sky-600"
-            >
-              <Play size={15} />
-              {t('games.actions.playNow')}
-            </Link>
+            <>
+              <Link
+                to={game.route}
+                className="inline-flex items-center gap-1.5 rounded-lg bg-sky-700 px-3 py-2 text-sm font-medium text-white transition hover:bg-sky-600"
+              >
+                <Play size={15} />
+                {t('games.actions.playNow')}
+              </Link>
+              <button
+                type="button"
+                onClick={() => onShowLeaderboard(game)}
+                className="inline-flex items-center gap-1.5 rounded-lg px-3 py-2 text-sm font-medium text-sky-700 transition hover:bg-sky-500/10 dark:text-sky-300"
+              >
+                <Trophy size={15} />
+                {t('games.actions.viewLeaderboard')}
+              </button>
+            </>
           ) : (
-            <span className="inline-flex items-center rounded-lg bg-slate-200 px-3 py-2 text-sm font-medium text-slate-500 dark:bg-slate-800 dark:text-slate-400">
+            <span className="inline-flex items-center rounded-lg bg-rose-500/15 px-3 py-2 text-sm font-semibold text-rose-700 dark:bg-rose-500/15 dark:text-rose-300">
               {t('games.hub.comingSoon')}
             </span>
           )}
-          <button
-            type="button"
-            onClick={() => onShowLeaderboard(game)}
-            className="inline-flex items-center gap-1.5 rounded-lg px-3 py-2 text-sm font-medium text-sky-700 transition hover:bg-sky-500/10 dark:text-sky-300"
-          >
-            <Trophy size={15} />
-            {t('games.actions.viewLeaderboard')}
-          </button>
         </div>
       </div>
     </div>

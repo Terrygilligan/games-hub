@@ -119,7 +119,7 @@ function NavLinks({ onNavigate }: { onNavigate?: () => void }) {
     })
 
   const favoriteGames = GAME_REGISTRY.filter(
-    (g) => favorites.includes(g.id) && g.route,
+    (g) => favorites.includes(g.id) && g.route && g.status === 'available',
   )
 
   return (
@@ -153,7 +153,7 @@ function NavLinks({ onNavigate }: { onNavigate?: () => void }) {
       {NAV_GROUPS.map((group) => {
         const games = group.ids
           .map((id) => GAME_REGISTRY.find((g) => g.id === id))
-          .filter((g): g is (typeof GAME_REGISTRY)[number] => Boolean(g?.route))
+          .filter((g): g is (typeof GAME_REGISTRY)[number] => g?.status === 'available' && Boolean(g.route))
         if (!games.length) return null
         const isCollapsed = !!collapsed[group.labelKey]
         return (
