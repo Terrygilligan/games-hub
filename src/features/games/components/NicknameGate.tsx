@@ -97,7 +97,7 @@ export default function NicknameGate({
         type="button"
         disabled={!canSubmit}
         onClick={() => void attemptSubmit()}
-        className="h-11 w-full rounded-lg bg-sky-600 text-sm font-medium text-white transition hover:bg-sky-500 disabled:opacity-40"
+        className="h-11 w-full rounded-lg bg-sky-700 text-sm font-medium text-white transition hover:bg-sky-600 disabled:opacity-40"
       >
         {checking ? t('games.nickname.checking') : submitting ? submittingLabel : submitLabel}
       </button>
@@ -129,7 +129,7 @@ export default function NicknameGate({
             <button
               type="button"
               onClick={() => setInfoOpen(false)}
-              className="mt-5 inline-flex h-10 w-full items-center justify-center rounded-lg bg-sky-600 text-sm font-semibold text-white transition hover:bg-sky-500"
+              className="mt-5 inline-flex h-10 w-full items-center justify-center rounded-lg bg-sky-700 text-sm font-semibold text-white transition hover:bg-sky-600"
             >
               {t('games.nickname.gotIt')}
             </button>

@@ -225,7 +225,7 @@ export default function LexiconGame() {
           <button
             type="button"
             onClick={() => setShowLeaderboard(true)}
-            className="inline-flex items-center gap-1.5 rounded-lg px-3 py-2 text-sm font-medium text-sky-600 transition hover:bg-sky-500/10 dark:text-sky-400"
+            className="inline-flex items-center gap-1.5 rounded-lg px-3 py-2 text-sm font-medium text-sky-700 transition hover:bg-sky-500/10 dark:text-sky-300"
           >
             <Trophy size={15} />
             {t('games.lexicon.highScores')}
@@ -263,7 +263,7 @@ export default function LexiconGame() {
               <button
                 type="button"
                 onClick={start}
-                className="h-11 rounded-xl bg-sky-600 px-8 text-sm font-semibold text-white transition hover:bg-sky-500"
+                className="h-11 rounded-xl bg-sky-700 px-8 text-sm font-semibold text-white transition hover:bg-sky-600"
               >
                 {t('games.lexicon.tapToStart')}
               </button>

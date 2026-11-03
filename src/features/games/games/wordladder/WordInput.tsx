@@ -44,7 +44,7 @@ export default function WordInput({
           onClick={onSubmit}
           disabled={value.length !== len}
           aria-label={t('games.wordladder.go')}
-          className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-sky-600 text-white transition hover:bg-sky-500 disabled:opacity-40"
+          className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-sky-700 text-white transition hover:bg-sky-600 disabled:opacity-40"
         >
           <CornerDownLeft size={18} />
         </button>

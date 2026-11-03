@@ -30,7 +30,7 @@ export default function QuestionCard({
             onClick={onSpeakWord}
             aria-label={t('games.lexicon.speak')}
             title={t('games.lexicon.speak')}
-            className="flex h-9 w-9 items-center justify-center rounded-lg text-sky-600 transition hover:bg-sky-500/10 dark:text-sky-400"
+            className="flex h-9 w-9 items-center justify-center rounded-lg text-sky-700 transition hover:bg-sky-500/10 dark:text-sky-300"
           >
             <Volume2 size={18} />
           </button>

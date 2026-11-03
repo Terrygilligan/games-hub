@@ -51,7 +51,7 @@ export default function RoundHUD({
           title={t(soundOn ? 'games.lexicon.soundOn' : 'games.lexicon.soundOff')}
           className={`flex h-10 w-10 items-center justify-center rounded-lg transition ${
             soundOn
-              ? 'bg-sky-600 text-white hover:bg-sky-500'
+              ? 'bg-sky-700 text-white hover:bg-sky-600'
               : 'bg-slate-200 text-slate-500 hover:bg-slate-300 dark:bg-slate-800 dark:text-slate-400'
           }`}
         >

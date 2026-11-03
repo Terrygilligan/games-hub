@@ -232,7 +232,7 @@ export default function MinesweeperGame() {
           <button
             type="button"
             onClick={() => setShowLeaderboard(true)}
-            className="inline-flex items-center gap-1.5 rounded-lg px-3 py-2 text-sm font-medium text-sky-600 transition hover:bg-sky-500/10 dark:text-sky-400"
+            className="inline-flex items-center gap-1.5 rounded-lg px-3 py-2 text-sm font-medium text-sky-600 transition hover:bg-sky-600/10 dark:text-sky-400"
           >
             <Trophy size={15} />
             {t('games.minesweeper.highScores')}
@@ -257,7 +257,7 @@ export default function MinesweeperGame() {
               onClick={() => pickMode(m)}
               className={`rounded-lg px-3 py-2 text-xs font-medium transition ${
                 m === mode
-                  ? 'bg-sky-600 text-white'
+                  ? 'bg-sky-700 text-white'
                   : 'bg-slate-200 text-slate-600 hover:bg-slate-300 dark:bg-slate-800 dark:text-slate-300 dark:hover:bg-slate-700'
               }`}
             >
@@ -282,7 +282,7 @@ export default function MinesweeperGame() {
               <button
                 type="button"
                 onClick={() => reset(mode)}
-                className="h-11 rounded-xl bg-sky-600 px-8 text-sm font-semibold text-white transition hover:bg-sky-500"
+                className="h-11 rounded-xl bg-sky-700 px-8 text-sm font-semibold text-white transition hover:bg-sky-600"
               >
                 {t('games.minesweeper.playAgain')}
               </button>

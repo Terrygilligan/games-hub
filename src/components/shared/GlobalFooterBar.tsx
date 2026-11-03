@@ -193,14 +193,14 @@ export default function GlobalFooterBar({ itemKey }: GlobalFooterBarProps) {
             </button>
           ))}
         </div>
-        <span className="text-[11px] text-slate-400 dark:text-slate-500">
+        <span className="text-[11px] text-slate-500 dark:text-slate-400">
           {myVote > 0 ? cfg.t('thanks') : cfg.t('rate')}
           {snapshot &&
             ` · ${cfg.t('average', { avg: snapshot.average.toFixed(1) })} · ${cfg.t('ratings', { count: snapshot.count })}`}
         </span>
         {myVote > 0 && cfg.submitReview && (
           reviewed ? (
-            <p className="text-[11px] text-emerald-500">{cfg.t('reviewThanks')}</p>
+            <p className="text-[11px] text-emerald-700">{cfg.t('reviewThanks')}</p>
           ) : reviewOpen ? (
             <div className="mt-1 flex w-full max-w-xs flex-col gap-1.5">
               <textarea
@@ -215,7 +215,7 @@ export default function GlobalFooterBar({ itemKey }: GlobalFooterBarProps) {
                 type="button"
                 onClick={sendReview}
                 disabled={!reviewText.trim() || reviewSending}
-                className="h-9 rounded-lg bg-sky-600 text-xs font-semibold text-white transition hover:bg-sky-500 disabled:opacity-40"
+                className="h-9 rounded-lg bg-sky-700 text-xs font-semibold text-white transition hover:bg-sky-600 disabled:opacity-40"
               >
                 {cfg.t('submitReview')}
               </button>
@@ -224,7 +224,7 @@ export default function GlobalFooterBar({ itemKey }: GlobalFooterBarProps) {
             <button
               type="button"
               onClick={() => setReviewOpen(true)}
-              className="text-[11px] text-slate-400 underline-offset-2 transition hover:text-slate-600 hover:underline dark:hover:text-slate-300"
+              className="text-[11px] text-slate-600 underline-offset-2 transition hover:text-slate-800 hover:underline dark:text-slate-400 dark:hover:text-slate-200"
             >
               {cfg.t('writeReview')}
             </button>
@@ -237,7 +237,7 @@ export default function GlobalFooterBar({ itemKey }: GlobalFooterBarProps) {
           href={cfg.coffeeUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-1.5 rounded-lg bg-amber-400/15 px-3 py-2 text-xs font-medium text-amber-700 transition hover:bg-amber-400/25 dark:text-amber-400"
+          className="inline-flex items-center gap-1.5 rounded-lg bg-amber-400/15 px-3 py-2 text-xs font-medium text-amber-800 transition hover:bg-amber-400/25 dark:text-amber-200"
         >
           <Coffee size={14} />
           {cfg.t('coffee')}
@@ -245,7 +245,7 @@ export default function GlobalFooterBar({ itemKey }: GlobalFooterBarProps) {
         <button
           type="button"
           onClick={() => void install()}
-          className="inline-flex items-center gap-1.5 rounded-lg bg-sky-500/15 px-3 py-2 text-xs font-medium text-sky-600 transition hover:bg-sky-500/25 dark:text-sky-400"
+          className="inline-flex items-center gap-1.5 rounded-lg bg-sky-500/15 px-3 py-2 text-xs font-medium text-sky-800 transition hover:bg-sky-500/25 dark:text-sky-200"
         >
           <Download size={14} />
           {cfg.t('install')}
@@ -261,7 +261,7 @@ export default function GlobalFooterBar({ itemKey }: GlobalFooterBarProps) {
         <button
           type="button"
           onClick={handleClear}
-          className="inline-flex items-center gap-1.5 rounded-lg px-3 py-2 text-xs font-medium text-slate-400 transition hover:bg-red-500/10 hover:text-red-600 dark:text-slate-500 dark:hover:text-red-400"
+          className="inline-flex items-center gap-1.5 rounded-lg px-3 py-2 text-xs font-medium text-slate-500 transition hover:bg-red-500/10 hover:text-red-600 dark:text-slate-400 dark:hover:text-red-300"
         >
           <Trash2 size={14} />
           {cfg.t('clearData')}
@@ -279,17 +279,17 @@ export default function GlobalFooterBar({ itemKey }: GlobalFooterBarProps) {
         />
       </div>
       {installHint && (
-        <p className="mx-auto mt-2 max-w-56 text-[11px] text-slate-500">{cfg.t('installHint')}</p>
+        <p className="mx-auto mt-2 max-w-56 text-[11px] text-slate-600 dark:text-slate-400">{cfg.t('installHint')}</p>
       )}
 
-      <p className="mt-3 text-[11px] text-slate-400 dark:text-slate-500">
+      <p className="mt-3 text-[11px] text-slate-500 dark:text-slate-400">
         {cfg.t('lastBackup')}: {lastBackup ? new Date(lastBackup).toLocaleDateString() : cfg.t('never')}
         {estimate &&
           ` · ${cfg.t('storage')}: ${formatBytes(estimate.usage)} / ${formatBytes(estimate.quota)}`}
       </p>
 
-      <p className="mt-3 text-xs text-slate-500">{cfg.t('tagline')}</p>
-      <p className="mt-1 text-[11px] text-slate-400 dark:text-slate-500">
+      <p className="mt-3 text-xs text-slate-600 dark:text-slate-400">{cfg.t('tagline')}</p>
+      <p className="mt-1 text-[11px] text-slate-500 dark:text-slate-400">
         {cfg.t('privacyLine')}
       </p>
 

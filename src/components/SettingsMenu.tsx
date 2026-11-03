@@ -13,7 +13,7 @@ export default function SettingsMenu() {
       <button
         type="button"
         onClick={() => setOpen(true)}
-        className="inline-flex items-center gap-1.5 text-xs text-slate-400 underline-offset-2 transition hover:text-slate-600 hover:underline dark:text-slate-500 dark:hover:text-slate-300"
+        className="inline-flex items-center gap-1.5 text-xs text-slate-600 underline-offset-2 transition hover:text-slate-800 hover:underline dark:text-slate-400 dark:hover:text-slate-200"
       >
         <Settings size={12} />
         {t('footer.settings')}
@@ -34,7 +34,7 @@ export default function SettingsMenu() {
               </button>
             </div>
 
-            <p className="mt-5 text-xs font-semibold uppercase tracking-wider text-slate-500">
+            <p className="mt-5 text-xs font-semibold uppercase tracking-wider text-slate-600 dark:text-slate-400">
               {t('footer.preferences')}
             </p>
             <div className="mt-2 space-y-2">
@@ -55,7 +55,7 @@ export default function SettingsMenu() {
             <button
               type="button"
               onClick={() => setOpen(false)}
-              className="mt-5 inline-flex h-10 w-full items-center justify-center rounded-lg text-xs text-slate-500 transition hover:bg-slate-200 dark:hover:bg-slate-800"
+              className="mt-5 inline-flex h-10 w-full items-center justify-center rounded-lg text-xs text-slate-600 transition hover:bg-slate-200 dark:hover:bg-slate-800"
             >
               {t('footer.close')}
             </button>

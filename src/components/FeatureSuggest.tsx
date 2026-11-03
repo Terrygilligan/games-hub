@@ -43,7 +43,7 @@ export default function FeatureSuggest() {
       <button
         type="button"
         onClick={() => setOpen(true)}
-        className="inline-flex items-center gap-1.5 text-xs text-slate-400 underline-offset-2 transition hover:text-slate-600 hover:underline dark:text-slate-500 dark:hover:text-slate-300"
+        className="inline-flex items-center gap-1.5 text-xs text-slate-600 underline-offset-2 transition hover:text-slate-800 hover:underline dark:text-slate-400 dark:hover:text-slate-200"
       >
         <Lightbulb size={12} />
         {t('footer.suggestFeature')}
@@ -90,7 +90,7 @@ export default function FeatureSuggest() {
                   aria-hidden="true"
                   className="pointer-events-none absolute -left-[9999px] h-0 w-0 opacity-0"
                 />
-                <p className="text-[11px] leading-relaxed text-slate-500">
+                <p className="text-[11px] leading-relaxed text-slate-600 dark:text-slate-400">
                   {t('footer.anonNote')}
                 </p>
                 {cooldown && (
@@ -102,7 +102,7 @@ export default function FeatureSuggest() {
                   type="button"
                   onClick={() => void submit()}
                   disabled={!text.trim() || sending}
-                  className="inline-flex h-11 w-full items-center justify-center gap-2 rounded-lg bg-sky-500 text-sm font-semibold text-white transition hover:bg-sky-400 disabled:opacity-40"
+                  className="inline-flex h-11 w-full items-center justify-center gap-2 rounded-lg bg-sky-700 text-sm font-semibold text-white transition hover:bg-sky-600 disabled:opacity-40"
                 >
                   {sending ? t('footer.sending') : t('footer.sendReport')}
                 </button>
@@ -120,7 +120,7 @@ export default function FeatureSuggest() {
             <button
               type="button"
               onClick={() => setOpen(false)}
-              className="mt-2 inline-flex h-10 w-full items-center justify-center rounded-lg text-xs text-slate-500 transition hover:bg-slate-200 dark:hover:bg-slate-800"
+              className="mt-2 inline-flex h-10 w-full items-center justify-center rounded-lg text-xs text-slate-600 transition hover:bg-slate-200 dark:hover:bg-slate-800"
             >
               {t('footer.close')}
             </button>

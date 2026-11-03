@@ -37,7 +37,7 @@ export default function ScoreBoard({ entries, loading = false }: ScoreBoardProps
       <tbody>
         {entries.map((entry, i) => (
           <tr key={entry.id} className="border-b border-slate-100 last:border-0 dark:border-slate-800/60">
-            <td className="py-2.5 pr-3 font-semibold text-slate-400">#{i + 1}</td>
+            <td className="py-2.5 pr-3 font-semibold text-slate-500 dark:text-slate-400">#{i + 1}</td>
             <td className="py-2.5 pr-3 font-medium text-slate-800 dark:text-slate-200">
               {entry.nickname}
             </td>

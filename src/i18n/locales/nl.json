@@ -102,7 +102,8 @@
       "backToHub": "Terug naar Games Hub",
       "playNow": "Nu spelen",
       "viewLeaderboard": "Bekijk ranglijst",
-      "close": "Sluiten"
+      "close": "Sluiten",
+      "skipToContent": "Naar inhoud"
     },
     "titles": {
       "snake": { "name": "Snake", "description": "De klassieker — eet, groei en bijt niet in je eigen staart." },
@@ -646,7 +647,8 @@
       "installable": "Installeerbare PWA — werkt offline",
       "toggle": "Navigatie wisselen",
       "favAdd": "Aan favorieten toevoegen",
-      "favRemove": "Uit favorieten verwijderen"
+      "favRemove": "Uit favorieten verwijderen",
+      "navigation": "Spelnavigatie"
     },
     "rating": {
       "rateGame": "Beoordeel dit spel",

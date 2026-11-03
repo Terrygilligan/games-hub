@@ -44,7 +44,7 @@ function Brand() {
   const { t } = useTranslation()
   return (
     <NavLink to="/" className="flex items-center gap-2.5">
-      <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-slate-200 text-sky-600 dark:bg-slate-800 dark:text-sky-400">
+      <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-slate-200 text-sky-700 dark:bg-slate-800 dark:text-sky-400">
         <Gamepad2 size={18} />
       </span>
       <span className="text-base font-semibold tracking-tight">{t('common.appName')}</span>
@@ -134,7 +134,7 @@ function NavLinks({ onNavigate }: { onNavigate?: () => void }) {
 
       {favoriteGames.length > 0 && (
         <div className="mt-3">
-          <p className="flex w-full items-center gap-1.5 px-3 pb-1 text-[11px] font-semibold uppercase tracking-wider text-slate-400 dark:text-slate-500">
+          <p className="flex w-full items-center gap-1.5 px-3 pb-1 text-[11px] font-semibold uppercase tracking-wider text-slate-600 dark:text-slate-400">
             <Heart size={11} />
             {t('games.nav.favorites')}
           </p>
@@ -161,7 +161,8 @@ function NavLinks({ onNavigate }: { onNavigate?: () => void }) {
             <button
               type="button"
               onClick={() => toggle(group.labelKey)}
-              className="flex w-full items-center justify-between px-3 pb-1 text-[11px] font-semibold uppercase tracking-wider text-slate-400 transition-colors hover:text-slate-600 dark:text-slate-500 dark:hover:text-slate-300"
+              aria-expanded={!isCollapsed}
+              className="flex w-full items-center justify-between px-3 pb-1 text-[11px] font-semibold uppercase tracking-wider text-slate-600 transition-colors hover:text-slate-800 dark:text-slate-400 dark:hover:text-slate-200"
             >
               {t(group.labelKey)}
               <ChevronDown
@@ -192,7 +193,7 @@ function NavLinks({ onNavigate }: { onNavigate?: () => void }) {
       >
         <Wrench size={18} />
         {t('games.nav.utilityHub')}
-        <ExternalLink size={12} className="ml-auto text-slate-400" />
+        <ExternalLink size={12} className="ml-auto text-slate-500" />
       </a>
     </>
   )
@@ -211,6 +212,15 @@ export default function Layout() {
   useEffect(() => {
     setMenuOpen(false)
   }, [pathname])
+
+  useEffect(() => {
+    if (!menuOpen) return
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setMenuOpen(false)
+    }
+    window.addEventListener('keydown', onKey)
+    return () => window.removeEventListener('keydown', onKey)
+  }, [menuOpen])
 
   // Per-route JSON-LD — WebApplication + aggregateRating for SEO snippets.
   useEffect(() => {
@@ -242,6 +252,12 @@ export default function Layout() {
 
   return (
     <div className="min-h-screen bg-white text-slate-900 antialiased dark:bg-slate-950 dark:text-slate-100">
+      <a
+        href="#main"
+        className="absolute -top-20 left-4 z-50 rounded-lg bg-sky-700 px-4 py-2 text-sm font-semibold text-white transition-all focus:top-4"
+      >
+        {t('games.actions.skipToContent')}
+      </a>
       <header className="sticky top-0 z-40 flex items-center justify-between border-b border-slate-200 bg-white/90 px-4 py-3 backdrop-blur dark:border-slate-800 dark:bg-slate-950/90 md:hidden print:hidden">
         <Brand />
         <div className="flex items-center gap-1">
@@ -251,6 +267,8 @@ export default function Layout() {
             type="button"
             onClick={() => setMenuOpen((open) => !open)}
             aria-label={t('games.nav.toggle')}
+            aria-expanded={menuOpen}
+            aria-controls="mobile-nav"
             className="rounded-lg p-2 text-slate-700 hover:bg-slate-200 dark:text-slate-300 dark:hover:bg-slate-800"
           >
             {menuOpen ? <X size={20} /> : <Menu size={20} />}
@@ -259,7 +277,7 @@ export default function Layout() {
       </header>
 
       {menuOpen && (
-        <nav className="max-h-[75vh] space-y-1 overflow-y-auto border-b border-slate-200 px-4 py-3 dark:border-slate-800 md:hidden print:hidden">
+        <nav id="mobile-nav" aria-label={t('games.nav.navigation')} className="max-h-[75vh] space-y-1 overflow-y-auto border-b border-slate-200 px-4 py-3 dark:border-slate-800 md:hidden print:hidden">
           <NavLinks onNavigate={() => setMenuOpen(false)} />
         </nav>
       )}
@@ -267,18 +285,23 @@ export default function Layout() {
       <div className="mx-auto flex w-full max-w-6xl">
         <aside className="sticky top-0 hidden h-screen w-60 shrink-0 flex-col border-r border-slate-200 px-4 py-6 dark:border-slate-800 md:flex print:hidden">
           <Brand />
-          <nav className="mt-8 flex min-h-0 flex-1 flex-col gap-0.5 overflow-y-auto pr-1">
+          <nav
+            aria-label={t('games.nav.navigation')}
+            role="region"
+            tabIndex={0}
+            className="mt-8 flex min-h-0 flex-1 flex-col gap-0.5 overflow-y-auto pr-1"
+          >
             <NavLinks />
           </nav>
           <div className="mt-auto flex flex-wrap items-center gap-2">
             <LangSelect />
             <ThemeToggle />
           </div>
-          <p className="mt-2 text-xs text-slate-500">{t('games.nav.installable')}</p>
+          <p className="mt-2 text-xs text-slate-600 dark:text-slate-400">{t('games.nav.installable')}</p>
         </aside>
 
         <div className="flex min-w-0 flex-1 flex-col">
-          <main className="flex-1">
+          <main id="main" tabIndex={-1} className="flex-1">
             {pathname.startsWith('/games/') && (
               <GameRating itemKey={itemKeyOf(pathname)} />
             )}
@@ -290,7 +313,7 @@ export default function Layout() {
               href={UTILITY_HUB_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 text-xs text-slate-400 underline-offset-2 transition hover:text-slate-600 hover:underline dark:text-slate-500 dark:hover:text-slate-300"
+              className="inline-flex items-center gap-1.5 text-xs text-slate-500 underline-offset-2 transition hover:text-slate-700 hover:underline dark:text-slate-400 dark:hover:text-slate-200"
             >
               <Wrench size={12} />
               {t('games.nav.utilityHub')}

@@ -102,7 +102,8 @@
       "backToHub": "Zurück zum Games Hub",
       "playNow": "Jetzt spielen",
       "viewLeaderboard": "Bestenliste ansehen",
-      "close": "Schließen"
+      "close": "Schließen",
+      "skipToContent": "Zum Inhalt"
     },
     "titles": {
       "snake": { "name": "Snake", "description": "Der Klassiker — friss, wachse und beiß nicht in deinen eigenen Schwanz." },
@@ -637,7 +638,8 @@
       "installable": "Installierbare PWA — funktioniert offline",
       "toggle": "Navigation umschalten",
       "favAdd": "Zu Favoriten",
-      "favRemove": "Aus Favoriten entfernen"
+      "favRemove": "Aus Favoriten entfernen",
+      "navigation": "Spielenavigation"
     },
     "rating": {
       "rateGame": "Dieses Spiel bewerten",

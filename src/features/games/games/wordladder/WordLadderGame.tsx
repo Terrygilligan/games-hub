@@ -288,7 +288,7 @@ export default function WordLadderGame() {
             <button
               type="button"
               onClick={() => setShowLeaderboard(true)}
-              className="inline-flex items-center gap-1.5 rounded-lg px-3 py-2 text-sm font-medium text-sky-600 transition hover:bg-sky-500/10 dark:text-sky-400"
+              className="inline-flex items-center gap-1.5 rounded-lg px-3 py-2 text-sm font-medium text-sky-700 transition hover:bg-sky-500/10 dark:text-sky-300"
             >
               <Trophy size={15} />
               {t('games.wordladder.highScores')}
@@ -306,7 +306,7 @@ export default function WordLadderGame() {
                 aria-pressed={mode === m}
                 className={`h-10 w-11 rounded-lg text-sm font-bold transition ${
                   mode === m
-                    ? 'bg-sky-600 text-white'
+                    ? 'bg-sky-700 text-white'
                     : 'bg-slate-200 text-slate-600 hover:bg-slate-300 dark:bg-slate-800 dark:text-slate-300'
                 }`}
               >
@@ -391,7 +391,7 @@ export default function WordLadderGame() {
             <button
               type="button"
               onClick={closeGuide}
-              className="mt-5 inline-flex h-10 w-full items-center justify-center rounded-lg bg-sky-600 text-sm font-semibold text-white transition hover:bg-sky-500"
+              className="mt-5 inline-flex h-10 w-full items-center justify-center rounded-lg bg-sky-700 text-sm font-semibold text-white transition hover:bg-sky-600"
             >
               {t('games.wordladder.guideGotIt')}
             </button>

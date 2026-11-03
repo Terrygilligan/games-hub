@@ -54,7 +54,7 @@ export default function ControlsHeader({
           className={`${chip} w-12 transition ${
             inputMode === 'flag'
               ? 'bg-red-500 text-white'
-              : 'bg-sky-600 text-white hover:bg-sky-500'
+              : 'bg-sky-700 text-white hover:bg-sky-600'
           }`}
         >
           {inputMode === 'flag' ? <Flag size={16} /> : <Pickaxe size={16} />}

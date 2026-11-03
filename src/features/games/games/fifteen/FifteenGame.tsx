@@ -211,7 +211,7 @@ export default function FifteenGame() {
               type="button"
               onClick={() => setShowLeaderboard(true)}
               aria-label={t('games.fifteen.highScores')}
-              className="inline-flex items-center gap-1.5 rounded-lg px-3 py-2 text-sm font-medium text-sky-600 transition hover:bg-sky-500/10 dark:text-sky-400"
+              className="inline-flex items-center gap-1.5 rounded-lg px-3 py-2 text-sm font-medium text-sky-700 transition hover:bg-sky-500/10 dark:text-sky-300"
             >
               <Trophy size={15} />
               <span className="hidden sm:inline">{t('games.fifteen.highScores')}</span>
@@ -270,7 +270,7 @@ export default function FifteenGame() {
                     onClick={() => slide(i)}
                     className={`rounded-xl text-xl font-bold text-white transition sm:text-2xl ${
                       legalSlides(empty).includes(i)
-                        ? 'bg-sky-500 hover:bg-sky-400'
+                        ? 'bg-sky-700 hover:bg-sky-600'
                         : 'bg-slate-600 dark:bg-slate-700'
                     }`}
                   >

@@ -46,13 +46,13 @@ export default function GameCard({ game, onShowLeaderboard }: GameCardProps) {
         className={`absolute right-3 top-3 rounded-lg p-1.5 transition ${
           fav
             ? 'text-rose-500'
-            : 'text-slate-300 hover:text-rose-400 dark:text-slate-600 dark:hover:text-rose-400'
+            : 'text-slate-400 hover:text-rose-400 dark:text-slate-600 dark:hover:text-rose-400'
         }`}
       >
         <Heart size={16} fill={fav ? 'currentColor' : 'none'} />
       </button>
       <div className="flex flex-1 flex-col p-6">
-        <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-xl bg-slate-200 text-sky-600 transition group-hover:bg-sky-500/10 dark:bg-slate-800 dark:text-sky-400">
+        <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-xl bg-slate-200 text-sky-700 transition group-hover:bg-sky-500/10 dark:bg-slate-800 dark:text-sky-300">
           <Icon size={22} />
         </div>
         <h3 className="text-base font-semibold">{t(game.titleKey)}</h3>
@@ -63,7 +63,7 @@ export default function GameCard({ game, onShowLeaderboard }: GameCardProps) {
           {playable && game.route ? (
             <Link
               to={game.route}
-              className="inline-flex items-center gap-1.5 rounded-lg bg-sky-600 px-3 py-2 text-sm font-medium text-white transition hover:bg-sky-500"
+              className="inline-flex items-center gap-1.5 rounded-lg bg-sky-700 px-3 py-2 text-sm font-medium text-white transition hover:bg-sky-600"
             >
               <Play size={15} />
               {t('games.actions.playNow')}
@@ -76,7 +76,7 @@ export default function GameCard({ game, onShowLeaderboard }: GameCardProps) {
           <button
             type="button"
             onClick={() => onShowLeaderboard(game)}
-            className="inline-flex items-center gap-1.5 rounded-lg px-3 py-2 text-sm font-medium text-sky-600 transition hover:bg-sky-500/10 dark:text-sky-400"
+            className="inline-flex items-center gap-1.5 rounded-lg px-3 py-2 text-sm font-medium text-sky-700 transition hover:bg-sky-500/10 dark:text-sky-300"
           >
             <Trophy size={15} />
             {t('games.actions.viewLeaderboard')}

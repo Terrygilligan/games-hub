@@ -102,7 +102,8 @@
       "backToHub": "Back to Games Hub",
       "playNow": "Play now",
       "viewLeaderboard": "View leaderboard",
-      "close": "Close"
+      "close": "Close",
+      "skipToContent": "Skip to content"
     },
     "titles": {
       "snake": { "name": "Snake", "description": "The classic — eat, grow, don't bite your own tail." },
@@ -645,7 +646,8 @@
       "installable": "Installable PWA — works offline",
       "toggle": "Toggle navigation",
       "favAdd": "Add to favorites",
-      "favRemove": "Remove from favorites"
+      "favRemove": "Remove from favorites",
+      "navigation": "Games navigation"
     },
     "rating": {
       "rateGame": "Rate this game",

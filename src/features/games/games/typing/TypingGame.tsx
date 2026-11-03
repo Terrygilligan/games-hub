@@ -163,7 +163,7 @@ export default function TypingGame() {
             type="button"
             onClick={() => setShowLeaderboard(true)}
             aria-label={t('games.typing.highScores')}
-            className="inline-flex items-center gap-1.5 rounded-lg px-3 py-2 text-sm font-medium text-sky-600 transition hover:bg-sky-500/10 dark:text-sky-400"
+            className="inline-flex items-center gap-1.5 rounded-lg px-3 py-2 text-sm font-medium text-sky-700 transition hover:bg-sky-500/10 dark:text-sky-300"
           >
             <Trophy size={15} />
             <span className="hidden sm:inline">{t('games.typing.highScores')}</span>

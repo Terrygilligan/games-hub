@@ -212,7 +212,7 @@ export default function MathDrillGame() {
               type="button"
               onClick={() => setShowLeaderboard(true)}
               aria-label={t('games.math-drill.highScores')}
-              className="inline-flex items-center gap-1.5 rounded-lg px-3 py-2 text-sm font-medium text-sky-600 transition hover:bg-sky-500/10 dark:text-sky-400"
+              className="inline-flex items-center gap-1.5 rounded-lg px-3 py-2 text-sm font-medium text-sky-700 transition hover:bg-sky-500/10 dark:text-sky-300"
             >
               <Trophy size={15} />
               <span className="hidden sm:inline">{t('games.math-drill.highScores')}</span>
@@ -265,7 +265,7 @@ export default function MathDrillGame() {
                 <button
                   type="button"
                   onClick={() => start('easy')}
-                  className="inline-flex h-12 items-center justify-center rounded-xl bg-sky-500 text-base font-semibold text-white transition hover:bg-sky-400"
+                  className="inline-flex h-12 items-center justify-center rounded-xl bg-sky-700 text-base font-semibold text-white transition hover:bg-sky-600"
                 >
                   {t('games.math-drill.modeEasy')}
                 </button>
@@ -298,7 +298,7 @@ export default function MathDrillGame() {
               <button
                 type="button"
                 onClick={submit}
-                className="inline-flex h-11 min-w-32 items-center justify-center rounded-xl bg-sky-500 px-6 text-sm font-semibold text-white transition hover:bg-sky-400"
+                className="inline-flex h-11 min-w-32 items-center justify-center rounded-xl bg-sky-700 px-6 text-sm font-semibold text-white transition hover:bg-sky-600"
               >
                 {t('games.math-drill.answer')}
               </button>

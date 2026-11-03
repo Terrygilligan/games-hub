@@ -122,7 +122,7 @@ export default function GameRating({ itemKey }: Props) {
           <button
             type="button"
             onClick={() => setReviewOpen((o) => !o)}
-            className="inline-flex items-center gap-1 text-xs text-sky-600 transition hover:underline dark:text-sky-400"
+            className="inline-flex items-center gap-1 text-xs text-sky-700 transition hover:underline dark:text-sky-300"
           >
             <MessageSquare size={12} />
             {t('games.rating.leaveReview')}
@@ -145,12 +145,12 @@ export default function GameRating({ itemKey }: Props) {
               type="button"
               onClick={sendReview}
               disabled={!draft.trim() || sending || myVote === 0}
-              className="h-8 rounded-lg bg-sky-600 px-4 text-xs font-semibold text-white transition hover:bg-sky-500 disabled:opacity-40"
+              className="h-8 rounded-lg bg-sky-700 px-4 text-xs font-semibold text-white transition hover:bg-sky-600 disabled:opacity-40"
             >
               {t('footer.submitReview')}
             </button>
             {myVote === 0 && (
-              <span className="text-[11px] text-slate-400">{t('games.rating.rateFirst')}</span>
+              <span className="text-[11px] text-slate-500 dark:text-slate-400">{t('games.rating.rateFirst')}</span>
             )}
           </div>
         </div>

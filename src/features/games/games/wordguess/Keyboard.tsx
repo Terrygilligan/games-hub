@@ -46,7 +46,7 @@ export default function Keyboard({ rows, states, onLetter, onEnter, onBackspace 
           type="button"
           onClick={onEnter}
           aria-label="Enter"
-          className="flex h-12 flex-[3] items-center justify-center rounded-md bg-sky-600 text-white transition hover:bg-sky-500 sm:h-14"
+          className="flex h-12 flex-[3] items-center justify-center rounded-md bg-sky-700 text-white transition hover:bg-sky-600 sm:h-14"
         >
           <CornerDownLeft size={18} />
         </button>

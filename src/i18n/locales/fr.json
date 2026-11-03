@@ -102,7 +102,8 @@
       "backToHub": "Retour au Games Hub",
       "playNow": "Jouer maintenant",
       "viewLeaderboard": "Voir le classement",
-      "close": "Fermer"
+      "close": "Fermer",
+      "skipToContent": "Aller au contenu"
     },
     "titles": {
       "snake": { "name": "Snake", "description": "Le classique — mangez, grandissez et ne mordez pas votre propre queue." },
@@ -654,7 +655,8 @@
       "installable": "PWA installable — fonctionne hors ligne",
       "toggle": "Basculer la navigation",
       "favAdd": "Ajouter aux favoris",
-      "favRemove": "Retirer des favoris"
+      "favRemove": "Retirer des favoris",
+      "navigation": "Navigation des jeux"
     },
     "rating": {
       "rateGame": "Notez ce jeu",
