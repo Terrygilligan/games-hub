@@ -434,19 +434,7 @@
       "submitting": "Indienen…",
       "highScores": "Ranglijst",
       "newPuzzle": "Nieuwe puzzel",
-      "enterLetter": "Typ een letter",
-      "puzzles": [
-        {
-          "grid": ["BROEK", "L###E", "OMBER", "E###S", "MOEST"],
-          "across": ["Kledingstuk met twee pijpen", "Bruine aardkleur", "Was verplicht"],
-          "down": ["Plant met kleurige kroon", "Feest in december"]
-        },
-        {
-          "grid": ["TURFS", "R###T", "ALLEE", "I###E", "NAGEN"],
-          "across": ["Stukken grasmat", "Bomenlaan", "Knaagt aan"],
-          "down": ["Rijdt op rails", "Hard natuurlijk materiaal"]
-        }
-      ]
+      "enterLetter": "Typ een letter"
     },
     "2048": {
       "score": "Score",

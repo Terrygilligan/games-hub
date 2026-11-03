@@ -39,10 +39,14 @@ export default function CrosswordGrid({
           <button
             key={i}
             type="button"
+            data-cell={i}
+            tabIndex={isSel ? 0 : -1}
             onClick={() => onCellClick(i)}
             role="gridcell"
             aria-label={`cell ${Math.floor(i / size) + 1},${(i % size) + 1}`}
-            className={`relative flex items-center justify-center text-base font-bold uppercase transition ${
+            className={`relative flex items-center justify-center font-bold uppercase transition ${
+              size > 9 ? 'text-xs sm:text-sm' : 'text-base'
+            } ${
               isSel
                 ? 'bg-amber-400 text-slate-900'
                 : inSlot

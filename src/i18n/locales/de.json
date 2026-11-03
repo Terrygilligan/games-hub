@@ -425,19 +425,7 @@
       "submitting": "Wird eingereicht…",
       "highScores": "Bestenliste",
       "newPuzzle": "Neues Rätsel",
-      "enterLetter": "Buchstabe eingeben",
-      "puzzles": [
-        {
-          "grid": ["WEDEL", "O###A", "LESEN", "K###G", "EBENE"],
-          "across": ["Mit dem Schwanz schwenken", "Buchstaben entziffern", "Fläche; Niveau"],
-          "down": ["Weißes Gebilde am Himmel", "Nicht kurz"]
-        },
-        {
-          "grid": ["TIGER", "I###E", "ESSIG", "R###E", "ESPEN"],
-          "across": ["Große gestreifte Raubkatze", "Saurer Würzzusatz", "Zitterpappeln"],
-          "down": ["Mehrere Lebewesen", "Wasser vom Himmel"]
-        }
-      ]
+      "enterLetter": "Buchstabe eingeben"
     },
     "2048": {
       "score": "Punkte",

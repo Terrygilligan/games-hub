@@ -1,0 +1,34 @@
+[
+ {
+  "grid": [
+   "BROEK",
+   "L###E",
+   "OMBER",
+   "E###S",
+   "MOEST"
+  ],
+  "clues": {
+   "BROEK": "Kledingstuk met twee pijpen",
+   "OMBER": "Bruine aardkleur",
+   "MOEST": "Was verplicht",
+   "BLOEM": "Plant met kleurige kroon",
+   "KERST": "Feest in december"
+  }
+ },
+ {
+  "grid": [
+   "TURFS",
+   "R###T",
+   "ALLEE",
+   "I###E",
+   "NAGEN"
+  ],
+  "clues": {
+   "TURFS": "Stukken grasmat",
+   "ALLEE": "Bomenlaan",
+   "NAGEN": "Knaagt aan",
+   "TRAIN": "Rijdt op rails",
+   "STEEN": "Hard natuurlijk materiaal"
+  }
+ }
+]

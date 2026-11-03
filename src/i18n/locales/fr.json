@@ -442,19 +442,7 @@
       "submitting": "Envoi…",
       "highScores": "Classement",
       "newPuzzle": "Nouveau défi",
-      "enterLetter": "Tape une lettre",
-      "puzzles": [
-        {
-          "grid": ["PARIS", "O###A", "ROYAL", "T###O", "ETAIN"],
-          "across": ["Capitale de la France", "Relatif au roi", "Métal argenté (étain)"],
-          "down": ["On l'ouvre pour entrer", "Pièce de réception"]
-        },
-        {
-          "grid": ["FORUM", "A###O", "BIDON", "L###D", "ELOGE"],
-          "across": ["Place publique antique", "Récipient ; « faux » aussi", "Louange (éloge)"],
-          "down": ["Récit moral avec animaux", "La Terre"]
-        }
-      ]
+      "enterLetter": "Tape une lettre"
     },
     "2048": {
       "score": "Score",

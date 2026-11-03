@@ -1,0 +1,34 @@
+[
+ {
+  "grid": [
+   "PARIS",
+   "O###A",
+   "ROYAL",
+   "T###O",
+   "ETAIN"
+  ],
+  "clues": {
+   "PARIS": "Capitale de la France",
+   "ROYAL": "Relatif au roi",
+   "ETAIN": "Métal argenté (étain)",
+   "PORTE": "On l'ouvre pour entrer",
+   "SALON": "Pièce de réception"
+  }
+ },
+ {
+  "grid": [
+   "FORUM",
+   "A###O",
+   "BIDON",
+   "L###D",
+   "ELOGE"
+  ],
+  "clues": {
+   "FORUM": "Place publique antique",
+   "BIDON": "Récipient ; « faux » aussi",
+   "ELOGE": "Louange (éloge)",
+   "FABLE": "Récit moral avec animaux",
+   "MONDE": "La Terre"
+  }
+ }
+]

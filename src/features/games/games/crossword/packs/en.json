@@ -1,0 +1,34 @@
+[
+ {
+  "grid": [
+   "CLASS",
+   "R###L",
+   "OUTDO",
+   "W###P",
+   "NURSE"
+  ],
+  "clues": {
+   "CLASS": "School group; a social rank",
+   "OUTDO": "Surpass; do better than",
+   "NURSE": "Hospital caregiver",
+   "CROWN": "Royal headpiece",
+   "SLOPE": "Incline; side of a hill"
+  }
+ },
+ {
+  "grid": [
+   "FLING",
+   "R###H",
+   "OUTGO",
+   "S###S",
+   "TRUST"
+  ],
+  "clues": {
+   "FLING": "Throw forcefully",
+   "OUTGO": "Exceed; surpass",
+   "TRUST": "Confidence in someone",
+   "FROST": "Ice crystals on a cold morning",
+   "GHOST": "Spooky apparition"
+  }
+ }
+]

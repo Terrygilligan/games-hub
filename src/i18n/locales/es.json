@@ -429,19 +429,7 @@
       "submitting": "Enviando…",
       "highScores": "Clasificación",
       "newPuzzle": "Nuevo reto",
-      "enterLetter": "Escribe una letra",
-      "puzzles": [
-        {
-          "grid": ["BOXER", "A###E", "NORIA", "C###T", "OMEGA"],
-          "across": ["Púgil del ring", "Rueda para sacar agua", "Última letra griega"],
-          "down": ["Asiento largo; banca", "Soga para atar ganado"]
-        },
-        {
-          "grid": ["CANAL", "A###U", "SALEN", "A###A", "SUYOS"],
-          "across": ["Vía de agua artificial", "Tercera persona plural de salir", "Posesivo de ellos"],
-          "down": ["Viviendas", "Plural de luna"]
-        }
-      ]
+      "enterLetter": "Escribe una letra"
     },
     "2048": {
       "score": "Puntos",

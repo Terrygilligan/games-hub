@@ -1,0 +1,34 @@
+[
+ {
+  "grid": [
+   "WEDEL",
+   "O###A",
+   "LESEN",
+   "K###G",
+   "EBENE"
+  ],
+  "clues": {
+   "WEDEL": "Mit dem Schwanz schwenken",
+   "LESEN": "Buchstaben entziffern",
+   "EBENE": "Fläche; Niveau",
+   "WOLKE": "Weißes Gebilde am Himmel",
+   "LANGE": "Nicht kurz"
+  }
+ },
+ {
+  "grid": [
+   "TIGER",
+   "I###E",
+   "ESSIG",
+   "R###E",
+   "ESPEN"
+  ],
+  "clues": {
+   "TIGER": "Große gestreifte Raubkatze",
+   "ESSIG": "Saurer Würzzusatz",
+   "ESPEN": "Zitterpappeln",
+   "TIERE": "Mehrere Lebewesen",
+   "REGEN": "Wasser vom Himmel"
+  }
+ }
+]

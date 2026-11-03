@@ -7,3 +7,8 @@ dev-dist
 !.env.example
 *.local
 .DS_Store
+scripts/en_50k.txt
+scripts/words_alpha.txt
+scripts/20k.txt
+scripts/google10k.txt
+scripts/_*

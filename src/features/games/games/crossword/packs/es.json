@@ -1,0 +1,34 @@
+[
+ {
+  "grid": [
+   "BOXER",
+   "A###E",
+   "NORIA",
+   "C###T",
+   "OMEGA"
+  ],
+  "clues": {
+   "BOXER": "Púgil del ring",
+   "NORIA": "Rueda para sacar agua",
+   "OMEGA": "Última letra griega",
+   "BANCO": "Asiento largo; banca",
+   "REATA": "Soga para atar ganado"
+  }
+ },
+ {
+  "grid": [
+   "CANAL",
+   "A###U",
+   "SALEN",
+   "A###A",
+   "SUYOS"
+  ],
+  "clues": {
+   "CANAL": "Vía de agua artificial",
+   "SALEN": "Tercera persona plural de salir",
+   "SUYOS": "Posesivo de ellos",
+   "CASAS": "Viviendas",
+   "LUNAS": "Plural de luna"
+  }
+ }
+]

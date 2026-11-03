@@ -24,8 +24,8 @@ const isCell = (grid: string[], r: number, c: number): boolean =>
 
 export const buildPuzzle = (
   grid: string[],
-  acrossTexts: string[],
-  downTexts: string[],
+  cluesOrAcross: Record<string, string> | string[],
+  downTexts?: string[],
 ): Built => {
   const size = grid.length
   const numAt = new Array(size * size).fill(0)
@@ -59,12 +59,16 @@ export const buildPuzzle = (
     }
   }
 
-  across.forEach((cl, i) => {
-    cl.text = acrossTexts[i] ?? ''
-  })
-  down.forEach((cl, i) => {
-    cl.text = downTexts[i] ?? ''
-  })
+  if (Array.isArray(cluesOrAcross)) {
+    across.forEach((cl, i) => {
+      cl.text = cluesOrAcross[i] ?? ''
+    })
+    down.forEach((cl, i) => {
+      cl.text = downTexts?.[i] ?? ''
+    })
+  } else {
+    for (const cl of [...across, ...down]) cl.text = cluesOrAcross[cl.answer] ?? ''
+  }
 
   const all = [...across, ...down]
   all.forEach((cl, idx) => {

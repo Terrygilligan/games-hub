@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { ArrowLeft, CheckCheck, Dices, Lightbulb, Trophy } from 'lucide-react'
-import { getDict, useTranslation } from '../../../../i18n'
+import { ArrowLeft, CheckCheck, ChevronLeft, ChevronRight, Dices, Lightbulb, Trophy } from 'lucide-react'
+import { useTranslation } from '../../../../i18n'
 import { getNickname, getPlayerId, setNickname } from '../../services/playerIdentity'
 import { submitScore } from '../../services/leaderboardService'
 import LeaderboardModal from '../../components/LeaderboardModal'
@@ -13,14 +13,13 @@ import { buildPuzzle, cellsOf, type Built, type Clue } from './crossword'
 type Phase = 'playing' | 'won'
 
 const BEST_KEY = 'games-hub.best.crossword'
-const PAR_SEC = 300
-const BASE = 1500
-const HINT_COST = 150
+const LETTER_RE = /[A-Za-zÀ-ÿĀ-ſЀ-ӿ]/u
 
 interface RawPuzzle {
   grid: string[]
-  across: string[]
-  down: string[]
+  clues?: Record<string, string>
+  across?: string[]
+  down?: string[]
 }
 
 const fmt = (sec: number) =>
@@ -43,6 +42,7 @@ const saveBest = (v: number) => {
 
 export default function CrosswordGame() {
   const { lang, t } = useTranslation()
+  const [pack, setPack] = useState<RawPuzzle[] | null>(null)
   const [puzzleIdx, setPuzzleIdx] = useState(0)
   const [built, setBuilt] = useState<Built | null>(null)
   const [entries, setEntries] = useState<string[]>([])
@@ -60,36 +60,55 @@ export default function CrosswordGame() {
   const [showLeaderboard, setShowLeaderboard] = useState(false)
 
   const inputRef = useRef<HTMLInputElement>(null)
+  const gridWrapRef = useRef<HTMLDivElement>(null)
   const startRef = useRef<number | null>(null)
   const scoreRef = useRef(0)
 
-  const deal = useCallback(
-    (idx: number) => {
-      const pack = getDict(lang).games.crossword.puzzles as RawPuzzle[]
-      const raw = pack[idx % pack.length]
-      const b = buildPuzzle(raw.grid, raw.across, raw.down)
-      setBuilt(b)
-      setEntries(new Array(b.size * b.size).fill(''))
-      setActiveClue(b.across[0] ?? null)
-      setActiveCell(b.across.length ? b.across[0].row * b.size + b.across[0].col : 0)
-      setWrong(new Set())
-      setHints(0)
-      setPhase('playing')
-      setElapsed(0)
-      startRef.current = null
-      setScore(0)
-      scoreRef.current = 0
-      setIsNewBest(false)
-      setSubmitting(false)
-      setSubmitted(false)
-      setBest(loadBest())
-    },
-    [lang],
-  )
+  // Lazy-load the locale's puzzle pack (falls back to English).
+  useEffect(() => {
+    let live = true
+    import(`./packs/${lang}.json`)
+      .catch(() => import('./packs/en.json'))
+      .then((m) => {
+        if (live) setPack((m.default ?? m) as RawPuzzle[])
+      })
+      .catch(() => {
+        if (live) setPack([])
+      })
+    return () => {
+      live = false
+    }
+  }, [lang])
+
+  const size = built?.size ?? 15
+  const par = built ? Math.max(60, Math.round(built.all.reduce((n, cl) => n + cl.len, 0) * 6)) : 300
+
+  const deal = useCallback(() => {
+    if (!pack?.length) return
+    const raw = pack[puzzleIdx % pack.length]
+    const b = raw.clues
+      ? buildPuzzle(raw.grid, raw.clues)
+      : buildPuzzle(raw.grid, raw.across ?? [], raw.down ?? [])
+    setBuilt(b)
+    setEntries(new Array(b.size * b.size).fill(''))
+    setActiveClue(b.across[0] ?? null)
+    setActiveCell(b.across.length ? b.across[0].row * b.size + b.across[0].col : 0)
+    setWrong(new Set())
+    setHints(0)
+    setPhase('playing')
+    setElapsed(0)
+    startRef.current = null
+    setScore(0)
+    scoreRef.current = 0
+    setIsNewBest(false)
+    setSubmitting(false)
+    setSubmitted(false)
+    setBest(loadBest())
+  }, [pack, puzzleIdx])
 
   useEffect(() => {
-    deal(puzzleIdx)
-  }, [deal, puzzleIdx])
+    deal()
+  }, [deal])
 
   useEffect(() => {
     if (phase !== 'playing' || startRef.current === null) return
@@ -101,11 +120,23 @@ export default function CrosswordGame() {
   }, [phase])
 
   const focusInput = () => inputRef.current?.focus({ preventScroll: true })
+  const focusCell = (idx: number) =>
+    gridWrapRef.current?.querySelector<HTMLElement>(`[data-cell="${idx}"]`)?.focus({ preventScroll: true })
 
-  const pickClue = (clue: Clue) => {
-    setActiveClue(clue)
-    setActiveCell(clue.row * (built?.size ?? 5) + clue.col)
-    focusInput()
+  const isComplete = (arr: string[], b: Built): boolean =>
+    b.all.every((cl) => cellsOf(cl, b.size).every((i, p) => arr[i] === cl.answer[p]))
+
+  const finish = (hintCount: number) => {
+    const sec = Math.max(1, (Date.now() - (startRef.current ?? Date.now())) / 1000)
+    const sc = Math.max(50, Math.round(1500 * Math.min(4, par / sec)) - hintCount * 150)
+    scoreRef.current = sc
+    setScore(sc)
+    if (sc > loadBest()) {
+      saveBest(sc)
+      setBest(sc)
+      setIsNewBest(true)
+    }
+    setPhase('won')
   }
 
   const slotsAt = (idx: number): Clue[] => {
@@ -113,24 +144,64 @@ export default function CrosswordGame() {
     return built.all.filter((cl) => cellsOf(cl, built.size).includes(idx))
   }
 
-  const onCellClick = (idx: number) => {
-    const slots = slotsAt(idx)
-    if (!slots.length) return
-    let next: Clue
-    if (idx === activeCell && slots.length > 1 && activeClue) {
-      next = slots[slots.indexOf(activeClue) === 0 ? 1 : 0]
-    } else {
-      next = (activeClue && slots.includes(activeClue) ? activeClue : slots[0]) ?? slots[0]
-    }
-    setActiveClue(next)
-    setActiveCell(idx)
+  const select = (clue: Clue, cell?: number) => {
+    setActiveClue(clue)
+    setActiveCell(cell ?? clue.row * size + clue.col)
+  }
+
+  const pickClue = (clue: Clue) => {
+    select(clue)
     focusInput()
+  }
+
+  const toggleDir = () => {
+    if (!built || !activeClue) return
+    const slots = slotsAt(activeCell)
+    if (slots.length > 1) select(slots.find((s) => s !== activeClue) ?? activeClue, activeCell)
+  }
+
+  const moveSel = (dr: number, dc: number) => {
+    if (!built || !activeClue) return
+    const r = Math.floor(activeCell / built.size) + dr
+    const c = (activeCell % built.size) + dc
+    if (!isCellIdx(built, r, c)) return
+    const nidx = r * built.size + c
+    const slots = slotsAt(nidx)
+    if (!slots.length) return
+    const wantsCross = (dr !== 0) !== (activeClue.dir === 'd')
+    const next = wantsCross
+      ? (slots.find((s) => s.dir !== activeClue.dir) ?? slots[0])
+      : (slots.find((s) => s.dir === activeClue.dir) ?? slots[0])
+    select(next, nidx)
+  }
+
+  const cycleClue = (step: 1 | -1) => {
+    if (!built || !activeClue) return
+    const list = built.all
+    const next = list[(list.indexOf(activeClue) + step + list.length) % list.length]
+    select(next)
+    focusCell(next.row * built.size + next.col)
   }
 
   const advance = (cells: number[], from: number, dir: 1 | -1) => {
     const pos = cells.indexOf(from)
     const np = pos + dir
     if (np >= 0 && np < cells.length) setActiveCell(cells[np])
+  }
+
+  // When a word fills, jump to the next clue with an empty cell.
+  const advanceToOpenClue = (arr: string[]) => {
+    if (!built || !activeClue) return
+    const i = built.all.indexOf(activeClue)
+    for (let k = 1; k <= built.all.length; k++) {
+      const cl = built.all[(i + k) % built.all.length]
+      const cells = cellsOf(cl, built.size)
+      const empty = cells.find((c) => arr[c] === '')
+      if (empty !== undefined) {
+        select(cl, empty)
+        return
+      }
+    }
   }
 
   const typeLetter = (ch: string) => {
@@ -145,19 +216,12 @@ export default function CrosswordGame() {
       s.delete(activeCell)
       return s
     })
-    advance(cells, activeCell, 1)
     if (isComplete(next, built)) {
-      const sec = Math.max(1, (Date.now() - (startRef.current ?? Date.now())) / 1000)
-      const sc = Math.max(50, Math.round(BASE * Math.min(4, PAR_SEC / sec)) - hints * HINT_COST)
-      scoreRef.current = sc
-      setScore(sc)
-      if (sc > loadBest()) {
-        saveBest(sc)
-        setBest(sc)
-        setIsNewBest(true)
-      }
-      setPhase('won')
+      finish(hints)
+      return
     }
+    if (cells.every((i) => next[i] !== '')) advanceToOpenClue(next)
+    else advance(cells, activeCell, 1)
   }
 
   const eraseLetter = () => {
@@ -170,6 +234,55 @@ export default function CrosswordGame() {
     } else {
       advance(cells, activeCell, -1)
     }
+  }
+
+  const onCellClick = (idx: number) => {
+    const slots = slotsAt(idx)
+    if (!slots.length) return
+    let next: Clue
+    if (idx === activeCell && slots.length > 1 && activeClue) {
+      next = slots[slots.indexOf(activeClue) === 0 ? 1 : 0]
+    } else {
+      next = (activeClue && slots.includes(activeClue) ? activeClue : slots[0]) ?? slots[0]
+    }
+    select(next, idx)
+    focusInput()
+  }
+
+  const onGridKey = (e: React.KeyboardEvent<HTMLDivElement>) => {
+    if (phase !== 'playing') return
+    switch (e.key) {
+      case 'ArrowRight':
+        e.preventDefault()
+        moveSel(0, 1)
+        return
+      case 'ArrowLeft':
+        e.preventDefault()
+        moveSel(0, -1)
+        return
+      case 'ArrowDown':
+        e.preventDefault()
+        moveSel(1, 0)
+        return
+      case 'ArrowUp':
+        e.preventDefault()
+        moveSel(-1, 0)
+        return
+      case 'Tab':
+        e.preventDefault()
+        cycleClue(e.shiftKey ? -1 : 1)
+        return
+      case 'Backspace':
+        e.preventDefault()
+        eraseLetter()
+        return
+      case 'Enter':
+      case ' ':
+        e.preventDefault()
+        toggleDir()
+        return
+    }
+    if (e.key.length === 1 && LETTER_RE.test(e.key)) typeLetter(e.key)
   }
 
   const check = () => {
@@ -196,22 +309,8 @@ export default function CrosswordGame() {
       s.delete(activeCell)
       return s
     })
-    if (isComplete(next, built)) {
-      const sec = Math.max(1, (Date.now() - (startRef.current ?? Date.now())) / 1000)
-      const sc = Math.max(50, Math.round(BASE * Math.min(4, PAR_SEC / sec)) - (hints + 1) * HINT_COST)
-      scoreRef.current = sc
-      setScore(sc)
-      if (sc > loadBest()) {
-        saveBest(sc)
-        setBest(sc)
-        setIsNewBest(true)
-      }
-      setPhase('won')
-    }
+    if (isComplete(next, built)) finish(hints + 1)
   }
-
-  const isComplete = (arr: string[], b: Built): boolean =>
-    b.all.every((cl) => cellsOf(cl, b.size).every((i, p) => arr[i] === cl.answer[p]))
 
   const solved = new Set<string>()
   if (built) {
@@ -236,6 +335,10 @@ export default function CrosswordGame() {
     setSubmitting(false)
     if (ok) setSubmitted(true)
   }
+
+  const dirLabel = activeClue
+    ? t(activeClue.dir === 'a' ? 'games.crossword.across' : 'games.crossword.down')
+    : ''
 
   return (
     <div className="flex min-h-screen flex-col bg-white text-slate-900 dark:bg-slate-950 dark:text-slate-100">
@@ -294,7 +397,32 @@ export default function CrosswordGame() {
           </div>
         </div>
 
-        <div className="relative mx-auto w-full max-w-[440px]">
+        {activeClue && (
+          <div className="mb-3 flex items-center gap-2 rounded-lg bg-sky-500/10 px-3 py-2 text-sm">
+            <button
+              type="button"
+              onClick={() => cycleClue(-1)}
+              aria-label="previous clue"
+              className="rounded p-1 text-sky-700 transition hover:bg-sky-500/15 dark:text-sky-300"
+            >
+              <ChevronLeft size={15} />
+            </button>
+            <span className="min-w-0 flex-1 truncate">
+              <span className="mr-1 font-bold">{activeClue.num} {dirLabel}:</span>
+              {activeClue.text}
+            </span>
+            <button
+              type="button"
+              onClick={() => cycleClue(1)}
+              aria-label="next clue"
+              className="rounded p-1 text-sky-700 transition hover:bg-sky-500/15 dark:text-sky-300"
+            >
+              <ChevronRight size={15} />
+            </button>
+          </div>
+        )}
+
+        <div ref={gridWrapRef} onKeyDown={onGridKey} className="relative mx-auto w-full max-w-[520px]">
           {built && (
             <CrosswordGrid
               built={built}
@@ -312,16 +440,21 @@ export default function CrosswordGame() {
             value=""
             onChange={(e) => {
               const ch = e.target.value.slice(-1)
-              if (/[A-Za-zÀ-ÿĀ-ſЀ-ӿ]/u.test(ch)) typeLetter(ch.toUpperCase())
+              if (LETTER_RE.test(ch)) typeLetter(ch.toUpperCase())
             }}
             onKeyDown={(e) => {
               if (e.key === 'Backspace') eraseLetter()
+              if (e.key === 'ArrowRight') moveSel(0, 1)
+              if (e.key === 'ArrowLeft') moveSel(0, -1)
+              if (e.key === 'ArrowDown') moveSel(1, 0)
+              if (e.key === 'ArrowUp') moveSel(-1, 0)
             }}
             aria-label={t('games.crossword.enterLetter')}
             className="absolute left-0 top-0 h-1 w-1 opacity-0"
             autoComplete="off"
             autoCorrect="off"
             autoCapitalize="characters"
+            tabIndex={-1}
           />
 
           <div className="mt-4">
@@ -362,4 +495,8 @@ export default function CrosswordGame() {
       )}
     </div>
   )
+}
+
+function isCellIdx(built: Built, r: number, c: number): boolean {
+  return r >= 0 && r < built.size && c >= 0 && c < built.size && built.slotAt[r * built.size + c] !== -1
 }

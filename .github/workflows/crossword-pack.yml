@@ -1,0 +1,55 @@
+name: Crossword pack
+# Weekly: generate a 15x15 puzzle, fetch dictionary clues, open a PR.
+on:
+  schedule:
+    - cron: '0 6 * * 1' # Mondays 06:00 UTC
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Fetch wordlists (not committed — ~5MB)
+        run: |
+          curl -sL --retry 3 -o scripts/en_50k.txt \
+            https://raw.githubusercontent.com/hermitdave/FrequencyWords/master/content/2018/en/en_50k.txt
+          curl -sL --retry 3 -o scripts/words_alpha.txt \
+            https://raw.githubusercontent.com/dwyl/english-words/master/words_alpha.txt
+
+      - name: Generate candidate puzzle
+        run: node scripts/gen-crossword.mjs 16 scripts/en_50k.txt scripts/words_alpha.txt > scripts/_new.json
+
+      - name: Fetch clues
+        run: node scripts/clue-crossword.mjs scripts/_new.json > scripts/_clued.json
+
+      - name: Validate + merge into pack
+        run: node scripts/pack-add.mjs scripts/_clued.json src/features/games/games/crossword/packs/en.json 30
+
+      - name: Open PR if pack changed
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          if git diff --quiet src/features/games/games/crossword/packs/en.json; then
+            echo "no pack changes"; exit 0
+          fi
+          BRANCH="crossword-pack/$(date +%F)"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git checkout -b "$BRANCH"
+          git add src/features/games/games/crossword/packs/en.json
+          git commit -m "crossword: generated puzzle $(date +%F)"
+          git push origin "$BRANCH"
+          gh pr create \
+            --title "Crossword pack $(date +%F)" \
+            --body "Auto-generated 15x15 puzzle(s), clues via dictionaryapi.dev. Review fill quality before merging — rare words are flagged in the run log." \
+            --base main --head "$BRANCH"

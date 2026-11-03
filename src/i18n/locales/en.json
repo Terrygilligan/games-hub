@@ -433,19 +433,7 @@
       "submitting": "Submitting…",
       "highScores": "High scores",
       "newPuzzle": "New puzzle",
-      "enterLetter": "Type a letter",
-      "puzzles": [
-        {
-          "grid": ["CLASS", "R###L", "OUTDO", "W###P", "NURSE"],
-          "across": ["School group; a social rank", "Surpass; do better than", "Hospital caregiver"],
-          "down": ["Royal headpiece", "Incline; side of a hill"]
-        },
-        {
-          "grid": ["FLING", "R###H", "OUTGO", "S###S", "TRUST"],
-          "across": ["Throw forcefully", "Exceed; surpass", "Confidence in someone"],
-          "down": ["Ice crystals on a cold morning", "Spooky apparition"]
-        }
-      ]
+      "enterLetter": "Type a letter"
     },
     "2048": {
       "score": "Score",
