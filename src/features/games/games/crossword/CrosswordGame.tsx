@@ -12,7 +12,7 @@ import { buildPuzzle, cellsOf, type Built, type Clue } from './crossword'
 
 type Phase = 'playing' | 'won'
 
-const BEST_KEY = 'games-hub.best.crossword'
+const bestKey = (size: number) => `games-hub.best.crossword.${size}`
 const LETTER_RE = /[A-Za-zÀ-ÿĀ-ſЀ-ӿ]/u
 
 interface RawPuzzle {
@@ -25,16 +25,16 @@ interface RawPuzzle {
 const fmt = (sec: number) =>
   `${Math.floor(sec / 60)}:${String(Math.floor(sec % 60)).padStart(2, '0')}`
 
-const loadBest = (): number => {
+const loadBest = (size: number): number => {
   try {
-    return Number(localStorage.getItem(BEST_KEY)) || 0
+    return Number(localStorage.getItem(bestKey(size))) || 0
   } catch {
     return 0
   }
 }
-const saveBest = (v: number) => {
+const saveBest = (size: number, v: number) => {
   try {
-    localStorage.setItem(BEST_KEY, String(v))
+    localStorage.setItem(bestKey(size), String(v))
   } catch {
     // storage unavailable
   }
@@ -53,7 +53,7 @@ export default function CrosswordGame() {
   const [phase, setPhase] = useState<Phase>('playing')
   const [elapsed, setElapsed] = useState(0)
   const [score, setScore] = useState(0)
-  const [best, setBest] = useState(loadBest)
+  const [best, setBest] = useState(0)
   const [isNewBest, setIsNewBest] = useState(false)
   const [submitting, setSubmitting] = useState(false)
   const [submitted, setSubmitted] = useState(false)
@@ -61,6 +61,7 @@ export default function CrosswordGame() {
 
   const inputRef = useRef<HTMLInputElement>(null)
   const gridWrapRef = useRef<HTMLDivElement>(null)
+  const lastClickRef = useRef(-1)
   const startRef = useRef<number | null>(null)
   const scoreRef = useRef(0)
 
@@ -94,6 +95,7 @@ export default function CrosswordGame() {
     setActiveClue(b.across[0] ?? null)
     setActiveCell(b.across.length ? b.across[0].row * b.size + b.across[0].col : 0)
     setWrong(new Set())
+    lastClickRef.current = -1
     setHints(0)
     setPhase('playing')
     setElapsed(0)
@@ -103,7 +105,7 @@ export default function CrosswordGame() {
     setIsNewBest(false)
     setSubmitting(false)
     setSubmitted(false)
-    setBest(loadBest())
+    setBest(loadBest(b.size))
   }, [pack, puzzleIdx])
 
   useEffect(() => {
@@ -131,8 +133,8 @@ export default function CrosswordGame() {
     const sc = Math.max(50, Math.round(1500 * Math.min(4, par / sec)) - hintCount * 150)
     scoreRef.current = sc
     setScore(sc)
-    if (sc > loadBest()) {
-      saveBest(sc)
+    if (sc > loadBest(size)) {
+      saveBest(size, sc)
       setBest(sc)
       setIsNewBest(true)
     }
@@ -189,17 +191,19 @@ export default function CrosswordGame() {
     if (np >= 0 && np < cells.length) setActiveCell(cells[np])
   }
 
-  // When a word fills, jump to the next clue with an empty cell.
+  // When a word fills, jump to the next clue with an empty cell (same direction first).
   const advanceToOpenClue = (arr: string[]) => {
     if (!built || !activeClue) return
     const i = built.all.indexOf(activeClue)
-    for (let k = 1; k <= built.all.length; k++) {
-      const cl = built.all[(i + k) % built.all.length]
-      const cells = cellsOf(cl, built.size)
-      const empty = cells.find((c) => arr[c] === '')
-      if (empty !== undefined) {
-        select(cl, empty)
-        return
+    for (const sameDir of [true, false]) {
+      for (let k = 1; k <= built.all.length; k++) {
+        const cl = built.all[(i + k) % built.all.length]
+        if (sameDir && cl.dir !== activeClue.dir) continue
+        const empty = cellsOf(cl, built.size).find((c) => arr[c] === '')
+        if (empty !== undefined) {
+          select(cl, empty)
+          return
+        }
       }
     }
   }
@@ -240,16 +244,17 @@ export default function CrosswordGame() {
     const slots = slotsAt(idx)
     if (!slots.length) return
     let next: Clue
-    if (idx === activeCell && slots.length > 1 && activeClue) {
+    if (idx === activeCell && idx === lastClickRef.current && slots.length > 1 && activeClue) {
       next = slots[slots.indexOf(activeClue) === 0 ? 1 : 0]
     } else {
-      next = (activeClue && slots.includes(activeClue) ? activeClue : slots[0]) ?? slots[0]
+      next = slots.find((s) => s.dir === activeClue?.dir) ?? slots[0]
     }
+    lastClickRef.current = idx
     select(next, idx)
     focusInput()
   }
 
-  const onGridKey = (e: React.KeyboardEvent<HTMLDivElement>) => {
+  const onGridKey = (e: React.KeyboardEvent) => {
     if (phase !== 'playing') return
     switch (e.key) {
       case 'ArrowRight':
@@ -407,10 +412,15 @@ export default function CrosswordGame() {
             >
               <ChevronLeft size={15} />
             </button>
-            <span className="min-w-0 flex-1 truncate">
+            <button
+              type="button"
+              onClick={toggleDir}
+              title={`${dirLabel} — Space/Enter`}
+              className="min-w-0 flex-1 truncate rounded px-1 text-left transition hover:bg-sky-500/10"
+            >
               <span className="mr-1 font-bold">{activeClue.num} {dirLabel}:</span>
-              {activeClue.text}
-            </span>
+              {activeClue.text} <span className="text-slate-400 dark:text-slate-500">({activeClue.len})</span>
+            </button>
             <button
               type="button"
               onClick={() => cycleClue(1)}
@@ -422,7 +432,12 @@ export default function CrosswordGame() {
           </div>
         )}
 
-        <div ref={gridWrapRef} onKeyDown={onGridKey} className="relative mx-auto w-full max-w-[520px]">
+        <div
+          ref={gridWrapRef}
+          onKeyDown={onGridKey}
+          className="relative mx-auto w-full"
+          style={{ maxWidth: size <= 7 ? 300 : size <= 11 ? 420 : 520 }}
+        >
           {built && (
             <CrosswordGrid
               built={built}
@@ -443,11 +458,9 @@ export default function CrosswordGame() {
               if (LETTER_RE.test(ch)) typeLetter(ch.toUpperCase())
             }}
             onKeyDown={(e) => {
-              if (e.key === 'Backspace') eraseLetter()
-              if (e.key === 'ArrowRight') moveSel(0, 1)
-              if (e.key === 'ArrowLeft') moveSel(0, -1)
-              if (e.key === 'ArrowDown') moveSel(1, 0)
-              if (e.key === 'ArrowUp') moveSel(-1, 0)
+              e.stopPropagation()
+              if (e.key.length === 1 && LETTER_RE.test(e.key)) return
+              onGridKey(e)
             }}
             aria-label={t('games.crossword.enterLetter')}
             className="absolute left-0 top-0 h-1 w-1 opacity-0"

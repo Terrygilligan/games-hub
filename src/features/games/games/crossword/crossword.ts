@@ -74,7 +74,7 @@ export const buildPuzzle = (
   all.forEach((cl, idx) => {
     for (let i = 0; i < cl.len; i++) {
       const rr = cl.dir === 'a' ? cl.row : cl.row + i
-      const cc = cl.dir === 'a' ? cl.col : cl.col + i
+      const cc = cl.dir === 'a' ? cl.col + i : cl.col
       slotAt[rr * size + cc] = idx // last writer wins; crossing cells keep one ref
     }
   })

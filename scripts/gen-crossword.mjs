@@ -1,16 +1,42 @@
 // 15x15 crossword generator: random symmetric template + CSP fill,
 // best-of-N attempts scored by word frequency, emits pack JSON.
-// Usage: node scripts/gen-crossword.mjs [attempts] <ranked-list> <fallback-list>
-//   node scripts/gen-crossword.mjs 12 scripts/en_50k.txt scripts/words_alpha.txt > out.json
+// Usage: node scripts/gen-crossword.mjs [attempts] [count] <ranked-list> <dict-list> [extra...]
+//   node scripts/gen-crossword.mjs 20 10 scripts/en_50k.txt scripts/words_alpha.txt --core-list scripts/20k.txt > out.json
+// Strict by default: fills use only the "clean" core (ranked words that are
+// also in the dictionary list AND the optional --core-list curated list) —
+// obscure words never reach the output.
+// Flags: --core N (keep top N clean words), --core-list <file> (curated common
+// words), --blocklist <file> (words excluded from both tiers — proper nouns,
+// unclueable entries found via clue runs), --max-slot N, --allow-rare N.
 import fs from 'fs'
 
 const SIZE = 15
 const TARGET_BLACKS = 54
-const NODE_BUDGET = 150000
 const CAP = 400 // max candidates tried per slot
 
 let args = process.argv.slice(2)
+const flagVal = (name, dflt) => {
+  const i = args.indexOf(name)
+  if (i === -1) return dflt
+  const v = Number(args[i + 1])
+  args.splice(i, 2)
+  return Number.isFinite(v) ? v : dflt
+}
+const flagStr = (name) => {
+  const i = args.indexOf(name)
+  if (i === -1) return null
+  const v = args[i + 1]
+  args.splice(i, 2)
+  return v
+}
+const CORE_LIMIT = flagVal('--core', 35000)
+const NODE_BUDGET = flagVal('--nodes', 150000)
+const CORE_LIST = flagStr('--core-list')
+const BLOCKLIST = flagStr('--blocklist')
+const MAX_SLOT = flagVal('--max-slot', 11)
+const ALLOW_RARE = flagVal('--allow-rare', 0)
 const ATTEMPTS = /^\d+$/.test(args[0] ?? '') ? Number(args.shift()) : 8
+const COUNT = /^\d+$/.test(args[0] ?? '') ? Number(args.shift()) : 1
 let seed = Date.now() % 2147483647
 const rndState = () => (seed = (seed * 1103515245 + 12345) % 2147483647)
 const rnd = (n) => rndState() % n
@@ -37,8 +63,10 @@ function slots(g) {
   return out
 }
 
-function valid(g, S) {
-  if (S.some((s) => s.len < 3)) return false
+function valid(g, S, final = false) {
+  // len>MAX_SLOT only checked on the finished template — during construction a
+  // long run can still be split by later blacks.
+  if (S.some((s) => s.len < 3 || (final && s.len > MAX_SLOT))) return false
   const cover = new Array(SIZE * SIZE).fill(0)
   for (const s of S)
     for (let i = 0; i < s.len; i++)
@@ -71,23 +99,53 @@ function makeTemplate() {
       if (!valid(g, S)) { g[r][c] = '.'; g[mr][mc] = '.'; continue }
       blacks = g.flat().filter((ch) => ch === '#').length
     }
-    if (blacks >= TARGET_BLACKS - 4) return g
+    if (blacks >= TARGET_BLACKS - 4 && valid(g, slots(g), true)) return g
   }
   return null
 }
 
 // --- domain ---
-const all = []
-const seenW = new Set()
-for (const f of args)
+// File 1 = ranked frequency list; file 2 = dictionary list used to define the
+// "clean" core (ranked words that are also dictionary words). Extra files add
+// fallback-only words. Fills use core words only unless --allow-rare > 0.
+const loadList = (f) => {
+  const out = []
   for (const w of fs.readFileSync(f, 'utf8').split('\n')) {
     const u = w.trim().split(/\s+/)[0].toUpperCase()
-    if (/^[A-Z]{3,15}$/.test(u) && !seenW.has(u)) { seenW.add(u); all.push(u) }
+    if (/^[A-Z]{3,15}$/.test(u)) out.push(u)
   }
+  return out
+}
+const ranked = loadList(args[0])
+const dictSet = new Set(loadList(args[1] ?? args[0]))
+const coreListSet = CORE_LIST ? new Set(loadList(CORE_LIST)) : null
+const blocked = BLOCKLIST ? new Set(loadList(BLOCKLIST)) : new Set()
+const core = ranked
+  .filter(
+    (w) =>
+      dictSet.has(w) &&
+      (!coreListSet || coreListSet.has(w)) &&
+      !blocked.has(w),
+  )
+  .slice(0, CORE_LIMIT)
+const coreSet = new Set(core)
+// Fallback = every other known word, best-ranked first.
+const fallback = []
+const fbSeen = new Set()
+const addFb = (w) => { if (!coreSet.has(w) && !fbSeen.has(w) && !blocked.has(w)) { fbSeen.add(w); fallback.push(w) } }
+for (const w of ranked) addFb(w)
+for (const f of args.slice(1)) for (const w of loadList(f)) addFb(w)
+const all = core.concat(fallback)
 const wordRank = new Map(all.map((w, i) => [w, i]))
-const byLen = new Map()
-for (const w of all) (byLen.get(w.length) ?? byLen.set(w.length, []).get(w.length)).push(w)
-log('domain:', all.length)
+const coreByLen = new Map()
+const extByLen = new Map()
+const push = (m, w) => (m.get(w.length) ?? m.set(w.length, []).get(w.length)).push(w)
+for (const w of core) push(coreByLen, w)
+for (const w of fallback) push(extByLen, w)
+log(`domain: ${all.length} (core ${core.length}, fallback ${fallback.length})`)
+
+const domainFor = (byLen, len, pat) =>
+  (byLen.get(len) ?? []).filter((w) => { for (let p = 0; p < len; p++) if (pat[p] !== '.' && w[p] !== pat[p]) return false; return true })
 
 function fill(g) {
   const S = slots(g)
@@ -95,12 +153,11 @@ function fill(g) {
   const letters = new Array(SIZE * SIZE).fill('')
   const assigned = new Set()
   let nodes = 0
-  const domainFor = (si) => {
+  const candsFor = (si) => {
     const len = S[si].len
-    const ws = byLen.get(len)
-    if (!ws) return []
     const pat = slotCells[si].map((i) => letters[i] || '.')
-    return ws.filter((w) => { for (let p = 0; p < len; p++) if (pat[p] !== '.' && w[p] !== pat[p]) return false; return true })
+    const dom = domainFor(coreByLen, len, pat)
+    return ALLOW_RARE > 0 ? dom.concat(domainFor(extByLen, len, pat)) : dom
   }
   function dfs() {
     if (++nodes > NODE_BUDGET) return false
@@ -108,7 +165,7 @@ function fill(g) {
     let best = -1, bestDom = null
     for (let i = 0; i < S.length; i++) {
       if (assigned.has(i)) continue
-      const d = domainFor(i)
+      const d = candsFor(i)
       if (!d.length) return false
       if (!bestDom || d.length < bestDom.length) { best = i; bestDom = d }
     }
@@ -128,27 +185,35 @@ function fill(g) {
     const cells = slotCells[S.indexOf(s)]
     return cells.map((i) => letters[i]).join('')
   })
-  let score = 0, rare = 0
+  let score = 0, rare = 0, worst = 0
   for (const w of answers) {
     const r = wordRank.get(w) ?? 1e9
     score += Math.min(r, 400000)
-    if (r > 50000) rare++
+    if (r > worst) worst = r
+    if (!coreSet.has(w)) rare++
   }
   const grid = []
   for (let r = 0; r < SIZE; r++) grid.push(letters.slice(r * SIZE, r * SIZE + SIZE).map((ch) => ch || '#').join(''))
-  return { grid, answers, score, rare, nodes }
+  return { grid, answers, score, rare, worst, nodes }
 }
 
-let best = null
-for (let a = 0; a < ATTEMPTS; a++) {
+const found = []
+const seenGrid = new Set()
+for (let a = 0; a < ATTEMPTS && found.length < COUNT; a++) {
   const g = makeTemplate()
   if (!g) continue
   const f = fill(g)
   if (!f) { log(`attempt ${a}: no fill`); continue }
-  log(`attempt ${a}: score=${f.score} rare=${f.rare}/${f.answers.length} nodes=${f.nodes}`)
-  if (!best || f.score < best.score) best = f
+  const sig = f.grid.join('|')
+  log(`attempt ${a}: score=${f.score} rare=${f.rare}/${f.answers.length} worst=${f.worst} nodes=${f.nodes}`)
+  if (f.rare > ALLOW_RARE) { log(`attempt ${a}: rejected (rare ${f.rare} > ${ALLOW_RARE})`); continue }
+  if (seenGrid.has(sig)) continue
+  seenGrid.add(sig)
+  found.push(f)
+  found.sort((x, y) => x.score - y.score)
 }
-if (!best) { log('NO FILL'); process.exit(2) }
-const out = { grid: best.grid, clues: Object.fromEntries(best.answers.map((w) => [w, ''])) }
-console.log(JSON.stringify(out, null, 1))
-log(`BEST: score=${best.score} rare=${best.rare}`)
+if (!found.length) { log('NO FILL'); process.exit(2) }
+const kept = found.slice(0, COUNT)
+const out = kept.map((f) => ({ grid: f.grid, clues: Object.fromEntries(f.answers.map((w) => [w, ''])) }))
+console.log(JSON.stringify(COUNT === 1 ? out[0] : out, null, 1))
+log(`KEPT ${kept.length} puzzle(s): ${kept.map((f) => `score=${f.score} rare=${f.rare} worst=${f.worst}`).join(' | ')}`)

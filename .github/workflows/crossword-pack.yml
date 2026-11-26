@@ -25,9 +25,11 @@ jobs:
             https://raw.githubusercontent.com/hermitdave/FrequencyWords/master/content/2018/en/en_50k.txt
           curl -sL --retry 3 -o scripts/words_alpha.txt \
             https://raw.githubusercontent.com/dwyl/english-words/master/words_alpha.txt
+          curl -sL --retry 3 -o scripts/20k.txt \
+            https://raw.githubusercontent.com/first20hours/google-10000-english/master/20k.txt
 
       - name: Generate candidate puzzle
-        run: node scripts/gen-crossword.mjs 16 scripts/en_50k.txt scripts/words_alpha.txt > scripts/_new.json
+        run: node scripts/gen-crossword.mjs 24 1 scripts/en_50k.txt scripts/words_alpha.txt --core-list scripts/20k.txt --blocklist scripts/crossword-blocklist.txt > scripts/_new.json
 
       - name: Fetch clues
         run: node scripts/clue-crossword.mjs scripts/_new.json > scripts/_clued.json

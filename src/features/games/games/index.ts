@@ -65,7 +65,7 @@ export const GAME_REGISTRY: GameMetadata[] = [
     titleKey: 'games.titles.crossword.name',
     descriptionKey: 'games.titles.crossword.description',
     icon: 'puzzle',
-    status: 'coming-soon',
+    status: 'available',
     route: '/games/crossword',
   },
   {

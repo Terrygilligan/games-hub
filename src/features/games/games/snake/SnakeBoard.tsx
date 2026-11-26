@@ -2,7 +2,7 @@ import { useRef } from 'react'
 import type { RefObject, TouchEvent } from 'react'
 import type { Vec } from './SnakeGame'
 
-const CELL_PX = 24
+const BOARD_PX = 480
 const SWIPE_MIN = 24
 
 interface SnakeBoardProps {
@@ -40,8 +40,8 @@ export default function SnakeBoard({ canvasRef, onDirection, onTap }: SnakeBoard
   return (
     <canvas
       ref={canvasRef}
-      width={CELL_PX * 20}
-      height={CELL_PX * 20}
+      width={BOARD_PX}
+      height={BOARD_PX}
       onTouchStart={onTouchStart}
       onTouchEnd={onTouchEnd}
       onClick={onTap}

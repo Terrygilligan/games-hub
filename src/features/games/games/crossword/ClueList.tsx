@@ -35,7 +35,7 @@ export default function ClueList({ across, down, activeClue, solved, onPick }: C
                 }`}
               >
                 <span className="mr-1 font-semibold">{cl.num}.</span>
-                {cl.text}
+                {cl.text} <span className="text-slate-400 dark:text-slate-500">({cl.len})</span>
               </button>
             </li>
           )

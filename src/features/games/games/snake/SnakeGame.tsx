@@ -8,9 +8,9 @@ import LeaderboardModal from '../../components/LeaderboardModal'
 import SnakeBoard from './SnakeBoard'
 import GameOverModal from './GameOverModal'
 
-const GRID = 20
-const BASE_MS = 160
-const MIN_MS = 70
+const GRID = 24
+const BASE_MS = 200
+const MIN_MS = 80
 const SPEED_STEP = 5
 const BEST_KEY = 'games-hub.best.snake'
 
@@ -25,9 +25,9 @@ const DIRS: Record<string, Vec> = {
 }
 
 const freshSnake = (): Vec[] => [
-  { x: 8, y: 10 },
-  { x: 7, y: 10 },
-  { x: 6, y: 10 },
+  { x: 10, y: 12 },
+  { x: 9, y: 12 },
+  { x: 8, y: 12 },
 ]
 
 const loadBest = (): number => {
@@ -47,13 +47,19 @@ const saveBest = (v: number) => {
 }
 
 const randomFood = (snake: Vec[]): Vec => {
+  const margin = Math.max(0, 4 - Math.floor((snake.length - 3) / 4))
   const free: Vec[] = []
+  const inner: Vec[] = []
   for (let y = 0; y < GRID; y++) {
     for (let x = 0; x < GRID; x++) {
-      if (!snake.some((s) => s.x === x && s.y === y)) free.push({ x, y })
+      if (snake.some((s) => s.x === x && s.y === y)) continue
+      const v = { x, y }
+      free.push(v)
+      if (x >= margin && x < GRID - margin && y >= margin && y < GRID - margin) inner.push(v)
     }
   }
-  return free[Math.floor(Math.random() * free.length)] ?? { x: 0, y: 0 }
+  const pool = inner.length ? inner : free
+  return pool[Math.floor(Math.random() * pool.length)] ?? { x: 0, y: 0 }
 }
 
 const DPAD_BTN =
@@ -66,7 +72,7 @@ export default function SnakeGame() {
   const snakeRef = useRef<Vec[]>(freshSnake())
   const dirRef = useRef<Vec>(DIRS.right)
   const queueRef = useRef<Vec[]>([])
-  const foodRef = useRef<Vec>({ x: 14, y: 10 })
+  const foodRef = useRef<Vec>({ x: 16, y: 12 })
   const scoreRef = useRef(0)
   const speedRef = useRef(BASE_MS)
   const accRef = useRef(0)

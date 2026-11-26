@@ -39,7 +39,7 @@ export default function SudokuGrid({
 
         let bg = ''
         if (isSel) bg = 'bg-sky-500/30'
-        else if (sameNum) bg = 'bg-sky-500/15'
+        else if (sameNum) bg = 'bg-sky-500/30'
         else if (inLine) bg = 'bg-slate-100 dark:bg-slate-800'
 
         return (

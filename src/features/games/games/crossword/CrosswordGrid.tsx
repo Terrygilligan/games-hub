@@ -20,6 +20,9 @@ export default function CrosswordGrid({
 }: CrosswordGridProps) {
   const { size, numAt } = built
   const activeCells = activeClue ? new Set(cellsOf(activeClue, size)) : new Set<number>()
+  const fontCls =
+    size <= 7 ? 'text-xl sm:text-2xl' : size <= 9 ? 'text-base sm:text-lg' : 'text-xs sm:text-sm'
+  const numCls = size <= 9 ? 'text-[9px] sm:text-[10px]' : 'text-[8px]'
 
   return (
     <div
@@ -44,9 +47,7 @@ export default function CrosswordGrid({
             onClick={() => onCellClick(i)}
             role="gridcell"
             aria-label={`cell ${Math.floor(i / size) + 1},${(i % size) + 1}`}
-            className={`relative flex items-center justify-center font-bold uppercase transition ${
-              size > 9 ? 'text-xs sm:text-sm' : 'text-base'
-            } ${
+            className={`relative flex items-center justify-center font-bold uppercase transition ${fontCls} ${
               isSel
                 ? 'bg-amber-400 text-slate-900'
                 : inSlot
@@ -55,7 +56,7 @@ export default function CrosswordGrid({
             } ${isWrong ? 'text-red-600 dark:text-red-400' : ''}`}
           >
             {numAt[i] > 0 && (
-              <span className="absolute left-0.5 top-0 text-[8px] font-semibold leading-tight text-slate-500 dark:text-slate-400">
+              <span className={`absolute left-0.5 top-0 font-semibold leading-tight text-slate-500 dark:text-slate-400 ${numCls}`}>
                 {numAt[i]}
               </span>
             )}
