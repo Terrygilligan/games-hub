@@ -8,7 +8,7 @@ import LeaderboardModal from '../../components/LeaderboardModal'
 import QuestionCard from './QuestionCard'
 import RoundHUD from './RoundHUD'
 import RoundOverModal from './RoundOverModal'
-import { speak, stopSpeaking, ttsSupported } from './speech'
+import { speak, speakWhenIdle, stopSpeaking, ttsSupported } from './speech'
 
 export interface LexiconQuestion {
   word: string
@@ -168,9 +168,10 @@ export default function LexiconGame() {
   )
 
   // Auto-speak the word when a new question appears (sound on, TTS available).
+  // Deferred via speakWhenIdle so a still-playing spoken answer isn't cut off.
   useEffect(() => {
     if (phase === 'playing' && picked === null && soundOn && questions[qIdx]) {
-      speak(questions[qIdx].word, lang)
+      return speakWhenIdle(questions[qIdx].word, lang)
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [phase, qIdx])

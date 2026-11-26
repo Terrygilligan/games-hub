@@ -12,7 +12,7 @@ Start here every session. Read `HANDOVER.md` first — it is the canonical chang
 | `HIT_BY_A_BUS.md` | Locked schemas (e.g. `games_leaderboards` doc shape). |
 | `AUDIT.md` | 2026-10-29 code audit — fixed P1s, open P2 debt list. |
 | `GAMES_HUB_ROADMAP.md` | Original game roadmap (mostly complete). |
-| `scripts/` | Crossword pipeline: `gen-crossword.mjs`, `clue-crossword.mjs`, `probe-cluable.mjs`, `pack-add.mjs`, `crossword-blocklist.txt`. |
+| `scripts/` | Crossword pipeline: `gen-crossword.mjs`, `clue-crossword.mjs`, `probe-cluable.mjs`, `pack-add.mjs`, `crossword-blocklist.txt`. Lexicon entry generator: `lexicon-entries.mjs` (`--lang`, `--words`, `--count`, `--apply`; Kaikki.org bulk-dump importer is the documented future upgrade). |
 
 ## Quick facts
 

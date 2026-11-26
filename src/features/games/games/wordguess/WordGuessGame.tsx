@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { ArrowLeft, Trophy } from 'lucide-react'
+import { ArrowLeft, HelpCircle, Lightbulb, Trophy } from 'lucide-react'
 import { getDict, useTranslation } from '../../../../i18n'
 import { getNickname, getPlayerId, setNickname } from '../../services/playerIdentity'
 import { submitScore } from '../../services/leaderboardService'
@@ -10,6 +10,8 @@ import type { LetterState } from './GuessGrid'
 import { MAX_GUESSES, WORD_LEN } from './GuessGrid'
 import Keyboard from './Keyboard'
 import VictoryModal from './VictoryModal'
+import RulesModal from './RulesModal'
+import { fetchHint } from './hintService'
 
 type Phase = 'playing' | 'won' | 'lost'
 
@@ -88,6 +90,10 @@ export default function WordGuessGame() {
   const [submitting, setSubmitting] = useState(false)
   const [submitted, setSubmitted] = useState(false)
   const [showLeaderboard, setShowLeaderboard] = useState(false)
+  const [showRules, setShowRules] = useState(false)
+  const [hintUsed, setHintUsed] = useState(false)
+  const [hint, setHint] = useState<string | null>(null)
+  const [hintLoading, setHintLoading] = useState(false)
   const scoreRef = useRef(0)
 
   const newGame = useCallback(() => {
@@ -104,6 +110,9 @@ export default function WordGuessGame() {
     setIsNewBest(false)
     setSubmitting(false)
     setSubmitted(false)
+    setHintUsed(false)
+    setHint(null)
+    setHintLoading(false)
   }, [lang])
 
   useEffect(() => {
@@ -131,10 +140,7 @@ export default function WordGuessGame() {
     if (phase !== 'playing') return
     const guess = current.toUpperCase()
     if (guess.length < WORD_LEN) return
-    if (!dictSet.has(guess)) {
-      flashError(t('games.wordguess.notInList'))
-      return
-    }
+    if (!dictSet.has(guess)) flashError(t('games.wordguess.notInList'))
     const evalStates = evaluate(guess, target)
     const newGuesses = [...guesses, guess]
     setGuesses(newGuesses)
@@ -147,7 +153,7 @@ export default function WordGuessGame() {
       setStreak(newStreak)
       saveNum(STREAK_KEY, newStreak)
       if (newStreak > loadNum(MAX_STREAK_KEY)) saveNum(MAX_STREAK_KEY, newStreak)
-      const sc = (MAX_GUESSES + 1 - newGuesses.length) * 100 + newStreak * 50
+      const sc = (MAX_GUESSES + 1 - newGuesses.length - (hintUsed ? 1 : 0)) * 100 + newStreak * 50
       scoreRef.current = sc
       setScore(sc)
       if (sc > loadNum(BEST_KEY)) {
@@ -161,7 +167,21 @@ export default function WordGuessGame() {
       saveNum(STREAK_KEY, 0)
       setPhase('lost')
     }
-  }, [phase, current, dictSet, t, target, guesses, streak])
+  }, [phase, current, dictSet, t, target, guesses, streak, hintUsed])
+
+  const useHint = useCallback(() => {
+    if (hintLoading || hint) return
+    setHintLoading(true)
+    void fetchHint(lang, target).then((def) => {
+      setHintLoading(false)
+      if (def) {
+        setHint(def)
+        setHintUsed(true)
+      } else {
+        flashError(t('games.wordguess.hintNone'))
+      }
+    })
+  }, [hintLoading, hint, lang, target, t])
 
   useEffect(() => {
     if (phase !== 'playing') return
@@ -203,14 +223,35 @@ export default function WordGuessGame() {
             <ArrowLeft size={16} />
             {t('games.actions.backToHub')}
           </Link>
-          <button
-            type="button"
-            onClick={() => setShowLeaderboard(true)}
-            className="inline-flex items-center gap-1.5 rounded-lg px-3 py-2 text-sm font-medium text-sky-700 transition hover:bg-sky-500/10 dark:text-sky-300"
-          >
-            <Trophy size={15} />
-            {t('games.wordguess.highScores')}
-          </button>
+          <div className="flex items-center gap-1">
+            <button
+              type="button"
+              onClick={() => setShowRules(true)}
+              aria-label={t('games.wordguess.rulesTitle')}
+              title={t('games.wordguess.rulesTitle')}
+              className="flex h-10 w-10 items-center justify-center rounded-lg text-slate-500 transition hover:bg-slate-200 dark:text-slate-400 dark:hover:bg-slate-800"
+            >
+              <HelpCircle size={18} />
+            </button>
+            <button
+              type="button"
+              onClick={useHint}
+              disabled={hintLoading || hint !== null}
+              aria-label={t('games.wordguess.hint')}
+              title={t('games.wordguess.hint')}
+              className="flex h-10 w-10 items-center justify-center rounded-lg text-amber-600 transition hover:bg-amber-500/10 disabled:opacity-50 dark:text-amber-400"
+            >
+              <Lightbulb size={18} />
+            </button>
+            <button
+              type="button"
+              onClick={() => setShowLeaderboard(true)}
+              className="inline-flex items-center gap-1.5 rounded-lg px-3 py-2 text-sm font-medium text-sky-700 transition hover:bg-sky-500/10 dark:text-sky-300"
+            >
+              <Trophy size={15} />
+              {t('games.wordguess.highScores')}
+            </button>
+          </div>
         </div>
 
         <div className="mb-3 flex items-center justify-between text-sm">
@@ -226,6 +267,16 @@ export default function WordGuessGame() {
           <GuessGrid guesses={guesses} states={states} current={current} errorRow={error !== null} />
           {error && (
             <p className="mt-2 text-center text-sm font-medium text-red-500">{error}</p>
+          )}
+          {hintLoading && (
+            <p className="mt-2 text-center text-sm text-amber-600 dark:text-amber-400">
+              {t('games.wordguess.hintLoading')}
+            </p>
+          )}
+          {hint && (
+            <p className="mt-2 rounded-lg bg-amber-500/10 px-3 py-2 text-center text-sm text-amber-800 dark:text-amber-300">
+              {hint}
+            </p>
           )}
           <div className="mt-4">
             <Keyboard
@@ -257,6 +308,8 @@ export default function WordGuessGame() {
           {t('games.wordguess.instructions')}
         </p>
       </main>
+
+      {showRules && <RulesModal onClose={() => setShowRules(false)} />}
 
       {showLeaderboard && (
         <LeaderboardModal
