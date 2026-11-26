@@ -1,8 +1,11 @@
 // Generate new Lexicon Blitz entries: takes a candidate wordlist, fetches a
-// short definition per word from the SAME source chain as clue-crossword.mjs
-// ({lang}.wiktionary.org -> en: dictionaryapi.dev), dedupes against the words
-// already in src/i18n/locales/<lang>.json, and emits ready-to-paste
-// ["word","def"] JSON lines — or appends them in place with --apply.
+// short definition per word, dedupes against the words already in
+// src/i18n/locales/<lang>.json, and emits ready-to-paste ["word","def"] JSON
+// lines — or appends them in place with --apply.
+// Sources: en -> en.wiktionary REST + dictionaryapi.dev fallback (same chain
+// as clue-crossword.mjs). Non-en -> {lang}.wiktionary.org action=parse
+// wikitext, since the REST page/definition endpoint exists ONLY on
+// en.wiktionary (other editions return 501).
 //
 // Usage:
 //   node scripts/lexicon-entries.mjs --lang en --words candidates.txt
@@ -74,7 +77,7 @@ const POS_PREF = [
   'preposition', 'conjunction', 'interjection', 'numeral', 'determiner',
   'contraction', 'phrase', 'initialism', 'abbreviation', 'acronym',
 ]
-const DEF_JUNK = /indicative of this usage|parser-output|font-size|\.mw-|display\s*:|visibility/
+const DEF_JUNK = /indicative of this usage|parser-output|font-size|\.mw-|display\s*:|visibility|не е въведено/
 const stripTags = (html) =>
   html
     .replace(/<style[\s\S]*?<\/style>/gi, ' ')
@@ -144,14 +147,107 @@ async function freeDictLookup(word) {
   return null
 }
 
+// ---- non-en: wikitext parsing (REST /page/definition is en-only) ----
+
+const WIKI_UA = { 'user-agent': 'GamesHubLexiconBot/1.0 (entry generation)' }
+
+function cleanWiki(s) {
+  return s
+    .replace(/<ref[\s\S]*?(<\/ref>|\/>)/gi, '')
+    .replace(/\[\[([^\]|]*)\|([^\]|]*)\]\]/g, '$2')
+    .replace(/\[\[([^\]]*)\]\]/g, '$1')
+    .replace(/\{\{[^{}]*\}\}/g, '')
+    .replace(/\{\{[^{}]*\}\}/g, '')
+    .replace(/'{2,3}/g, '')
+    .replace(/\s+/g, ' ')
+    .trim()
+}
+
+// Per-edition: isolate the native-language section, then pull def lines.
+const EDITIONS = {
+  fr: {
+    section: (t) => (t.match(/==\s*\{\{langue\|fr\}\}\s*==([\s\S]*?)(?=\n==\s*[^=]|$)/) || [])[1] ?? '',
+    line: /^#(?!\*)\s*(.+)/,
+  },
+  de: {
+    section: (t) =>
+      (t.match(/\(?\{\{Sprache\|Deutsch\}\}\)?\s*==([\s\S]*?)(?=\n==\s*[^=]|$)/) || [])[1] ?? '',
+    block: /\{\{Bedeutungen\}\}([\s\S]*?)(?=\n\{\{|\n==|$)/,
+    line: /^:\s*\[\d+\]\s*(.+)/,
+  },
+  es: {
+    section: (t) => (t.match(/==\s*\{\{lengua\|es\}\}\s*==([\s\S]*?)(?=\n==\s*[^=]|$)/) || [])[1] ?? '',
+    line: /^;[^\n:]*:\s*(.+)/,
+  },
+  nl: {
+    section: (t) => (t.match(/\{\{=nld=\}\}([\s\S]*?)(?=\{\{=-[^-]+-=\}\}|$)/) || [])[1] ?? '',
+    line: /^#\s*(.+)/,
+  },
+  bg: {
+    // definitions live inside template fields: | ЗНАЧЕНИЕ =\n# def\n| ТИП =
+    blocks: /\|\s*ЗНАЧЕНИЕ\s*=\s*([\s\S]*?)(?=\n\s*\|)/g,
+    line: /^#\s*(.+)/,
+  },
+}
+
+function extractDefs(wikitext, word) {
+  const ed = EDITIONS[LANG]
+  if (!ed) return []
+  const region = ed.section ? ed.section(wikitext) : wikitext
+  const texts = ed.block
+    ? [(region.match(ed.block) || [])[1] ?? '']
+    : ed.blocks
+      ? [...region.matchAll(ed.blocks)].map((m) => m[1])
+      : [region]
+  const defs = []
+  for (const txt of texts)
+    for (const l of txt.split('\n')) {
+      const m = l.trim().match(ed.line)
+      if (!m) continue
+      const clean = cleanWiki(m[1])
+      if (clean && clean.length < 160 && !DEF_JUNK.test(clean) && !clean.toLowerCase().includes(word))
+        defs.push(clean)
+    }
+  return defs
+}
+
+async function wikitextLookup(word) {
+  const forms = [...new Set([word, word[0].toUpperCase() + word.slice(1)])]
+  let sawError = false
+  for (const form of forms) {
+    for (let t = 0; t < 3; t++) {
+      try {
+        const res = await fetch(
+          `https://${LANG}.wiktionary.org/w/api.php?action=parse&page=${encodeURIComponent(form)}&prop=wikitext&format=json&formatversion=2`,
+          { headers: WIKI_UA },
+        )
+        if (res.status === 404) break
+        if (res.ok) {
+          const wt = (await res.json()).parse?.wikitext
+          const defs = wt ? extractDefs(wt, word) : []
+          if (defs.length) return defs[0]
+          break
+        }
+        sawError = true
+      } catch {
+        sawError = true
+      }
+      await sleep(700 * (t + 1))
+    }
+  }
+  return sawError ? 'error' : null
+}
+
 async function fetchDef(word) {
-  const w = await wiktionaryLookup(word)
-  if (w && w !== 'error') return w
   if (LANG === 'en') {
+    const w = await wiktionaryLookup(word)
+    if (w && w !== 'error') return w
     const f = await freeDictLookup(word)
     if (f) return f
+    return null
   }
-  return null
+  const w = await wikitextLookup(word)
+  return w && w !== 'error' ? w : null
 }
 
 // ---- main loop ----
