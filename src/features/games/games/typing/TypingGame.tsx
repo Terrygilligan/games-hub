@@ -170,12 +170,12 @@ export default function TypingGame() {
           </button>
         </div>
 
-        <div className="mb-4 flex items-center justify-between text-sm">
-          <span className="font-semibold">
+        <div className="mb-4 flex h-9 items-center justify-between gap-2 text-sm">
+          <span className="min-w-0 truncate font-semibold">
             {phase === 'playing' && `${t('games.typing.sentence')} ${round + 1}/${ROUNDS}`}
             {phase === 'over' && `${t('games.typing.wpm')}: ${wpm} · ${t('games.typing.accuracy')}: ${Math.round(accuracy * 100)}%`}
           </span>
-          <div className="flex items-center gap-3">
+          <div className="flex items-center whitespace-nowrap gap-3">
             <span className="text-slate-500 dark:text-slate-400">
               {t('games.typing.best')}: {best}
             </span>

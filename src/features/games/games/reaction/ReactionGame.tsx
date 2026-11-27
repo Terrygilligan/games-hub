@@ -175,14 +175,14 @@ export default function ReactionGame() {
           </button>
         </div>
 
-        <div className="mb-4 flex items-center justify-between text-sm">
-          <span className="font-semibold">
+        <div className="mb-4 flex h-9 items-center justify-between gap-2 text-sm">
+          <span className="min-w-0 truncate font-semibold">
             {t('games.reaction.round')}: {Math.min(times.length + (phase === 'waiting' || phase === 'go' || phase === 'foul' ? 1 : 0), ROUNDS)}/{ROUNDS}
             {last !== undefined && phase !== 'over' && (
               <span className="ml-2 text-slate-500 dark:text-slate-400">{last} ms</span>
             )}
           </span>
-          <div className="flex items-center gap-3">
+          <div className="flex items-center whitespace-nowrap gap-3">
             <span className="text-slate-500 dark:text-slate-400">
               {t('games.reaction.best')}: {best}
             </span>

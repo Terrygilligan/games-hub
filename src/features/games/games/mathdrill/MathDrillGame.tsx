@@ -220,8 +220,8 @@ export default function MathDrillGame() {
           </div>
         </div>
 
-        <div className="mb-4 flex items-center justify-between text-sm">
-          <span className="font-semibold">
+        <div className="mb-4 flex h-9 items-center justify-between gap-2 text-sm">
+          <span className="min-w-0 truncate font-semibold">
             {phase === 'playing' && (
               <>
                 {t('games.math-drill.timeLeft')}: {timeLeft}s
@@ -232,7 +232,7 @@ export default function MathDrillGame() {
             )}
             {phase === 'over' && `${t('games.math-drill.score')}: ${score}`}
           </span>
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-3 whitespace-nowrap">
             <span className="text-slate-500 dark:text-slate-400">
               {t('games.math-drill.best')}: {best}
             </span>

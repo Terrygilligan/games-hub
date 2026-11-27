@@ -284,8 +284,8 @@ export default function SnakeGame() {
           </button>
         </div>
 
-        <div className="mb-4 flex items-center justify-between text-sm">
-          <span className="font-semibold">
+        <div className="mb-4 flex h-9 items-center justify-between gap-2 text-sm">
+          <span className="min-w-0 truncate font-semibold">
             {t('games.snake.score')}: {score}
           </span>
           <span className="text-slate-500 dark:text-slate-400">
