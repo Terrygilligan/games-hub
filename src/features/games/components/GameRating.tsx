@@ -86,7 +86,7 @@ export default function GameRating({ itemKey }: Props) {
 
   return (
     <div className="mx-auto mb-4 w-full max-w-2xl rounded-xl bg-slate-100 px-4 py-2.5 dark:bg-slate-900">
-      <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
+      <div className="flex items-center gap-x-3 overflow-hidden whitespace-nowrap">
         <span className="text-sm text-slate-600 dark:text-slate-400">
           {t('games.rating.rateGame')}
         </span>
@@ -125,7 +125,7 @@ export default function GameRating({ itemKey }: Props) {
             className="inline-flex items-center gap-1 text-xs text-sky-700 transition hover:underline dark:text-sky-300"
           >
             <MessageSquare size={12} />
-            {t('games.rating.leaveReview')}
+            <span className="hidden sm:inline">{t('games.rating.leaveReview')}</span>
           </button>
         )}
       </div>

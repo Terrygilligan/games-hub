@@ -23,7 +23,7 @@ const AimTrainerGame = lazy(() => import('./features/games/games/aim/AimTrainerG
 
 function Loading() {
   return (
-    <div className="flex h-48 items-center justify-center text-sm text-slate-600 dark:text-slate-400">
+    <div className="flex min-h-screen items-center justify-center text-sm text-slate-600 dark:text-slate-400">
       …
     </div>
   )

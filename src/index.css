@@ -2,6 +2,10 @@
 
 @custom-variant dark (&:where(.dark, .dark *));
 
+html {
+  scrollbar-gutter: stable;
+}
+
 :focus-visible {
   outline: 2px solid #0284c7;
   outline-offset: 2px;

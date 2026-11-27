@@ -12,3 +12,4 @@ scripts/words_alpha.txt
 scripts/20k.txt
 scripts/google10k.txt
 scripts/_*
+.lh-profile/
